@@ -35,9 +35,64 @@
       "traffic_split": "34/33/33",
       "min_clicks_for_significance": 100,
       "winner": null,
+      "completed_at": "2026-02-03T22:00:00Z",
+      "status": "failed",
+      "failure_reason": "0 conversions across all 3 landers after 114 clicks ($168 spent). Root cause: CTA links went directly to Shopify instead of through RT offer URL — conversion tracking was broken. Champion also had 0 LP views (Framer page missing track.js). Challenger A violated 1-3 component change rule (changed 4).",
+      "results": {
+        "L1_champion": {"clicks": 32, "lp_views": 0, "conversions": 0, "spend": 48.60},
+        "L2_challenger_a": {"clicks": 34, "lp_views": 32, "conversions": 0, "spend": 48.54},
+        "L3_challenger_b": {"clicks": 48, "lp_views": 50, "conversions": 0, "spend": 70.73}
+      }
+    }
+  ],
+    {
+      "cycle_id": "cycle-002",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-02-03T23:00:00Z",
+      "status": "running",
+      "champion": null,
+      "note": "No champion — all 3 are challengers testing against each other after cycle-001 failure. Winner becomes new champion.",
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v002-c",
+          "rt_lander_id": "69827f5dc697e6db7e4e88e8",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-c.html",
+          "changes": ["headline", "body_sections"],
+          "tags_tested": ["authority", "comparison", "ingredient_science", "price_anchor"],
+          "description": "Ingredient science angle — dermatologists say patches beat creams, with comparison table"
+        },
+        {
+          "lander_id": "ecomm-peptide-v002-d",
+          "rt_lander_id": "69827f5ec697e6db7e4e88ec",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-d.html",
+          "changes": ["headline", "body_sections"],
+          "tags_tested": ["first_person_review", "curiosity", "transformation_journal", "honest_review"],
+          "description": "30-day honest review angle — first-person timeline showing day-by-day results with verdict box"
+        },
+        {
+          "lander_id": "ecomm-peptide-v002-e",
+          "rt_lander_id": "69827f5ec697e6db7e4e88ed",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-e.html",
+          "changes": ["headline", "body_sections"],
+          "tags_tested": ["price_anchor", "value_comparison", "cost_per_use", "annual_savings"],
+          "description": "Price comparison angle — $0.38/treatment vs $3-5 eye creams with annual savings calculator"
+        }
+      ],
+      "traffic_split": "33/33/34",
+      "min_clicks_for_significance": 100,
+      "fixes_from_cycle_001": [
+        "CTA links now route through landing.olenis.com/703/01 (RT offer URL) instead of directly to Shopify",
+        "All landers have RT track.js script for LP view tracking",
+        "All landers have clickid passthrough JS (captures sub2/clickid/rt_clickid from URL, appends to CTA)",
+        "Each challenger changes only 2 components (headline + body_sections) for cleaner attribution",
+        "Dropped Framer champion (0 LP views) — all landers now on Netlify"
+      ],
+      "winner": null,
       "completed_at": null
     }
   ],
-  "total_completed": 0,
-  "last_cycle_at": "2026-02-03T07:00:00Z"
+  "total_completed": 1,
+  "last_cycle_at": "2026-02-03T23:00:00Z"
 }

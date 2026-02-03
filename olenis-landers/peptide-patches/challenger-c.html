@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Science Behind Peptide Eye Patches</title>
+    <script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+        .topbar {
+            background: #0f4c5c;
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 14px 0;
+            text-align: center;
+        }
+        .brand { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: #1a1a2e; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f8 100%);
+            padding: 36px 0 28px;
+            text-align: center;
+        }
+        .hero .kicker {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0f4c5c;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #1a1a2e;
+            margin-bottom: 14px;
+            padding: 0 8px;
+        }
+        .hero h1 span { color: #0f4c5c; }
+        .hero .subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 24px;
+            padding: 0 16px;
+        }
+        .hero-img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Content Sections */
+        .section { padding: 32px 0; }
+        .section-alt { background: #f8fafb; }
+        .section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #1a1a2e;
+        }
+        .section p { font-size: 15px; color: #444; margin-bottom: 14px; }
+        .section p strong { color: #1a1a2e; }
+
+        /* Comparison */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .compare-table th {
+            background: #0f4c5c;
+            color: #fff;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .compare-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .win { color: #0f4c5c; font-weight: 700; }
+        .compare-table .lose { color: #999; }
+
+        /* Science Box */
+        .science-box {
+            background: #f0f7f4;
+            border-left: 4px solid #0f4c5c;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .science-box h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f4c5c;
+            margin-bottom: 8px;
+        }
+        .science-box p { font-size: 14px; margin-bottom: 0; }
+
+        /* Ingredient Pills */
+        .ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+        .ingredient {
+            background: #e8f4f8;
+            border: 1px solid #c8e6ef;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0f4c5c;
+        }
+
+        /* Product */
+        .product-images {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 16px 0;
+            justify-content: center;
+            -webkit-overflow-scrolling: touch;
+        }
+        .product-images img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Before/After */
+        .ba-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 16px auto;
+            display: block;
+        }
+
+        /* Reviews */
+        .review-card {
+            border-bottom: 1px solid #eee;
+            padding: 18px 0;
+        }
+        .review-card:last-child { border-bottom: none; }
+        .review-stars { color: #f5a623; font-size: 15px; margin-bottom: 6px; }
+        .review-text { font-size: 14px; color: #444; font-style: italic; margin-bottom: 6px; }
+        .review-author { font-size: 13px; font-weight: 600; color: #888; }
+        .verified { color: #0f4c5c; font-size: 12px; }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f0f7f4, #e8f4f8);
+        }
+        .cta-headline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .cta-sub-text {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0f4c5c, #0a3640);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(15, 76, 92, 0.3);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(15, 76, 92, 0.4);
+        }
+        .cta-note {
+            font-size: 13px;
+            color: #888;
+            margin-top: 12px;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 100;
+            text-align: center;
+            display: none;
+        }
+        .sticky-cta .cta-btn {
+            font-size: 15px;
+            padding: 14px 28px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .footer {
+            background: #1a1a2e;
+            color: #a8a9c4;
+            text-align: center;
+            padding: 28px 20px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .footer a { color: #7ec8d8; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .sticky-cta { display: block; }
+            body { padding-bottom: 80px; }
+            .product-images { justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">Dermatologist-Reviewed Ingredients &bull; 47,000+ Customers</div>
+
+    <div class="header">
+        <div class="container"><span class="brand">Olenis</span></div>
+    </div>
+
+    <div class="hero">
+        <div class="container">
+            <div class="kicker">The Science</div>
+            <h1>Why Dermatologists Say <span>Eye Patches Beat Eye Creams</span> (And the $23 Pair They Recommend)</h1>
+            <p class="subtitle">The difference isn't the ingredients. It's how they get into your skin.</p>
+            <img src="https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420" alt="Olenis Peptide Eye Patches" class="hero-img">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>The Problem With Eye Creams</h2>
+            <p>Most eye creams cost $60-$120. They contain good ingredients. But they share one fundamental problem: <strong>they sit on top of your skin.</strong></p>
+            <p>The under-eye area has the thinnest skin on your body — just 0.5mm. Eye creams are designed to moisturize the surface. The active ingredients (peptides, retinol, vitamin C) mostly evaporate before they penetrate deep enough to make a difference.</p>
+
+            <div class="science-box">
+                <h3>How Patches Are Different</h3>
+                <p>Hydrogel patches create an <strong>occlusive seal</strong> against the skin. Nothing evaporates. The concentrated actives are pushed directly into the dermis over 20-30 minutes. Clinical studies show hydrogel delivery achieves <strong>5-8x deeper penetration</strong> than topical creams.</p>
+            </div>
+
+            <h2>Eye Cream vs. Peptide Patches</h2>
+            <table class="compare-table">
+                <tr><th>Factor</th><th>Eye Creams</th><th>Peptide Patches</th></tr>
+                <tr><td>Delivery method</td><td class="lose">Surface application</td><td class="win">Occlusive seal (5-8x deeper)</td></tr>
+                <tr><td>Active ingredient contact time</td><td class="lose">Minutes (evaporates)</td><td class="win">20-30 min continuous</td></tr>
+                <tr><td>Concentration at skin level</td><td class="lose">Diluted</td><td class="win">Full-strength direct delivery</td></tr>
+                <tr><td>Cost per treatment</td><td class="lose">$3-5/application</td><td class="win">$0.38/application</td></tr>
+                <tr><td>Visible results</td><td class="lose">4-6 weeks</td><td class="win">Often after first use</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section section-alt">
+        <div class="container">
+            <h2>What's Inside Olenis Bright Eyes Patches</h2>
+            <p>Each patch is loaded with clinical-grade actives:</p>
+            <div class="ingredients">
+                <span class="ingredient">Collagen Peptides</span>
+                <span class="ingredient">Hyaluronic Acid</span>
+                <span class="ingredient">Niacinamide</span>
+                <span class="ingredient">24K Gold Particles</span>
+                <span class="ingredient">Vitamin E</span>
+            </div>
+            <p>60 patches per jar. One jar lasts a full month of daily use.</p>
+            <div class="product-images">
+                <img src="https://shop.olenis.com/cdn/shop/files/1EP.png?v=1761316407" alt="Peptide Eye Patches jar">
+                <img src="https://shop.olenis.com/cdn/shop/files/1EP_c965f4a9-0f7d-49f9-a6ae-afcadaed6e62.png?v=1761314730" alt="Eye Patches product">
+                <img src="https://shop.olenis.com/cdn/shop/files/prod3_e9933c3d-dacd-4bf4-9944-7affd796d3dd.png?v=1766436155" alt="Eye Patches detail">
+                <img src="https://shop.olenis.com/cdn/shop/files/prod4_bf2bf700-90c4-48c7-819f-3c9b7e35c378.png?v=1766436155" alt="Eye Patches application">
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <div class="container">
+            <h2>Results After 2-4 Weeks</h2>
+            <p>Real customers, consistent daily use.</p>
+            <img src="https://shop.olenis.com/cdn/shop/files/befaf3.png?v=1766436155" alt="Before and After" class="ba-img">
+        </div>
+    </div>
+
+    <div class="section section-alt">
+        <div class="container">
+            <h2>What Customers Say</h2>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="review-text">"My aesthetician was shocked at my 2-week check-in. She asked what I changed and I told her — just these patches, every morning. The puffiness is gone."</div>
+                <div class="review-author">Jennifer L. <span class="verified">&#10003; Verified Purchase</span></div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="review-text">"I switched from La Mer eye concentrate ($200) to these. Genuinely better results. I feel stupid for how long I spent on luxury creams."</div>
+                <div class="review-author">Amanda R. <span class="verified">&#10003; Verified Purchase</span></div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                <div class="review-text">"Bought for the science, stayed for the results. Dark circles noticeably lighter after 10 days. Already on jar #2."</div>
+                <div class="review-author">Priya K. <span class="verified">&#10003; Verified Purchase</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="container">
+            <div class="cta-headline">Try the Science-Backed Alternative</div>
+            <div class="cta-sub-text">60 patches, $23. That's $0.38 per treatment.</div>
+            <a href="https://landing.olenis.com/703/01" class="cta-btn cta-link">Shop Olenis Bright Eyes — $23</a>
+            <div class="cta-note">Free Shipping on Orders $35+ &bull; 4.8 Stars from 47K+ Customers</div>
+        </div>
+    </div>
+
+    <div class="sticky-cta">
+        <a href="https://landing.olenis.com/703/01" class="cta-btn cta-link">Shop Bright Eyes — $23</a>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            &copy; 2026 Olenis. All rights reserved.<br>
+            These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.<br>
+            Individual results may vary.<br>
+            <a href="https://shop.olenis.com/policies/privacy-policy">Privacy Policy</a> &bull; <a href="https://shop.olenis.com/policies/terms-of-service">Terms of Service</a>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var clickid = params.get('sub2') || params.get('clickid') || params.get('rt_clickid');
+        if (clickid) {
+            document.querySelectorAll('.cta-link').forEach(function(link) {
+                var sep = link.href.indexOf('?') > -1 ? '&' : '?';
+                link.href = link.href + sep + 'sub2=' + encodeURIComponent(clickid);
+            });
+        }
+        var sticky = document.querySelector('.sticky-cta');
+        if (sticky && window.innerWidth <= 600) {
+            window.addEventListener('scroll', function() {
+                sticky.style.display = window.scrollY > 400 ? 'block' : 'none';
+            });
+        }
+    })();
+    </script>
+</body>
+</html>

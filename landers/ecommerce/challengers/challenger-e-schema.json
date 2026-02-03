@@ -1,0 +1,63 @@
+{
+  "lander_id": "ecomm-peptide-v002-e",
+  "vertical": "ecommerce",
+  "style": "editorial",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "parent_champion": "ecomm-peptide-v001",
+  "cycle_id": "cycle-002",
+  "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-e",
+  "rt_lander_id": "69827f5ec697e6db7e4e88ed",
+  "components": {
+    "headline": {
+      "text": "$0.38 Per Treatment: Why 47,000+ Women Ditched Their Eye Cream",
+      "variant_tags": ["price_anchor", "value_comparison", "social_proof"]
+    },
+    "subheadline": {
+      "text": "The average eye cream costs $3-5 per application and sits on the surface. These patches deliver more for a fraction of the price.",
+      "variant_tags": ["comparison", "science_hook"]
+    },
+    "hero_image": {
+      "src": "https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420",
+      "variant_tags": ["product_closeup"]
+    },
+    "trust_elements": [
+      {"type": "topbar", "text": "60 Patches for $23 — $0.38 Per Treatment", "variant_tags": ["price_anchor"]},
+      {"type": "counter", "text": "47,000+ Customers", "variant_tags": ["purchase_count"]}
+    ],
+    "cta": {
+      "text": "Shop Olenis Bright Eyes — $23",
+      "color": "#b8860b",
+      "url": "https://landing.olenis.com/703/01",
+      "variant_tags": ["shop_now", "price_anchor"]
+    },
+    "body_sections": [
+      {"type": "price_comparison", "variant_tags": ["price_anchor", "value_comparison"]},
+      {"type": "savings_calculator", "variant_tags": ["cost_per_use", "annual_savings"]},
+      {"type": "before_after", "variant_tags": ["before_after_gallery"]},
+      {"type": "reviews", "variant_tags": ["review_list"]}
+    ],
+    "pricing": {
+      "price": "$23.00",
+      "compare_at_price": "$1,095-$1,825/year (eye creams)",
+      "variant_tags": ["price_anchor", "annual_savings", "value_comparison"]
+    }
+  },
+  "diff_vs_champion": {
+    "components_changed": 2,
+    "changes": [
+      {
+        "component": "headline",
+        "champion_tags": ["listicle_number", "comparison", "social_proof"],
+        "challenger_tags": ["price_anchor", "value_comparison", "social_proof"],
+        "description": "Changed from '7 Reasons' listicle to specific cost-per-use price anchor ($0.38) with comparison angle"
+      },
+      {
+        "component": "body_sections",
+        "champion_tags": ["reason_listicle", "ingredient_breakdown", "before_after_gallery"],
+        "challenger_tags": ["price_anchor", "value_comparison", "annual_savings"],
+        "description": "Changed from listicle to price comparison cards + annual savings calculator showing $957-$1,687 savings"
+      }
+    ]
+  }
+}

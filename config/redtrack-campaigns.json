@@ -27,22 +27,42 @@
         "aov": 23.0
       },
       "status": "active",
-      "optimizer_status": "cycle-001-active",
+      "optimizer_status": "cycle-002-active",
       "landers": {
-        "champion": {
+        "challenger_c": {
+          "rt_lander_id": "69827f5dc697e6db7e4e88e8",
+          "lander_id": "ecomm-peptide-v002-c",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-c.html"
+        },
+        "challenger_d": {
+          "rt_lander_id": "69827f5ec697e6db7e4e88ec",
+          "lander_id": "ecomm-peptide-v002-d",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-d.html"
+        },
+        "challenger_e": {
+          "rt_lander_id": "69827f5ec697e6db7e4e88ed",
+          "lander_id": "ecomm-peptide-v002-e",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-e.html"
+        }
+      },
+      "retired_landers": {
+        "champion_v001": {
           "rt_lander_id": "6981b203f161a8800ef4ab5a",
           "lander_id": "ecomm-peptide-v001",
-          "url": "https://landing.olenis.com/703/01"
+          "url": "https://landing.olenis.com/703/01",
+          "retired_reason": "0 LP views — Framer page missing track.js"
         },
-        "challenger_a": {
+        "challenger_a_v001": {
           "rt_lander_id": "6981b204f161a8800ef4ab5b",
           "lander_id": "ecomm-peptide-v001-a",
-          "url": "https://firstlightrituals.com/peptide-patches/challenger-a"
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-a",
+          "retired_reason": "0 conversions, 4 components changed (too many)"
         },
-        "challenger_b": {
+        "challenger_b_v001": {
           "rt_lander_id": "6981b205f161a8800ef4ab5c",
           "lander_id": "ecomm-peptide-v001-b",
-          "url": "https://firstlightrituals.com/peptide-patches/challenger-b"
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-b",
+          "retired_reason": "0 conversions, CTA linked to Shopify instead of RT offer URL"
         }
       }
     }

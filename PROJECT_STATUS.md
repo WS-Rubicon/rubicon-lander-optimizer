@@ -1,7 +1,7 @@
 # Rubicon Lander Optimizer — Project Status
 
-**Last Updated:** 2026-02-03 ~10:00 UTC
-**Last Session:** Completed RedTrack integration + deployed nutra-style challenger lander
+**Last Updated:** 2026-02-03 ~23:00 UTC
+**Last Session:** Rotated out cycle-001 landers (0 conversions), deployed 3 new cycle-002 challengers with fixed CTA tracking
 
 ---
 
@@ -19,18 +19,18 @@ A **Claude-orchestrated A/B testing system for landing pages**. It runs optimiza
 
 ### What's Working
 
-- **RedTrack campaign is live** with 3 landers and 34/33/33 traffic split
+- **RedTrack campaign is live** with 3 NEW landers (cycle-002) and 33/33/34 traffic split
   - Campaign ID: `6979c0adcad13a4d8c3cbb94`
   - Trackback URL: `https://y.getmorelocalhelp.com/6979c0adcad13a4d8c3cbb94?sub1={{ad.id}}&sub2={{adset.id}}&sub3={{campaign.id}}&sub4={{ad.name}}&sub5={{adset.name}}&sub6={{campaign.name}}&sub7={{placement}}&sub8={{site_source_name}}&utm_source=facebook&utm_medium=paid`
-- **3 landers registered in RedTrack and attached to the campaign:**
-  - Peptides_L1 (champion): `6981b203f161a8800ef4ab5a` → https://landing.olenis.com/703/01
-  - Peptides_L2 (challenger A): `6981b204f161a8800ef4ab5b` → https://firstlightrituals.com/peptide-patches/challenger-a
-  - Peptides_L3 (challenger B): `6981b205f161a8800ef4ab5c` → https://firstlightrituals.com/peptide-patches/challenger-b
-- **Challenger landers deployed on Netlify** (site: `olenis-landers`, domain: `firstlightrituals.com`)
-- **All config/data JSON files have real (verified) RedTrack IDs**
-- **Challenger A** is a nutra-style editorial with AI-generated Korean hero image
-- **Challenger B** is a scarcity/social proof angle
-- **RedTrack click ID passthrough** works on both challengers (JS at bottom of HTML)
+- **3 NEW landers registered in RedTrack and attached to the campaign (cycle-002):**
+  - Peptides_L4 (Challenger C - Ingredient Science): `69827f5dc697e6db7e4e88e8` → https://firstlightrituals.com/peptide-patches/challenger-c.html
+  - Peptides_L5 (Challenger D - 30-Day Review): `69827f5ec697e6db7e4e88ec` → https://firstlightrituals.com/peptide-patches/challenger-d.html
+  - Peptides_L6 (Challenger E - Price Comparison): `69827f5ec697e6db7e4e88ed` → https://firstlightrituals.com/peptide-patches/challenger-e.html
+- **All 3 landers deployed on Netlify** (site: `olenis-landers`, domain: `firstlightrituals.com`)
+- **CTA tracking fixed** — all CTAs route through `landing.olenis.com/703/01` (RT offer URL) instead of directly to Shopify
+- **All landers have RT track.js** + clickid passthrough JS
+- **Each challenger changes only 2 components** (headline + body_sections) for clean attribution
+- **Cycle-001 retired** — 0 conversions across all 3 landers after 114 clicks ($168 spent). Root causes logged in `knowledge/creative-patterns.md`
 
 ### What's Not Working / Not Built Yet
 
@@ -122,9 +122,12 @@ A **Claude-orchestrated A/B testing system for landing pages**. It runs optimiza
 | RT Offer (Peptide Eye Patches) | `6913159915212444f6558b9e` |
 | RT Source (Wesley - Ecomm - Facebook) | `69130f6cc135783644ffee46` |
 | RT Domain | `65c3f42c7260ea000164821c` |
-| Peptides_L1 (champion lander) | `6981b203f161a8800ef4ab5a` |
-| Peptides_L2 (challenger A lander) | `6981b204f161a8800ef4ab5b` |
-| Peptides_L3 (challenger B lander) | `6981b205f161a8800ef4ab5c` |
+| Peptides_L4 (Challenger C - Ingredient Science) | `69827f5dc697e6db7e4e88e8` |
+| Peptides_L5 (Challenger D - 30-Day Review) | `69827f5ec697e6db7e4e88ec` |
+| Peptides_L6 (Challenger E - Price Comparison) | `69827f5ec697e6db7e4e88ed` |
+| ~~Peptides_L1 (champion, retired)~~ | `6981b203f161a8800ef4ab5a` |
+| ~~Peptides_L2 (challenger A, retired)~~ | `6981b204f161a8800ef4ab5b` |
+| ~~Peptides_L3 (challenger B, retired)~~ | `6981b205f161a8800ef4ab5c` |
 
 ### Netlify
 
@@ -236,18 +239,18 @@ Node.js isn't available in WSL, so the Netlify CLI doesn't work. We deploy via t
 Facebook Ads
     ↓ (trackback URL)
 RedTrack Campaign (6979c0adcad13a4d8c3cbb94)
-    ↓ (34/33/33 traffic split)
-    ├── Peptides_L1 → landing.olenis.com/703/01        (Champion - Framer)
-    ├── Peptides_L2 → firstlightrituals.com/challenger-a (Nutra editorial - Netlify)
-    └── Peptides_L3 → firstlightrituals.com/challenger-b (Scarcity angle - Netlify)
-    ↓ (CTA click with clickid passthrough)
-Shopify Store (shop.olenis.com/products/bright-eyes-collagen-patches)
+    ↓ (33/33/34 traffic split — cycle-002)
+    ├── Peptides_L4 → firstlightrituals.com/challenger-c (Ingredient Science - Netlify)
+    ├── Peptides_L5 → firstlightrituals.com/challenger-d (30-Day Review - Netlify)
+    └── Peptides_L6 → firstlightrituals.com/challenger-e (Price Comparison - Netlify)
+    ↓ (CTA click with clickid passthrough → landing.olenis.com/703/01)
+RT Offer URL → Shopify Store (shop.olenis.com)
     ↓ (conversion postback)
 RedTrack (tracks CVR, EPC, revenue per lander)
     ↓
 Claude (pulls stats, runs chi-squared test, picks winner)
     ↓
-New cycle with winner as champion + new challengers
+Winner becomes champion + generate new challengers for cycle-003
 ```
 
 ---

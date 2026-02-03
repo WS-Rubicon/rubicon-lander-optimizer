@@ -1,0 +1,64 @@
+{
+  "lander_id": "ecomm-peptide-v002-c",
+  "vertical": "ecommerce",
+  "style": "editorial",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "parent_champion": "ecomm-peptide-v001",
+  "cycle_id": "cycle-002",
+  "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-c",
+  "rt_lander_id": "69827f5dc697e6db7e4e88e8",
+  "components": {
+    "headline": {
+      "text": "Why Dermatologists Say Eye Patches Beat Eye Creams (And the $23 Pair They Recommend)",
+      "variant_tags": ["authority", "comparison", "price_anchor"]
+    },
+    "subheadline": {
+      "text": "The difference isn't the ingredients. It's how they get into your skin.",
+      "variant_tags": ["science_hook", "benefit_focused"]
+    },
+    "hero_image": {
+      "src": "https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420",
+      "variant_tags": ["product_closeup"]
+    },
+    "trust_elements": [
+      {"type": "topbar", "text": "Dermatologist-Reviewed Ingredients", "variant_tags": ["authority"]},
+      {"type": "counter", "text": "47,000+ Customers", "variant_tags": ["purchase_count"]}
+    ],
+    "cta": {
+      "text": "Shop Olenis Bright Eyes — $23",
+      "color": "#0f4c5c",
+      "url": "https://landing.olenis.com/703/01",
+      "variant_tags": ["shop_now", "price_anchor"]
+    },
+    "body_sections": [
+      {"type": "problem_explanation", "variant_tags": ["ingredient_science", "comparison"]},
+      {"type": "comparison_table", "variant_tags": ["comparison", "price_anchor"]},
+      {"type": "ingredient_list", "variant_tags": ["ingredient_breakdown"]},
+      {"type": "before_after", "variant_tags": ["before_after_gallery"]},
+      {"type": "reviews", "variant_tags": ["review_list"]}
+    ],
+    "pricing": {
+      "price": "$23.00",
+      "compare_at_price": "$3-5/application (eye creams)",
+      "variant_tags": ["price_anchor", "value_comparison"]
+    }
+  },
+  "diff_vs_champion": {
+    "components_changed": 2,
+    "changes": [
+      {
+        "component": "headline",
+        "champion_tags": ["listicle_number", "comparison", "social_proof"],
+        "challenger_tags": ["authority", "comparison", "price_anchor"],
+        "description": "Changed from '7 Reasons' listicle to dermatologist authority + patches vs creams science angle"
+      },
+      {
+        "component": "body_sections",
+        "champion_tags": ["reason_listicle", "ingredient_breakdown", "before_after_gallery"],
+        "challenger_tags": ["ingredient_science", "comparison", "price_anchor"],
+        "description": "Changed from listicle format to science explanation with comparison table showing patches vs creams"
+      }
+    ]
+  }
+}

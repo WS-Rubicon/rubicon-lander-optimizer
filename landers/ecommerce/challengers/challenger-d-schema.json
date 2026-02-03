@@ -1,0 +1,61 @@
+{
+  "lander_id": "ecomm-peptide-v002-d",
+  "vertical": "ecommerce",
+  "style": "editorial",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "parent_champion": "ecomm-peptide-v001",
+  "cycle_id": "cycle-002",
+  "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-d",
+  "rt_lander_id": "69827f5ec697e6db7e4e88ec",
+  "components": {
+    "headline": {
+      "text": "I Tried the $23 Eye Patches That Keep Selling Out. Here's What Actually Happened.",
+      "variant_tags": ["first_person_review", "curiosity", "price_anchor"]
+    },
+    "subheadline": {
+      "text": "A day-by-day breakdown of Olenis Bright Eyes Collagen Patches — the good, the bad, and whether they're worth it.",
+      "variant_tags": ["honest_review", "specificity"]
+    },
+    "hero_image": {
+      "src": "https://shop.olenis.com/cdn/shop/files/befaf3.png?v=1766436155",
+      "variant_tags": ["before_after"]
+    },
+    "trust_elements": [
+      {"type": "topbar", "text": "Honest Product Review", "variant_tags": ["honest_review"]},
+      {"type": "verdict_box", "text": "4.8/5 Final Rating", "variant_tags": ["star_rating"]}
+    ],
+    "cta": {
+      "text": "Shop Olenis Bright Eyes — $23",
+      "color": "#7b2d8e",
+      "url": "https://landing.olenis.com/703/01",
+      "variant_tags": ["shop_now", "price_anchor"]
+    },
+    "body_sections": [
+      {"type": "timeline_review", "variant_tags": ["first_person_review", "transformation_journal"]},
+      {"type": "verdict", "variant_tags": ["honest_review", "rating"]},
+      {"type": "reviews", "variant_tags": ["review_list"]}
+    ],
+    "pricing": {
+      "price": "$23.00",
+      "variant_tags": ["embedded_in_headline"]
+    }
+  },
+  "diff_vs_champion": {
+    "components_changed": 2,
+    "changes": [
+      {
+        "component": "headline",
+        "champion_tags": ["listicle_number", "comparison", "social_proof"],
+        "challenger_tags": ["first_person_review", "curiosity", "price_anchor"],
+        "description": "Changed from '7 Reasons' listicle to first-person honest review format with curiosity hook"
+      },
+      {
+        "component": "body_sections",
+        "champion_tags": ["reason_listicle", "ingredient_breakdown", "before_after_gallery"],
+        "challenger_tags": ["first_person_review", "transformation_journal", "honest_review"],
+        "description": "Changed from listicle to 30-day timeline journal showing day-by-day results with verdict box"
+      }
+    ]
+  }
+}
