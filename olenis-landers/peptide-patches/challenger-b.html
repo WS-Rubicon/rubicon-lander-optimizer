@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sold Out 3 Times - Olenis Eye Patches</title>
+    <script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #242655;
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 14px 0;
+            text-align: center;
+        }
+        .brand-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #242655;
+            letter-spacing: -0.5px;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, #6b40a8, #8b5fcf);
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #fff6f6 0%, #f7f1ff 100%);
+            padding: 40px 0 32px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #242655;
+            margin-bottom: 16px;
+            padding: 0 12px;
+        }
+        .hero h1 span { color: #e8776f; }
+        .hero .subtitle {
+            font-size: 17px;
+            color: #636585;
+            margin-bottom: 24px;
+            padding: 0 20px;
+        }
+        .hero-img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Social Proof Counter */
+        .social-counter {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 24px 0;
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+        .counter-item { text-align: center; }
+        .counter-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #6b40a8;
+        }
+        .counter-label {
+            font-size: 12px;
+            color: #636585;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Content */
+        .section { padding: 36px 0; }
+        .section-alt { background: #faf8ff; }
+        .section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #242655;
+        }
+        .section p {
+            font-size: 16px;
+            color: #4a4c6a;
+            margin-bottom: 14px;
+        }
+
+        /* Reason Blocks */
+        .reason-block {
+            background: #fff;
+            border-left: 4px solid #6b40a8;
+            border-radius: 0 12px 12px 0;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .reason-block h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #242655;
+        }
+        .reason-block p { margin-bottom: 0; font-size: 15px; }
+
+        /* Review Grid */
+        .review-grid {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .review-card {
+            background: #fff;
+            border: 1px solid #e8e4f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a48ad2, #6b40a8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .review-meta { flex: 1; }
+        .review-name { font-weight: 700; font-size: 14px; }
+        .review-date { font-size: 12px; color: #636585; }
+        .review-stars { color: #f5a623; font-size: 14px; margin-bottom: 8px; }
+        .review-text { font-size: 15px; color: #4a4c6a; }
+        .verified { color: #22a366; font-size: 12px; font-weight: 600; }
+
+        /* Before/After */
+        .ba-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            margin: 16px auto;
+            display: block;
+        }
+
+        /* Product Images */
+        .product-images {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 16px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .product-images img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #faf8ff, #fff6f6);
+        }
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e8776f, #d4574f);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(232, 119, 111, 0.35);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(232, 119, 111, 0.45);
+        }
+        .cta-sub {
+            font-size: 13px;
+            color: #636585;
+            margin-top: 10px;
+        }
+        .stock-note {
+            font-size: 14px;
+            color: #e8776f;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 100;
+            text-align: center;
+            display: none;
+        }
+        .sticky-cta .cta-btn {
+            font-size: 15px;
+            padding: 14px 28px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #242655;
+            color: #a8a9c4;
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .footer a { color: #a48ad2; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .section h2 { font-size: 20px; }
+            .counter-number { font-size: 24px; }
+            .sticky-cta { display: block; }
+            body { padding-bottom: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        Back In Stock &mdash; Limited Quantities Available
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <span class="brand-name">Olenis</span>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="container">
+            <h1><span>Sold Out 3 Times:</span> The Eye Patches 47,000+ Women Can't Stop Buying</h1>
+            <p class="subtitle">Find out why dermatologists are recommending these peptide patches over luxury eye creams</p>
+            <img src="https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420" alt="Olenis Peptide Eye Patches" class="hero-img">
+        </div>
+    </div>
+
+    <!-- Social Proof Counters -->
+    <div class="social-counter">
+        <div class="counter-item">
+            <div class="counter-number">47,000+</div>
+            <div class="counter-label">Happy Customers</div>
+        </div>
+        <div class="counter-item">
+            <div class="counter-number">4.8</div>
+            <div class="counter-label">Star Rating</div>
+        </div>
+        <div class="counter-item">
+            <div class="counter-number">3x</div>
+            <div class="counter-label">Sold Out</div>
+        </div>
+    </div>
+
+    <!-- Why It Keeps Selling Out -->
+    <div class="section">
+        <div class="container">
+            <h2>Why They Keep Selling Out</h2>
+            <p>When a product sells out three times in a row, it's not a fluke. Here's what's driving the demand:</p>
+
+            <div class="reason-block">
+                <h3>Visible Results in One Use</h3>
+                <p>Most customers report noticeably reduced puffiness after their very first application. The hydrogel seal delivers concentrated peptides directly where you need them.</p>
+            </div>
+
+            <div class="reason-block">
+                <h3>Fraction of the Price</h3>
+                <p>At $23 for 60 patches, each application costs less than a dollar. Compare that to $60-$120 for high-end eye creams that sit on the surface.</p>
+            </div>
+
+            <div class="reason-block">
+                <h3>Word of Mouth Is Real</h3>
+                <p>When something actually works, people tell their friends. Over 12,000 of our customers came from direct recommendations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Images -->
+    <div class="section section-alt">
+        <div class="container">
+            <h2>The Product</h2>
+            <div class="product-images">
+                <img src="https://shop.olenis.com/cdn/shop/files/1EP.png?v=1761316407" alt="Peptide Eye Patches">
+                <img src="https://shop.olenis.com/cdn/shop/files/1EP_c965f4a9-0f7d-49f9-a6ae-afcadaed6e62.png?v=1761314730" alt="Eye Patches product">
+                <img src="https://shop.olenis.com/cdn/shop/files/prod3_e9933c3d-dacd-4bf4-9944-7affd796d3dd.png?v=1766436155" alt="Eye Patches detail">
+                <img src="https://shop.olenis.com/cdn/shop/files/prod5_03ace4a2-0b98-49bc-93c6-5f9e8db92306.png?v=1766436141" alt="Eye Patches usage">
+            </div>
+        </div>
+    </div>
+
+    <!-- Before/After -->
+    <div class="section" style="text-align: center;">
+        <div class="container">
+            <h2>Real Results, Real People</h2>
+            <p>See what consistent use looks like.</p>
+            <img src="https://shop.olenis.com/cdn/shop/files/befaf3.png?v=1766436155" alt="Before and After Results" class="ba-img">
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="section section-alt">
+        <div class="container">
+            <h2>From Our Customers</h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">S</div>
+                        <div class="review-meta">
+                            <div class="review-name">Sarah K. <span class="verified">&#10003; Verified</span></div>
+                            <div class="review-date">January 2026</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="review-text">"I bought these after seeing them everywhere on TikTok. Honestly skeptical but they actually work? My under-eye bags are significantly better after 2 weeks."</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">M</div>
+                        <div class="review-meta">
+                            <div class="review-name">Maria G. <span class="verified">&#10003; Verified</span></div>
+                            <div class="review-date">January 2026</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="review-text">"I'm on my 3rd jar. Had to buy extra last time because they kept selling out. These replaced my entire eye care routine."</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">L</div>
+                        <div class="review-meta">
+                            <div class="review-name">Lisa T. <span class="verified">&#10003; Verified</span></div>
+                            <div class="review-date">December 2025</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                    <div class="review-text">"Good product. Takes a few uses to really notice a difference but once you do, you're hooked. My mom uses them now too."</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="container">
+            <div class="stock-note">&#9888; Currently in stock &mdash; limited quantities</div>
+            <a href="https://shop.olenis.com/products/bright-eyes-collagen-patches" class="cta-btn cta-link">Get Yours Before They Sell Out Again</a>
+            <div class="cta-sub">$23.00 &bull; 60 Patches Per Jar &bull; Free Shipping on $35+</div>
+        </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <a href="https://shop.olenis.com/products/bright-eyes-collagen-patches" class="cta-btn cta-link">Get Yours &mdash; $23</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            &copy; 2026 Olenis. All rights reserved.<br>
+            These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.<br>
+            Individual results may vary.<br>
+            <a href="https://shop.olenis.com/policies/privacy-policy">Privacy Policy</a> &bull; <a href="https://shop.olenis.com/policies/terms-of-service">Terms of Service</a>
+        </div>
+    </div>
+
+    <script>
+    // Capture RT clickid from URL and append to all CTA links
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var clickid = params.get('sub2') || params.get('clickid') || params.get('rt_clickid');
+        if (clickid) {
+            var links = document.querySelectorAll('.cta-link');
+            links.forEach(function(link) {
+                var url = new URL(link.href);
+                url.searchParams.set('sub2', clickid);
+                link.href = url.toString();
+            });
+        }
+        // Show sticky CTA after scrolling past hero
+        var sticky = document.querySelector('.sticky-cta');
+        if (sticky && window.innerWidth <= 600) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    sticky.style.display = 'block';
+                } else {
+                    sticky.style.display = 'none';
+                }
+            });
+        }
+    })();
+    </script>
+</body>
+</html>

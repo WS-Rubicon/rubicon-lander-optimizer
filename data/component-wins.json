@@ -1,0 +1,16 @@
+{
+  "component_records": {},
+  "_schema": {
+    "tag_name": {
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "total_tests": 0,
+      "win_rate": 0.0,
+      "avg_cvr_lift_when_present": 0.0,
+      "verticals_tested": [],
+      "last_tested": null,
+      "confidence": "low|medium|high"
+    }
+  }
+}

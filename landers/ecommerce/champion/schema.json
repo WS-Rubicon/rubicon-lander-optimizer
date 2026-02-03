@@ -1,0 +1,68 @@
+{
+  "lander_id": "ecomm-peptide-v001",
+  "vertical": "ecommerce",
+  "style": "listicle",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "campaign_id": "6979c0adcad13a4d8c3cbb94",
+  "rt_lander_id": "6981b203f161a8800ef4ab5a",
+  "deployed_url": "https://landing.olenis.com/703/01",
+  "platform": "framer",
+  "created_at": "2026-02-02T00:00:00Z",
+  "tracking": {
+    "redtrack_script": "//hpkpn.ttrk.io/track.js",
+    "verified": true
+  },
+  "baseline_performance": {
+    "date_range": "2026-01-28 to 2026-02-02",
+    "clicks": 1953,
+    "conversions": 69,
+    "cvr": 3.53,
+    "epc": 0.81,
+    "revenue": 1587,
+    "cost": 3330.82,
+    "roas": 0.48
+  },
+  "components": {
+    "headline": {
+      "text": "7 Reasons Why More Women Are Ditching Eye Creams For Olenis \"Bright Eyes\" Patches",
+      "variant_tags": ["listicle_number", "comparison", "social_proof"]
+    },
+    "subheadline": {
+      "text": null,
+      "variant_tags": []
+    },
+    "hero_image": {
+      "src": null,
+      "template": "product_editorial",
+      "variant_tags": ["product_closeup"]
+    },
+    "trust_elements": [
+      {"type": "reviews", "text": null, "variant_tags": ["star_rating", "review_count"]},
+      {"type": "badge", "text": null, "variant_tags": ["dermatologist_tested"]}
+    ],
+    "cta": {
+      "text": null,
+      "color": null,
+      "url": "https://landing.olenis.com/703/01",
+      "variant_tags": ["shop_now"]
+    },
+    "body_sections": [
+      {"type": "listicle", "count": 7, "variant_tags": ["reason_listicle"]},
+      {"type": "ingredients", "variant_tags": ["ingredient_breakdown"]},
+      {"type": "before_after", "variant_tags": ["before_after_gallery"]}
+    ],
+    "pricing": {
+      "price": null,
+      "compare_at_price": null,
+      "variant_tags": []
+    }
+  },
+  "brief": "Listicle editorial targeting women interested in eye care/anti-aging. Positions Olenis Bright Eyes Peptide Patches as superior alternative to traditional eye creams. 7-reasons format. Current baseline CVR 3.53% with ROAS 0.48x - profitable landing page needed.",
+  "generation_params": {
+    "presales_supported": false,
+    "generation_method": "manual_html",
+    "offer_url": "https://landing.olenis.com/703/01"
+  },
+  "_notes": "Champion is the existing Framer-built page. Since presales_generate doesn't support ecommerce, challengers will be generated as standalone HTML pages deployed via FTP. The current page content couldn't be fully extracted via WebFetch due to Framer's JS rendering - page structure based on partial extraction."
+}

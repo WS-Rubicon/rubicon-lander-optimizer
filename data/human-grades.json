@@ -1,0 +1,15 @@
+{
+  "grades": [],
+  "total_graded": 0,
+  "_schema": {
+    "cycle_id": "string",
+    "winner": "lander_id",
+    "human_attribution": {
+      "winning_components": ["tag1", "tag2"],
+      "confidence": "high|medium|low",
+      "notes": "free text"
+    },
+    "graded_at": "ISO8601",
+    "graded_by": "wesley"
+  }
+}

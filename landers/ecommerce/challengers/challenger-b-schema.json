@@ -1,0 +1,63 @@
+{
+  "lander_id": "ecomm-peptide-v001-b",
+  "vertical": "ecommerce",
+  "style": "editorial",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "parent_champion": "ecomm-peptide-v001",
+  "cycle_id": "cycle-001",
+  "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-b",
+  "rt_lander_id": "6981b205f161a8800ef4ab5c",
+  "components": {
+    "headline": {
+      "text": "Sold Out 3 Times: The Eye Patches 47,000+ Women Can't Stop Buying",
+      "variant_tags": ["scarcity", "purchase_count"]
+    },
+    "subheadline": {
+      "text": "Find out why dermatologists are recommending these peptide patches over luxury eye creams",
+      "variant_tags": ["authority", "benefit_focused"]
+    },
+    "hero_image": {
+      "src": "https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420",
+      "variant_tags": ["product_closeup"]
+    },
+    "trust_elements": [
+      {"type": "counter", "text": "47,000+ Happy Customers", "variant_tags": ["purchase_count"]},
+      {"type": "counter", "text": "4.8 Star Rating", "variant_tags": ["star_rating"]},
+      {"type": "counter", "text": "3x Sold Out", "variant_tags": ["scarcity"]}
+    ],
+    "cta": {
+      "text": "Get Yours Before They Sell Out Again",
+      "color": "#e8776f",
+      "url": "https://shop.olenis.com/products/bright-eyes-collagen-patches",
+      "variant_tags": ["urgency", "scarcity"]
+    },
+    "body_sections": [
+      {"type": "reasons_why", "variant_tags": ["reason_listicle"]},
+      {"type": "before_after", "variant_tags": ["before_after_gallery"]},
+      {"type": "reviews", "variant_tags": ["testimonial_photo"]}
+    ],
+    "pricing": {
+      "price": "$23.00",
+      "compare_at_price": null,
+      "variant_tags": []
+    }
+  },
+  "diff_vs_champion": {
+    "components_changed": 2,
+    "changes": [
+      {
+        "component": "headline",
+        "champion_tags": ["listicle_number", "comparison", "social_proof"],
+        "challenger_tags": ["scarcity", "purchase_count"],
+        "description": "Changed from '7 Reasons' listicle to sold-out scarcity + social proof angle"
+      },
+      {
+        "component": "cta",
+        "champion_tags": ["shop_now"],
+        "challenger_tags": ["urgency", "scarcity"],
+        "description": "Changed from generic 'Shop Now' to urgency-driven 'Get Yours Before They Sell Out Again'"
+      }
+    ]
+  }
+}

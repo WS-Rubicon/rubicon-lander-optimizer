@@ -1,0 +1,32 @@
+{
+  "champions": {
+    "ecommerce": {
+      "lander_id": "ecomm-peptide-v001",
+      "style": "listicle",
+      "deployed_url": "https://landing.olenis.com/703/01",
+      "rt_lander_id": "6981b203f161a8800ef4ab5a",
+      "schema_path": "landers/ecommerce/champion/schema.json",
+      "promoted_at": "2026-02-02T00:00:00Z",
+      "cycle_id": "baseline",
+      "cvr": 3.53,
+      "epc": 0.81,
+      "total_clicks": 1953,
+      "total_conversions": 69
+    }
+  },
+  "_schema": {
+    "vertical_id": {
+      "lander_id": "string",
+      "style": "editorial|quiz|offer",
+      "deployed_url": "string",
+      "rt_lander_id": "string",
+      "schema": "lander_schema_object",
+      "promoted_at": "ISO8601",
+      "cycle_id": "string",
+      "cvr": "number",
+      "epc": "number",
+      "total_clicks": "number",
+      "total_conversions": "number"
+    }
+  }
+}

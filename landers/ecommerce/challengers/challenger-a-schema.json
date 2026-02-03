@@ -1,0 +1,77 @@
+{
+  "lander_id": "ecomm-peptide-v001-a",
+  "vertical": "ecommerce",
+  "style": "nutra_editorial",
+  "product": "Peptide Eye Patches",
+  "brand": "Olenis",
+  "parent_champion": "ecomm-peptide-v001",
+  "cycle_id": "cycle-001",
+  "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-a",
+  "rt_lander_id": "6981b204f161a8800ef4ab5b",
+  "components": {
+    "headline": {
+      "text": "Historian Discovers New Link Between 15th-Century Korean Manuscripts and a Modern Eye Patch That's Selling Out Nationwide",
+      "variant_tags": ["discovery_narrative", "ancient_origin", "authority"]
+    },
+    "subheadline": {
+      "text": "A forgotten Joseon Dynasty beauty text described a peptide-rich 'eye restoration' method nearly identical to what one small brand is now producing for $23",
+      "variant_tags": ["historical_hook", "price_anchor"]
+    },
+    "hero_image": {
+      "src": "https://shop.olenis.com/cdn/shop/files/1EP_4d7ee1b6-b0e5-47b5-aa84-0746f6f9685b.png?v=1766486420",
+      "variant_tags": ["product_closeup"]
+    },
+    "trust_elements": [
+      {"type": "publication_header", "text": "The Skin Chronicle", "variant_tags": ["fake_publication", "authority"]},
+      {"type": "byline", "text": "Dr. Elaine Park, Cosmetic Historian", "variant_tags": ["expert_authority"]},
+      {"type": "pull_quotes", "text": "Dr. Soo-Yeon Chae + Dr. Rachel Nguyen", "variant_tags": ["expert_quotes", "authority"]}
+    ],
+    "cta": {
+      "text": "Shop Olenis Bright Eyes — $23",
+      "color": "#9b7b3a",
+      "url": "https://shop.olenis.com/products/bright-eyes-collagen-patches",
+      "variant_tags": ["shop_now", "discovery_cta"]
+    },
+    "body_sections": [
+      {"type": "discovery_narrative", "variant_tags": ["origin_story", "ancient_korean"]},
+      {"type": "side_by_side_comparison", "variant_tags": ["historical_vs_modern"]},
+      {"type": "expert_validation", "variant_tags": ["expert_quotes", "science_backing"]},
+      {"type": "before_after", "variant_tags": ["before_after_gallery"]},
+      {"type": "reviews", "variant_tags": ["review_list"]}
+    ],
+    "pricing": {
+      "price": "$23.00",
+      "compare_at_price": null,
+      "variant_tags": ["embedded_in_narrative"]
+    }
+  },
+  "diff_vs_champion": {
+    "components_changed": 4,
+    "changes": [
+      {
+        "component": "headline",
+        "champion_tags": ["listicle_number", "comparison", "social_proof"],
+        "challenger_tags": ["discovery_narrative", "ancient_origin", "authority"],
+        "description": "Changed from '7 Reasons' listicle to nutra-style historian discovery narrative about ancient Korean manuscripts"
+      },
+      {
+        "component": "style",
+        "champion_tags": ["listicle"],
+        "challenger_tags": ["nutra_editorial"],
+        "description": "Complete style change from standard editorial to nutra-style publication format with serif fonts, pull quotes, and discovery narrative"
+      },
+      {
+        "component": "trust_elements",
+        "champion_tags": ["star_rating", "dermatologist_tested"],
+        "challenger_tags": ["fake_publication", "expert_authority", "expert_quotes"],
+        "description": "Changed from badges/ratings to publication masthead, expert byline, and pull quotes from named authorities"
+      },
+      {
+        "component": "body_sections",
+        "champion_tags": ["reason_listicle", "ingredient_breakdown", "before_after_gallery"],
+        "challenger_tags": ["origin_story", "historical_vs_modern", "expert_quotes", "science_backing"],
+        "description": "Changed from listicle + ingredients to discovery story with historical timeline comparison"
+      }
+    ]
+  }
+}

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubicon Lander Optimizer — Project Breakdown</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-2: #1c2333;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-2: #3fb950;
+            --accent-3: #d29922;
+            --accent-4: #f85149;
+            --accent-5: #bc8cff;
+            --code-bg: #1a1e2a;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Noto Sans, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 24px 0;
+            z-index: 100;
+        }
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .sidebar-header h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .sidebar-header p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .nav-section {
+            padding: 8px 0;
+        }
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            padding: 4px 20px;
+            margin-bottom: 2px;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(88, 166, 255, 0.08);
+        }
+        .nav-link .icon {
+            width: 16px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* Main */
+        .main {
+            margin-left: 280px;
+            padding: 40px 60px 80px;
+            max-width: 1100px;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .page-header .subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-blue { background: rgba(88,166,255,0.15); color: var(--accent); }
+        .badge-green { background: rgba(63,185,80,0.15); color: var(--accent-2); }
+        .badge-yellow { background: rgba(210,153,34,0.15); color: var(--accent-3); }
+        .badge-red { background: rgba(248,81,73,0.15); color: var(--accent-4); }
+        .badge-purple { background: rgba(188,140,255,0.15); color: var(--accent-5); }
+
+        /* Sections */
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 24px;
+        }
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 24px 0 10px;
+            color: var(--accent);
+        }
+        .section p {
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-size: 14px;
+        }
+        .section p strong { color: var(--text); font-weight: 600; }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
+        .card .tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background: var(--surface);
+            text-align: left;
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        tr:last-child td { border-bottom: none; }
+        td code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--accent);
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 16px 0;
+            color: var(--text-muted);
+        }
+        pre .comment { color: #6a737d; }
+        pre .keyword { color: var(--accent-4); }
+        pre .string { color: var(--accent-2); }
+        pre .highlight { color: var(--accent); font-weight: 600; }
+        pre .dim { color: #484f58; }
+        pre .accent { color: var(--accent-3); }
+
+        /* Architecture diagram */
+        .diagram {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+        .diagram pre {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* File tree */
+        .file-tree {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 16px 0;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .file-tree .dir { color: var(--accent); font-weight: 600; }
+        .file-tree .file { color: var(--text-muted); }
+        .file-tree .desc { color: #484f58; font-family: -apple-system, sans-serif; font-size: 12px; }
+        .file-tree .active { color: var(--accent-2); }
+        .file-tree .empty { color: var(--accent-3); }
+        .file-tree .placeholder { color: #484f58; }
+
+        /* Steps */
+        .step-list {
+            list-style: none;
+            margin: 16px 0;
+            padding: 0;
+        }
+        .step-list li {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(48,54,61,0.5);
+        }
+        .step-list li:last-child { border-bottom: none; }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-content h4 { font-size: 14px; margin-bottom: 4px; }
+        .step-content p { font-size: 13px; margin-bottom: 0; }
+
+        /* Alert boxes */
+        .alert {
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 13px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+        .alert-warn {
+            background: rgba(210,153,34,0.1);
+            border: 1px solid rgba(210,153,34,0.3);
+            color: var(--accent-3);
+        }
+        .alert-error {
+            background: rgba(248,81,73,0.1);
+            border: 1px solid rgba(248,81,73,0.3);
+            color: var(--accent-4);
+        }
+        .alert-info {
+            background: rgba(88,166,255,0.1);
+            border: 1px solid rgba(88,166,255,0.3);
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 24px 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+    <div class="sidebar-header">
+        <h2>Lander Optimizer</h2>
+        <p>Rubicon Performance</p>
+    </div>
+    <div class="nav-section">
+        <div class="nav-section-title">Overview</div>
+        <a href="#overview" class="nav-link"><span class="icon">1</span> Project Overview</a>
+        <a href="#architecture" class="nav-link"><span class="icon">2</span> Architecture</a>
+        <a href="#directory" class="nav-link"><span class="icon">3</span> Directory Structure</a>
+    </div>
+    <div class="nav-section">
+        <div class="nav-section-title">How It Works</div>
+        <a href="#workflows" class="nav-link"><span class="icon">4</span> Key Workflows</a>
+        <a href="#dataflow" class="nav-link"><span class="icon">5</span> Data Flow</a>
+        <a href="#entry" class="nav-link"><span class="icon">6</span> Entry Points</a>
+    </div>
+    <div class="nav-section">
+        <div class="nav-section-title">Technical</div>
+        <a href="#dependencies" class="nav-link"><span class="icon">7</span> Dependencies</a>
+        <a href="#config" class="nav-link"><span class="icon">8</span> Configuration</a>
+        <a href="#integrations" class="nav-link"><span class="icon">9</span> Integrations</a>
+    </div>
+    <div class="nav-section">
+        <div class="nav-section-title">Status</div>
+        <a href="#current" class="nav-link"><span class="icon">!</span> Current State</a>
+        <a href="#blockers" class="nav-link"><span class="icon">!</span> Blockers</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main">
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>Rubicon Lander Optimizer</h1>
+        <div class="subtitle">Claude-orchestrated A/B testing system for landing pages</div>
+        <div class="badge-row">
+            <span class="badge badge-blue">AI-Orchestrated</span>
+            <span class="badge badge-green">Ecommerce Active</span>
+            <span class="badge badge-yellow">Cycle 001 Running</span>
+            <span class="badge badge-purple">0 / 20 Cycles Complete</span>
+            <span class="badge badge-red">0 Conversions</span>
+        </div>
+    </div>
+
+    <!-- 1. Overview -->
+    <div class="section" id="overview">
+        <h2><span class="num">1</span> Project Overview</h2>
+        <p>This project is <strong>not a traditional codebase</strong>. There are no scripts, no application server, no package.json. The entire "engine" is a set of <strong>procedure documents (Markdown)</strong> and <strong>JSON state files</strong> that Claude Code reads and follows as instructions, using MCP tools to interact with external services.</p>
+
+        <h3>What It Does</h3>
+        <p>Runs iterative optimization cycles where a <strong>"champion" landing page</strong> competes against <strong>"challenger" variants</strong>. Traffic is split via RedTrack, performance is measured by CVR/EPC, and winners are promoted using chi-squared statistical testing. Losers are discarded. New challengers are generated each cycle.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>Current Vertical</h4>
+                <p>Ecommerce &mdash; Olenis "Bright Eyes" Peptide Eye Patches ($23 product)</p>
+            </div>
+            <div class="card">
+                <h4>Traffic Source</h4>
+                <p>Facebook Ads &rarr; RedTrack &rarr; 3 lander variants (34/33/33 split)</p>
+            </div>
+            <div class="card">
+                <h4>Champion</h4>
+                <p>"7 Reasons Why..." listicle on Framer (landing.olenis.com). Baseline CVR: 3.53%</p>
+            </div>
+            <div class="card">
+                <h4>Challengers</h4>
+                <p>Nutra editorial (4 components changed) + Scarcity angle (2 components changed) on Netlify</p>
+            </div>
+        </div>
+
+        <h3>The Learning Loop</h3>
+        <p>Each cycle teaches the system something. Winning component tags accumulate win records. After 20+ cycles, pattern detection activates to find repeatable formulas (e.g., "urgency + scarcity = +15% CVR").</p>
+    </div>
+
+    <!-- 2. Architecture -->
+    <div class="section" id="architecture">
+        <h2><span class="num">2</span> Architecture</h2>
+        <p>Claude Code is the runtime. It reads procedure docs, executes MCP tool calls, and writes results to JSON. This is a <strong>"human-in-the-loop AI agent"</strong> architecture with no running processes.</p>
+
+        <div class="diagram"><pre>
+<span class="highlight">CLAUDE CODE (Orchestrator)</span>
+  Reads engine/*.md procedures &rarr; Executes via MCP tools
+  Reads/writes data/*.json &rarr; Persists learnings
+       |            |            |            |
+       v            v            v            v
+  <span class="accent">RedTrack</span>      <span class="accent">Netlify</span>      <span class="accent">Gemini AI</span>   <span class="accent">Telegram</span>
+  tracking     deploy       images       notify +
+  + split      landers      for landers  grading
+       |            |
+       v            v
+  <span class="string">Facebook</span>    <span class="string">Landing Pages</span>
+  Ads          |- landing.olenis.com      (Framer, champion)
+  (traffic)    |- firstlightrituals.com/a (Netlify, challenger A)
+               |- firstlightrituals.com/b (Netlify, challenger B)
+                        |
+                        | CTA click with clickid
+                        v
+                   <span class="string">Shopify Store</span>
+                   (conversion)
+                        |
+                        | postback
+                        v
+                   <span class="accent">RedTrack</span> (records CVR, EPC, revenue per lander)
+</pre></div>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">&#9432;</span>
+            <div>There are <strong>zero running processes</strong>. Claude Code acts as the runtime: it reads procedures, calls tools, and updates state. Everything is triggered by human conversation.</div>
+        </div>
+    </div>
+
+    <!-- 3. Directory Structure -->
+    <div class="section" id="directory">
+        <h2><span class="num">3</span> Directory Structure</h2>
+
+        <div class="file-tree">
+<span class="dir">rubicon-lander-optimizer/</span>
+├── PROJECT_STATUS.md                     <span class="desc">Session continuity (what's done, what's next, key IDs)</span>
+│
+├── <span class="dir">config/</span>                               <span class="desc">CONFIGURATION &mdash; read at cycle start</span>
+│   ├── <span class="file">redtrack-campaigns.json</span>           <span class="desc">Active RT campaigns, lander IDs, baseline metrics</span>
+│   └── <span class="file">verticals.json</span>                   <span class="desc">Vertical defs: thresholds, tag libraries, product context</span>
+│
+├── <span class="dir">data/</span>                                 <span class="desc">STATE &mdash; read/written during cycles</span>
+│   ├── <span class="active">cycles.json</span>                       <span class="desc">All cycles: status, variants, winner (cycle-001 running)</span>
+│   ├── <span class="active">champions.json</span>                    <span class="desc">Current champion per vertical (CVR 3.53%, EPC $0.81)</span>
+│   ├── <span class="empty">component-wins.json</span>               <span class="desc">Tag win/loss records (EMPTY - 0 completed cycles)</span>
+│   ├── <span class="empty">patterns.json</span>                     <span class="desc">Cross-cycle patterns (EMPTY - needs 20+ cycles)</span>
+│   └── <span class="empty">human-grades.json</span>                 <span class="desc">Human attribution grades (EMPTY)</span>
+│
+├── <span class="dir">engine/</span>                               <span class="desc">PROCEDURES &mdash; Claude's instruction set</span>
+│   ├── <span class="file">README.md</span>                         <span class="desc">Engine overview</span>
+│   ├── <span class="file">cycle-procedure.md</span>                <span class="desc">9-step cycle: Load &rarr; Stats &rarr; Winner &rarr; Generate &rarr; Deploy</span>
+│   ├── <span class="file">stats-analysis.md</span>                 <span class="desc">Chi-squared test math, sample sizes, early stopping</span>
+│   ├── <span class="file">variation-strategy.md</span>             <span class="desc">How to generate challengers: 1-3 changes, tagging rules</span>
+│   ├── <span class="file">grading-procedure.md</span>              <span class="desc">Telegram human attribution workflow</span>
+│   └── <span class="file">pre-deploy-checks.md</span>              <span class="desc">4 blocker + 2 warning validation gates</span>
+│
+├── <span class="dir">landers/</span>                              <span class="desc">LANDER SCHEMAS &mdash; metadata, not the HTML</span>
+│   ├── <span class="dir">ecommerce/</span>
+│   │   ├── <span class="dir">champion/</span>
+│   │   │   └── <span class="file">schema.json</span>               <span class="desc">"7 Reasons" listicle on Framer</span>
+│   │   └── <span class="dir">challengers/</span>
+│   │       ├── <span class="file">challenger-a-schema.json</span>  <span class="desc">Nutra editorial (4 components changed)</span>
+│   │       ├── <span class="file">challenger-a.html</span>         <span class="desc">Source HTML (earlier draft)</span>
+│   │       ├── <span class="file">challenger-b-schema.json</span>  <span class="desc">Scarcity angle (2 components changed)</span>
+│   │       └── <span class="file">challenger-b.html</span>         <span class="desc">Source HTML</span>
+│   └── <span class="dir">solar/</span>
+│       └── <span class="dir">champion/</span>
+│           └── <span class="placeholder">schema.json</span>               <span class="desc">PLACEHOLDER &mdash; no active campaign</span>
+│
+├── <span class="dir">olenis-landers/</span>                       <span class="desc">DEPLOYED FILES &mdash; live on Netlify (firstlightrituals.com)</span>
+│   ├── <span class="dir">.netlify/</span>
+│   │   ├── <span class="file">state.json</span>                   <span class="desc">Netlify site ID</span>
+│   │   └── <span class="file">netlify.toml</span>                 <span class="desc">Build config</span>
+│   ├── <span class="file">index.html</span>                       <span class="desc">Root page linking to challengers</span>
+│   └── <span class="dir">peptide-patches/</span>
+│       ├── <span class="active">challenger-a.html</span>             <span class="desc">LIVE: nutra editorial (564 lines, AI hero image)</span>
+│       ├── <span class="active">challenger-b.html</span>             <span class="desc">LIVE: scarcity/social proof angle</span>
+│       └── <span class="dir">images/</span>
+│           └── <span class="file">korean-hero.png</span>           <span class="desc">AI-generated hero (638KB)</span>
+│
+├── <span class="dir">templates/</span>
+│   └── <span class="file">base.html</span>                         <span class="desc">Base HTML with RT script placeholder</span>
+│
+└── <span class="dir">docs/</span>
+    └── <span class="file">discovery-report.md</span>               <span class="desc">Phase 0 tool inventory &amp; gap analysis</span>
+        </div>
+    </div>
+
+    <!-- 4. Key Workflows -->
+    <div class="section" id="workflows">
+        <h2><span class="num">4</span> Key Workflows</h2>
+
+        <h3>Optimization Cycle (core loop)</h3>
+        <p>Defined in <code>engine/cycle-procedure.md</code>. This is the main process Claude follows when told "Run optimization cycle for [vertical]".</p>
+
+        <ol class="step-list">
+            <li>
+                <span class="step-num">1</span>
+                <div class="step-content">
+                    <h4>Load State</h4>
+                    <p>Read <code>champions.json</code>, <code>cycles.json</code>, <code>verticals.json</code>, <code>redtrack-campaigns.json</code></p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">2</span>
+                <div class="step-content">
+                    <h4>Pull Performance Stats</h4>
+                    <p>Call <code>rt_get_stats</code> grouped by landing. Check: min 100 clicks/variant AND 48 hours elapsed.</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">3</span>
+                <div class="step-content">
+                    <h4>Determine Winner</h4>
+                    <p>Chi-squared test on CVR. X&sup2; &gt; 3.841 = p&lt;0.05 = statistically significant. 3-way pairwise comparisons.</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">4</span>
+                <div class="step-content">
+                    <h4>Notify via Telegram</h4>
+                    <p>Send formatted results + grading prompt to Wesley via <code>tg_send_message</code>.</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">5</span>
+                <div class="step-content">
+                    <h4>Wait for Human Grading</h4>
+                    <p>Read Wesley's tag attribution from Telegram. Which component tags drove the win?</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">6</span>
+                <div class="step-content">
+                    <h4>Update Learning Data</h4>
+                    <p>Write to <code>component-wins.json</code> (tag records), <code>champions.json</code> (promote winner), <code>cycles.json</code> (complete).</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">7</span>
+                <div class="step-content">
+                    <h4>Generate New Challengers</h4>
+                    <p>Build HTML manually for ecommerce (presales doesn't support it). Change 1-3 components, tag each change.</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">8</span>
+                <div class="step-content">
+                    <h4>Update RedTrack Campaign</h4>
+                    <p>Set 34/33/33 traffic split across champion + 2 new challengers via RT API.</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">9</span>
+                <div class="step-content">
+                    <h4>Log &amp; Confirm</h4>
+                    <p>Write new cycle to <code>cycles.json</code>. Send Telegram notification with next check time.</p>
+                </div>
+            </li>
+        </ol>
+
+        <h3>Challenger Generation Strategy</h3>
+        <p>From <code>engine/variation-strategy.md</code>:</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Priority</th><th>Component</th><th>Impact</th><th>Example Tags</th></tr>
+                <tr><td>1</td><td>Headline</td><td>Highest</td><td><code>urgency</code> <code>curiosity</code> <code>social_proof</code> <code>scarcity</code></td></tr>
+                <tr><td>2</td><td>CTA text + color</td><td>High</td><td><code>urgency</code> <code>benefit_focused</code> <code>scarcity</code></td></tr>
+                <tr><td>3</td><td>Hero image</td><td>High</td><td><code>product_closeup</code> <code>lifestyle</code> <code>before_after</code></td></tr>
+                <tr><td>4</td><td>Subheadline</td><td>Medium</td><td><code>authority</code> <code>price_anchor</code> <code>time_qualifier</code></td></tr>
+                <tr><td>5</td><td>Trust elements</td><td>Medium</td><td><code>star_rating</code> <code>purchase_count</code> <code>expert_authority</code></td></tr>
+                <tr><td>6</td><td>Form fields</td><td>Medium</td><td><code>minimal_fields</code> <code>progressive_disclosure</code></td></tr>
+                <tr><td>7</td><td>Body copy</td><td>Lower</td><td><code>reason_listicle</code> <code>origin_story</code> <code>comparison_chart</code></td></tr>
+            </table>
+        </div>
+        <p>Rule: Change <strong>1-3 components max</strong> per challenger. Tag every change. Early cycles explore broadly. After 20+ cycles: 70% exploit proven winners / 30% explore new combinations.</p>
+
+        <h3>Pre-Deploy Validation</h3>
+        <p>From <code>engine/pre-deploy-checks.md</code>. Every lander must pass before deployment:</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Type</th><th>Check</th><th>If Failed</th></tr>
+                <tr><td><span class="badge badge-red">BLOCKER</span></td><td>RedTrack <code>track.js</code> script present in HTML</td><td>Deploy blocked</td></tr>
+                <tr><td><span class="badge badge-red">BLOCKER</span></td><td>Valid lander schema (all required fields)</td><td>Deploy blocked</td></tr>
+                <tr><td><span class="badge badge-red">BLOCKER</span></td><td>Form action / offer URL set</td><td>Deploy blocked</td></tr>
+                <tr><td><span class="badge badge-red">BLOCKER</span></td><td>Compliance check (skip for ecommerce)</td><td>Deploy blocked</td></tr>
+                <tr><td><span class="badge badge-yellow">WARNING</span></td><td>All modified components have tags</td><td>Deploy with log</td></tr>
+                <tr><td><span class="badge badge-yellow">WARNING</span></td><td>Challenger changes 1-3 components only</td><td>Deploy with log</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 5. Data Flow -->
+    <div class="section" id="dataflow">
+        <h2><span class="num">5</span> Data Flow</h2>
+
+        <div class="diagram"><pre>
+<span class="highlight">INPUT</span>                          <span class="highlight">PROCESSING</span>                      <span class="highlight">OUTPUT</span>
+
+Facebook Ad Click               RedTrack routes to lander       LP View tracked
+  &rarr; RT trackback URL            (34/33/33 weight split)
+  &rarr; with sub params                                             Click ID passed via JS
+    (ad.id, campaign.id)        User sees landing page
+                                User clicks CTA &rarr; Shopify       Conversion postback &rarr; RT
+
+                                <span class="accent">Claude pulls rt_get_stats</span>       Per-lander metrics
+                                  grouped by landing               (clicks, CVR, EPC)
+
+                                <span class="accent">Chi-squared comparison</span>         Winner determination
+                                                                   (p-value, confidence)
+
+                                <span class="accent">Write state files:</span>
+                                  cycles.json                    Cycle record
+                                  champions.json                 New champion
+                                  component-wins.json            Tag-level learnings
+
+                                <span class="accent">Telegram notification</span>          Human grades
+                                Human grades &rarr; human-grades.json  Component attribution
+</pre></div>
+
+        <h3>Click ID Passthrough (critical for conversion tracking)</h3>
+        <pre>
+<span class="comment">// 1. RT trackback URL redirects user to lander with ?sub2={clickid}</span>
+<span class="comment">// 2. Lander JavaScript captures sub2 param:</span>
+<span class="keyword">var</span> clickid = params.get(<span class="string">'sub2'</span>) || params.get(<span class="string">'clickid'</span>);
+<span class="keyword">if</span> (clickid) {
+    document.querySelectorAll(<span class="string">'.cta-link'</span>).forEach(<span class="keyword">function</span>(link) {
+        <span class="keyword">var</span> url = <span class="keyword">new</span> URL(link.href);
+        url.searchParams.set(<span class="string">'sub2'</span>, clickid);
+        link.href = url.toString();
+    });
+}
+<span class="comment">// 3. CTA click &rarr; Shopify with sub2 &rarr; Shopify postback to RT with clickid</span></pre>
+    </div>
+
+    <!-- 6. Entry Points -->
+    <div class="section" id="entry">
+        <h2><span class="num">6</span> Entry Points</h2>
+        <p>There is <strong>no code to execute</strong>. Entry points are conversational commands to Claude Code. The <code>PROJECT_STATUS.md</code> file serves as session continuity &mdash; Claude reads it at the start of each session.</p>
+
+        <div class="table-wrap">
+            <table>
+                <tr><th>You Say</th><th>Claude Does</th></tr>
+                <tr><td>"Run optimization cycle for ecommerce"</td><td>Follows <code>engine/cycle-procedure.md</code> steps 1-9</td></tr>
+                <tr><td>"Pull stats for the A/B test"</td><td>Reads config, calls <code>rt_get_stats</code>, presents per-lander results</td></tr>
+                <tr><td>"Generate new challengers"</td><td>Follows <code>engine/variation-strategy.md</code>, builds HTML, deploys</td></tr>
+                <tr><td>"Check significance"</td><td>Reads stats, runs chi-squared math from <code>engine/stats-analysis.md</code></td></tr>
+                <tr><td>"Deploy to Netlify"</td><td>Uses Netlify REST API (curl) to deploy <code>olenis-landers/</code></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 7. Dependencies -->
+    <div class="section" id="dependencies">
+        <h2><span class="num">7</span> Dependencies</h2>
+        <p><strong>No traditional dependencies.</strong> No <code>package.json</code>, no <code>requirements.txt</code>, no Docker. Zero runtime code. This is a structured data + procedure set that Claude Code interprets.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4><span class="tag badge-blue">Tracking</span> RedTrack</h4>
+                <p>Traffic splitting, click tracking, conversion attribution. MCP tools + direct API.</p>
+            </div>
+            <div class="card">
+                <h4><span class="tag badge-green">Deploy</span> Netlify</h4>
+                <p>Hosts challenger landers on firstlightrituals.com. REST API deploys (no CLI).</p>
+            </div>
+            <div class="card">
+                <h4><span class="tag badge-purple">AI</span> Gemini</h4>
+                <p>Image generation for lander hero images. MCP tool integration.</p>
+            </div>
+            <div class="card">
+                <h4><span class="tag badge-yellow">Comms</span> Telegram</h4>
+                <p>Cycle notifications + human grading for component attribution.</p>
+            </div>
+            <div class="card">
+                <h4><span class="tag badge-green">Champion</span> Framer</h4>
+                <p>Hosts champion lander at landing.olenis.com. Not managed by this project.</p>
+            </div>
+            <div class="card">
+                <h4><span class="tag badge-green">Store</span> Shopify</h4>
+                <p>Ecommerce store. Receives CTA clicks, sends conversion postbacks to RedTrack.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Configuration -->
+    <div class="section" id="config">
+        <h2><span class="num">8</span> Configuration</h2>
+
+        <h3>config/redtrack-campaigns.json</h3>
+        <p>Central campaign config. Contains RT campaign ID, offer ID, lander IDs (champion + challengers), baseline performance metrics, and traffic source info.</p>
+
+        <h3>config/verticals.json</h3>
+        <p>Defines 3 verticals (<strong>ecommerce</strong>, mortgage, solar) with:</p>
+        <ul style="color: var(--text-muted); font-size: 14px; padding-left: 20px; margin: 8px 0 16px;">
+            <li>Significance thresholds (min 100 clicks, 48 hours)</li>
+            <li>CVR targets per vertical (excellent / good / flag)</li>
+            <li>Component tag libraries per component type</li>
+            <li>Product context (brand, store domain, offer IDs)</li>
+        </ul>
+
+        <h3>Key IDs</h3>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Resource</th><th>ID</th></tr>
+                <tr><td>RedTrack Campaign</td><td><code>6979c0adcad13a4d8c3cbb94</code></td></tr>
+                <tr><td>RT Offer (Peptide Patches)</td><td><code>6913159915212444f6558b9e</code></td></tr>
+                <tr><td>RT Source (Wesley - Facebook)</td><td><code>69130f6cc135783644ffee46</code></td></tr>
+                <tr><td>Champion Lander (RT)</td><td><code>6981b203f161a8800ef4ab5a</code></td></tr>
+                <tr><td>Challenger A Lander (RT)</td><td><code>6981b204f161a8800ef4ab5b</code></td></tr>
+                <tr><td>Challenger B Lander (RT)</td><td><code>6981b205f161a8800ef4ab5c</code></td></tr>
+                <tr><td>Netlify Site</td><td><code>3e45fc10-b4a3-4921-b9cd-4373c02f12b4</code></td></tr>
+                <tr><td>Telegram Chat</td><td><code>1291782615</code></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 9. Integrations -->
+    <div class="section" id="integrations">
+        <h2><span class="num">9</span> Integration Points</h2>
+
+        <div class="table-wrap">
+            <table>
+                <tr><th>Integration</th><th>Direction</th><th>Method</th><th>Notes</th></tr>
+                <tr><td>RedTrack &rarr; Stats</td><td>Pull</td><td>Direct API (curl)</td><td>MCP group_by=landing doesn't split properly</td></tr>
+                <tr><td>RedTrack &rarr; Campaign Update</td><td>Push</td><td>Direct API (curl PUT)</td><td>MCP can't modify lander streams</td></tr>
+                <tr><td>RedTrack &rarr; Lander Reg</td><td>Push</td><td>MCP <code>rt_create_lander</code></td><td>Works normally</td></tr>
+                <tr><td>Netlify &rarr; Deploy</td><td>Push</td><td>REST API (curl)</td><td>SHA1 hash manifest + file upload</td></tr>
+                <tr><td>Gemini &rarr; Images</td><td>Pull</td><td>MCP <code>gemini_batch_generate</code></td><td>Returns image URLs</td></tr>
+                <tr><td>Telegram &rarr; Notify</td><td>Push</td><td>MCP <code>tg_send_message</code></td><td>HTML-formatted reports</td></tr>
+                <tr><td>Telegram &rarr; Grades</td><td>Pull</td><td>MCP <code>tg_get_messages</code></td><td>Read human attribution</td></tr>
+                <tr><td>Shopify &rarr; Conversions</td><td>Passive</td><td>Postback to RedTrack</td><td>Configured externally</td></tr>
+                <tr><td>Facebook &rarr; Traffic</td><td>Passive</td><td>Trackback URL in ads</td><td>Configured externally</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Current State -->
+    <div class="section" id="current">
+        <h2><span class="num">!</span> Current State &mdash; Cycle 001</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>Started</h4>
+                <p>2026-02-03 ~07:00 UTC</p>
+            </div>
+            <div class="card">
+                <h4>Traffic</h4>
+                <p>114 clicks (32 / 34 / 48 split across L1 / L2 / L3)</p>
+            </div>
+            <div class="card">
+                <h4>Conversions</h4>
+                <p style="color: var(--accent-4);">0 across all 3 landers ($168 spent)</p>
+            </div>
+            <div class="card">
+                <h4>Significance</h4>
+                <p>Not reached &mdash; need 300+ clicks minimum</p>
+            </div>
+        </div>
+
+        <h3>Per-Lander Performance</h3>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Lander</th><th>Type</th><th>Clicks</th><th>LP Views</th><th>Conversions</th><th>CVR</th><th>Spend</th></tr>
+                <tr>
+                    <td><strong>L1</strong> &mdash; Champion (Framer)</td>
+                    <td>"7 Reasons" listicle</td>
+                    <td>32</td>
+                    <td style="color: var(--accent-4);">0</td>
+                    <td>0</td>
+                    <td>0%</td>
+                    <td>$48.60</td>
+                </tr>
+                <tr>
+                    <td><strong>L2</strong> &mdash; Challenger A (Netlify)</td>
+                    <td>Nutra editorial</td>
+                    <td>34</td>
+                    <td>32</td>
+                    <td>0</td>
+                    <td>0%</td>
+                    <td>$48.54</td>
+                </tr>
+                <tr>
+                    <td><strong>L3</strong> &mdash; Challenger B (Netlify)</td>
+                    <td>Scarcity/social proof</td>
+                    <td>48</td>
+                    <td>50</td>
+                    <td>0</td>
+                    <td>0%</td>
+                    <td>$70.73</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="alert alert-error">
+            <span class="alert-icon">&#9888;</span>
+            <div><strong>Champion (L1) has 0 LP views</strong> despite 32 clicks. The Framer page likely doesn't have the RedTrack tracking script installed, so page loads aren't tracked. This also means conversion attribution may be broken for the champion.</div>
+        </div>
+    </div>
+
+    <!-- Blockers -->
+    <div class="section" id="blockers">
+        <h2><span class="num">!</span> Known Blockers &amp; Workarounds</h2>
+
+        <div class="table-wrap">
+            <table>
+                <tr><th>Blocker</th><th>Impact</th><th>Workaround</th></tr>
+                <tr>
+                    <td>No Node.js in WSL &rarr; Netlify CLI fails</td>
+                    <td><span class="badge badge-yellow">Medium</span></td>
+                    <td>Deploy via Netlify REST API with curl</td>
+                </tr>
+                <tr>
+                    <td>MCP <code>rt_update_campaign</code> can't modify lander streams</td>
+                    <td><span class="badge badge-red">High</span></td>
+                    <td>Use RedTrack API directly with API key</td>
+                </tr>
+                <tr>
+                    <td>Champion on Framer &rarr; can't extract content (JS-rendered)</td>
+                    <td><span class="badge badge-yellow">Medium</span></td>
+                    <td>Champion schema has partial/null component values</td>
+                </tr>
+                <tr>
+                    <td><code>presales_generate</code> doesn't support ecommerce</td>
+                    <td><span class="badge badge-red">High</span></td>
+                    <td>Build challenger HTML manually</td>
+                </tr>
+                <tr>
+                    <td>No automated stats collection</td>
+                    <td><span class="badge badge-yellow">Medium</span></td>
+                    <td>Manual trigger via Claude session</td>
+                </tr>
+                <tr>
+                    <td>RT <code>group_by=landing</code> doesn't split in MCP</td>
+                    <td><span class="badge badge-yellow">Medium</span></td>
+                    <td>Query RT API directly via curl</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div><!-- /main -->
+
+</body>
+</html>

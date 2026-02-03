@@ -1,0 +1,6 @@
+# Netlify local state
+olenis-landers/.netlify/
+
+# OS files
+.DS_Store
+Thumbs.db

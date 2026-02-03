@@ -1,0 +1,46 @@
+{
+  "_comment": "PLACEHOLDER - Replace with actual champion after first cycle",
+  "lander_id": "solar-v001",
+  "vertical": "solar",
+  "style": "quiz",
+  "campaign_id": null,
+  "rt_lander_id": null,
+  "deployed_url": null,
+  "created_at": null,
+  "tracking": {
+    "redtrack_script": "//hpkpn.ttrk.io/track.js",
+    "verified": false
+  },
+  "components": {
+    "headline": {
+      "text": "California Homeowners: $0 Down Solar Is Back",
+      "variant_tags": ["location_specific", "price_anchor"]
+    },
+    "subheadline": {
+      "text": "See if your home qualifies in 30 seconds",
+      "variant_tags": ["time_qualifier", "soft_commitment"]
+    },
+    "hero_image": {
+      "src": null,
+      "template": "solar_installation",
+      "variant_tags": ["solar_panels"]
+    },
+    "trust_elements": [
+      {"type": "badge", "text": "BBB A+ Rated", "variant_tags": ["bbb_badge"]},
+      {"type": "stat", "text": "47,000+ Installs", "variant_tags": ["install_count"]}
+    ],
+    "form": {
+      "fields": ["address", "electric_bill", "phone"],
+      "cta_text": "Check My Savings",
+      "cta_color": "#22c55e",
+      "variant_tags": ["benefit_focused", "standard_fields"]
+    },
+    "body_sections": []
+  },
+  "brief": "Page targeting California homeowners interested in solar. Focus on $0 down financing and quick qualification. Trustworthy but urgent tone.",
+  "generation_params": {
+    "presales_vertical": "solar",
+    "presales_style": "quiz",
+    "offer_url": "https://hpkpn.ttrk.io/click"
+  }
+}

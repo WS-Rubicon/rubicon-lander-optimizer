@@ -1,0 +1,50 @@
+{
+  "_comment": "Populated at setup time via rt_list_sources and rt_list_domains",
+  "defaults": {
+    "source_id": "6532d0d363d1da0001eb7642",
+    "domain_id": "65c3f42c7260ea000164821c",
+    "cost_model": "CPC",
+    "redtrack_script": "//hpkpn.ttrk.io/track.js",
+    "offer_url": "https://hpkpn.ttrk.io/click"
+  },
+  "active_campaigns": {
+    "ecommerce": {
+      "campaign_name": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "rt_offer_id": "6913159915212444f6558b9e",
+      "offer_url": "https://landing.olenis.com/703/01?uid=212&oid=703&affid=84&sub1={rt_ad}&sub2={clickid}&sub3={TT}&sub4={rt_adgroup}&sub5={rt_campaign}",
+      "traffic_source": "Wesley - Ecomm - Facebook",
+      "telegram_chat_id": 1291782615,
+      "baseline_metrics": {
+        "date_range": "2026-01-28 to 2026-02-02",
+        "clicks": 1953,
+        "conversions": 69,
+        "cvr": 3.53,
+        "epc": 0.81,
+        "revenue": 1587,
+        "cost": 3330.82,
+        "roas": 0.48,
+        "aov": 23.0
+      },
+      "status": "active",
+      "optimizer_status": "cycle-001-active",
+      "landers": {
+        "champion": {
+          "rt_lander_id": "6981b203f161a8800ef4ab5a",
+          "lander_id": "ecomm-peptide-v001",
+          "url": "https://landing.olenis.com/703/01"
+        },
+        "challenger_a": {
+          "rt_lander_id": "6981b204f161a8800ef4ab5b",
+          "lander_id": "ecomm-peptide-v001-a",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-a"
+        },
+        "challenger_b": {
+          "rt_lander_id": "6981b205f161a8800ef4ab5c",
+          "lander_id": "ecomm-peptide-v001-b",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-b"
+        }
+      }
+    }
+  }
+}

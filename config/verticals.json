@@ -1,0 +1,114 @@
+{
+  "verticals": {
+    "mortgage": {
+      "name": "Mortgage Refinance",
+      "compliance_level": "high",
+      "supported_styles": ["editorial", "quiz", "offer"],
+      "default_offer_url": "https://hpkpn.ttrk.io/click",
+      "min_clicks_for_significance": 100,
+      "min_hours_before_decision": 48,
+      "target_metrics": {
+        "cvr_excellent": 4.0,
+        "cvr_good": 2.5,
+        "cvr_flag": 1.0,
+        "epc_target": 0.50
+      },
+      "proven_angles": [
+        "fired_insider",
+        "money_on_table",
+        "accessibility",
+        "process_simple"
+      ],
+      "component_tags": {
+        "headline": ["urgency", "curiosity", "authority", "loss_aversion", "accessibility", "simplicity", "location_specific", "rate_specific"],
+        "subheadline": ["time_qualifier", "soft_commitment", "social_proof", "benefit_focused"],
+        "hero_image": ["lifestyle", "family", "professional", "calculator", "house", "money"],
+        "cta": ["benefit_focused", "urgency", "scarcity", "low_commitment", "action_oriented"],
+        "trust": ["bbb_badge", "install_count", "testimonial", "press_mention", "guarantee"],
+        "form": ["minimal_fields", "standard_fields", "progressive_disclosure"]
+      }
+    },
+    "solar": {
+      "name": "Solar",
+      "compliance_level": "medium",
+      "supported_styles": ["editorial", "quiz", "offer"],
+      "default_offer_url": "https://hpkpn.ttrk.io/click",
+      "min_clicks_for_significance": 100,
+      "min_hours_before_decision": 48,
+      "target_metrics": {
+        "cvr_excellent": 4.0,
+        "cvr_good": 2.0,
+        "cvr_flag": 1.0,
+        "epc_target": 0.40
+      },
+      "proven_angles": [
+        "savings_calculator",
+        "incentive_deadline",
+        "cost_comparison"
+      ],
+      "component_tags": {
+        "headline": ["urgency", "savings", "deadline", "location_specific", "price_anchor", "incentive"],
+        "subheadline": ["time_qualifier", "soft_commitment", "personalization", "benefit_focused"],
+        "hero_image": ["solar_panels", "family", "house_aerial", "bill_comparison", "installation"],
+        "cta": ["benefit_focused", "urgency", "scarcity", "calculator", "check_savings"],
+        "trust": ["install_count", "testimonial", "bbb_badge", "utility_comparison", "guarantee"],
+        "form": ["address_only", "address_bill", "full_qualification"]
+      }
+    },
+    "ecommerce": {
+      "name": "Ecommerce - Beauty/Skincare",
+      "compliance_level": "medium",
+      "supported_styles": ["editorial", "listicle", "product_page"],
+      "default_offer_url": "https://landing.olenis.com/703/01",
+      "presales_supported": false,
+      "min_clicks_for_significance": 100,
+      "min_hours_before_decision": 48,
+      "target_metrics": {
+        "cvr_excellent": 5.0,
+        "cvr_good": 3.5,
+        "cvr_flag": 1.5,
+        "epc_target": 0.80
+      },
+      "proven_angles": [
+        "listicle_reasons",
+        "problem_solution",
+        "before_after",
+        "ingredient_science",
+        "social_proof_viral"
+      ],
+      "component_tags": {
+        "headline": ["listicle_number", "curiosity", "problem_agitate", "social_proof", "ingredient_callout", "trend_hook", "comparison", "question"],
+        "subheadline": ["benefit_focused", "time_qualifier", "authority", "specificity"],
+        "hero_image": ["product_closeup", "before_after", "model_using", "lifestyle", "flat_lay", "ingredients"],
+        "cta": ["buy_now", "shop_now", "add_to_cart", "urgency", "scarcity", "discount", "free_shipping"],
+        "trust": ["star_rating", "review_count", "testimonial_photo", "influencer", "press_mention", "guarantee", "dermatologist_tested", "cruelty_free"],
+        "pricing": ["discount_strikethrough", "bundle_deal", "free_shipping_threshold", "limited_time", "compare_to_price"],
+        "body": ["reason_listicle", "ingredient_breakdown", "how_it_works", "comparison_chart", "faq"],
+        "social_proof": ["review_carousel", "ugc_photos", "before_after_gallery", "purchase_count", "trending_badge"]
+      },
+      "product_context": {
+        "brand": "Olenis",
+        "store_domain": "shopify.olenisrx.com",
+        "landing_domain": "landing.olenis.com",
+        "product_line": "eye_patches",
+        "products": {
+          "peptide_eye_patches": {
+            "offer_id": "6913159915212444f6558b9e",
+            "landing_url": "https://landing.olenis.com/703/01",
+            "shopify_url": null
+          },
+          "snail_glow_eye_patches": {
+            "offer_id": "6979c07a9b82e9d1f7970348",
+            "landing_url": "https://landing.olenis.com/705/01",
+            "shopify_url": null
+          },
+          "bright_eyes_collagen": {
+            "offer_id": "691312edfe5ee249f84be2d1",
+            "landing_url": null,
+            "shopify_url": "https://shopify.olenisrx.com/products/bright-eyes-collagen-patches"
+          }
+        }
+      }
+    }
+  }
+}

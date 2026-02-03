@@ -1,0 +1,43 @@
+{
+  "cycles": [
+    {
+      "cycle_id": "cycle-001",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-02-03T07:00:00Z",
+      "status": "running",
+      "champion": {
+        "lander_id": "ecomm-peptide-v001",
+        "rt_lander_id": "6981b203f161a8800ef4ab5a",
+        "url": "https://landing.olenis.com/703/01",
+        "baseline_cvr": 3.53,
+        "baseline_epc": 0.81
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v001-a",
+          "rt_lander_id": "6981b204f161a8800ef4ab5b",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-a",
+          "changes": ["headline", "style", "trust_elements", "body_sections"],
+          "tags_tested": ["discovery_narrative", "ancient_origin", "authority", "nutra_editorial"],
+          "description": "Nutra-style editorial: historian discovers ancient Korean manuscripts linking to modern peptide patches"
+        },
+        {
+          "lander_id": "ecomm-peptide-v001-b",
+          "rt_lander_id": "6981b205f161a8800ef4ab5c",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-b",
+          "changes": ["headline", "cta"],
+          "tags_tested": ["scarcity", "purchase_count", "urgency"],
+          "description": "Social proof + scarcity angle headline and CTA"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "winner": null,
+      "completed_at": null
+    }
+  ],
+  "total_completed": 0,
+  "last_cycle_at": "2026-02-03T07:00:00Z"
+}

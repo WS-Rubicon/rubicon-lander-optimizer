@@ -1,0 +1,15 @@
+{
+  "patterns": [],
+  "min_cycles_for_pattern": 20,
+  "total_cycles_analyzed": 0,
+  "_schema": {
+    "pattern_id": "string",
+    "description": "e.g. urgency + scarcity = +15% CVR in solar",
+    "component_tags": ["tag1", "tag2"],
+    "verticals": ["solar"],
+    "avg_cvr_lift": 0.0,
+    "occurrences": 0,
+    "confidence": 0.0,
+    "discovered_at": "ISO8601"
+  }
+}
