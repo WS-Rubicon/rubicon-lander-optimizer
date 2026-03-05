@@ -8,161 +8,212 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --white:#FFFFFF;--ice:#F0F7FA;--teal:#1A5C6B;--navy:#1B2A4A;--coral:#E8836B;
-  --border:#E8EDF0;--teal-light:rgba(26,92,107,0.08);--teal-mid:rgba(26,92,107,0.15);
-  --shadow:0 2px 12px rgba(27,42,74,0.07);
+  --black:#0a0a0a;--cream:#F5F0E8;--cream-light:#FAF7F2;
+  --gold:#C6A96C;--gold-dark:#B8956A;--gold-glow:rgba(198,169,108,0.25);
+  --text-dark:#1a1a1a;--text-light:#F5F0E8;--text-muted:rgba(245,240,232,0.55);
+  --card-dark:rgba(10,10,10,0.88);--card-border:rgba(198,169,108,0.25);
+  --overlay:rgba(10,10,10,0.65);
 }
 html{font-size:16px;-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--navy);background:var(--white);line-height:1.6;overflow-x:hidden}
+body{font-family:Georgia,"Times New Roman","Palatino Linotype",serif;color:var(--text-light);background:var(--black);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,video{max-width:100%;height:auto;display:block}
-a{color:var(--teal);text-decoration:none}
+a{color:var(--gold);text-decoration:none}
+
+/* Video Background */
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden}
+.video-bg video{width:100%;height:100%;object-fit:cover}
+.video-bg::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--overlay)}
 
 /* Container */
-.container{max-width:480px;margin:0 auto;padding:0 16px}
+.container{max-width:520px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
 
 /* Top Bar */
-.top-bar{background:var(--navy);color:var(--white);text-align:center;padding:10px 16px;font-size:0.75rem;letter-spacing:0.5px;text-transform:uppercase;font-weight:600}
+.top-bar{position:relative;z-index:3;text-align:center;padding:14px 24px;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;font-weight:400;color:var(--gold);border-bottom:1px solid rgba(198,169,108,0.15);background:rgba(10,10,10,0.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 
 /* Hero */
-.hero{text-align:center;padding:32px 0 24px}
-.hero-img{width:100%;max-height:320px;object-fit:cover;border-radius:12px;margin-bottom:24px}
-.hero h1{font-size:1.5rem;font-weight:700;line-height:1.3;margin-bottom:12px;color:var(--navy)}
-.hero p{font-size:0.95rem;color:#5a6a7a;margin-bottom:8px}
-.hero .quiz-count{font-size:0.82rem;color:var(--teal);font-weight:600;margin-bottom:24px}
-.hero .quiz-count span{border-bottom:1px dashed var(--teal)}
+.hero{text-align:center;padding:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero-brand{font-size:0.75rem;letter-spacing:8px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:40px;opacity:0.9}
+.hero-img{width:220px;height:220px;object-fit:cover;border-radius:50%;margin:0 auto 40px;border:1px solid rgba(198,169,108,0.3);opacity:0.9}
+.hero h1{font-size:1.85rem;font-weight:400;line-height:1.4;margin-bottom:16px;color:var(--cream);letter-spacing:0.5px;max-width:420px}
+.hero p{font-size:0.9rem;color:var(--text-muted);margin-bottom:8px;font-weight:300;letter-spacing:0.3px}
+.hero .quiz-count{font-size:0.72rem;color:var(--gold);font-weight:400;margin-bottom:48px;letter-spacing:2px;text-transform:uppercase}
+.hero .quiz-count span{border-bottom:1px solid rgba(198,169,108,0.4)}
 
-/* CTA Button */
-.btn-primary{display:block;width:100%;padding:16px 24px;background:var(--teal);color:var(--white);border:none;border-radius:12px;font-size:1.05rem;font-weight:700;cursor:pointer;text-align:center;transition:background 0.2s,transform 0.1s;-webkit-tap-highlight-color:transparent}
-.btn-primary:hover{background:#15505d}
+/* CTA Button - Luxury */
+.btn-primary{display:block;width:100%;padding:18px 32px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:0;font-size:0.78rem;font-weight:400;cursor:pointer;text-align:center;transition:all 0.4s ease;-webkit-tap-highlight-color:transparent;letter-spacing:3px;text-transform:uppercase;font-family:Georgia,"Times New Roman","Palatino Linotype",serif}
+.btn-primary:hover{background:var(--gold);color:var(--black)}
 .btn-primary:active{transform:scale(0.98)}
+.btn-primary.btn-gold-fill{background:var(--gold);color:var(--black)}
+.btn-primary.btn-gold-fill:hover{background:var(--gold-dark)}
 
 /* Quiz Section */
-.quiz-section{display:none;padding:24px 0 40px}
-.quiz-section.active{display:block}
+.quiz-section{display:none;padding:0;min-height:100vh;display:none;align-items:center;justify-content:center;padding-top:80px;padding-bottom:40px}
+.quiz-section.active{display:flex}
 
-/* Progress Bar */
-.progress-wrap{height:4px;background:var(--border);border-radius:2px;margin-bottom:28px;overflow:hidden}
-.progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width 0.4s ease}
+.quiz-inner{width:100%}
+
+/* Progress Bar - Thin gold line */
+.progress-wrap{height:1px;background:rgba(198,169,108,0.15);margin-bottom:36px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);transition:width 0.5s ease}
 
 /* Quiz Header */
-.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.quiz-step{font-size:0.78rem;color:#8a96a3;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
-.quiz-back{font-size:0.85rem;color:var(--teal);font-weight:600;cursor:pointer;padding:4px 8px;border:none;background:none;-webkit-tap-highlight-color:transparent}
-.quiz-back:hover{text-decoration:underline}
+.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.quiz-step{font-size:0.65rem;color:var(--text-muted);font-weight:400;text-transform:uppercase;letter-spacing:3px}
+.quiz-back{font-size:0.72rem;color:var(--gold);font-weight:400;cursor:pointer;padding:4px 8px;border:none;background:none;-webkit-tap-highlight-color:transparent;letter-spacing:2px;text-transform:uppercase;font-family:Georgia,"Times New Roman","Palatino Linotype",serif}
+.quiz-back:hover{opacity:0.7}
 .quiz-back.hidden{visibility:hidden}
 
 /* Question Card */
-.question-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 20px;box-shadow:var(--shadow)}
-.question-card h2{font-size:1.15rem;font-weight:700;line-height:1.4;margin-bottom:20px;color:var(--navy)}
+.question-card{background:var(--card-dark);border:1px solid var(--card-border);border-radius:2px;padding:36px 28px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.question-card h2{font-size:1.2rem;font-weight:400;line-height:1.6;margin-bottom:28px;color:var(--cream);letter-spacing:0.3px}
 
 /* Options */
-.option-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;margin-bottom:10px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-size:0.95rem;color:var(--navy);cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;min-height:56px}
+.option-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;margin-bottom:10px;background:transparent;border:1px solid rgba(198,169,108,0.2);border-radius:0;font-size:0.88rem;color:var(--cream);cursor:pointer;transition:all 0.4s ease;text-align:left;-webkit-tap-highlight-color:transparent;min-height:56px;font-family:Georgia,"Times New Roman","Palatino Linotype",serif;font-weight:300;letter-spacing:0.3px}
 .option-btn:last-child{margin-bottom:0}
-.option-btn .opt-icon{font-size:1.2rem;flex-shrink:0;width:28px;text-align:center}
-.option-btn:hover{border-color:var(--teal);background:var(--teal-light)}
-.option-btn.selected{border-color:var(--teal);background:var(--teal-light);font-weight:600}
+.option-btn .opt-icon{font-size:1.1rem;flex-shrink:0;width:28px;text-align:center;opacity:0.7}
+.option-btn:hover{border-color:var(--gold);background:rgba(198,169,108,0.06)}
+.option-btn.selected{border-color:var(--gold);background:rgba(198,169,108,0.1);box-shadow:0 0 20px rgba(198,169,108,0.08)}
 .option-btn.selected .opt-check{display:flex}
-.opt-check{display:none;margin-left:auto;width:22px;height:22px;border-radius:50%;background:var(--teal);align-items:center;justify-content:center;flex-shrink:0}
+.opt-check{display:none;margin-left:auto;width:22px;height:22px;border-radius:50%;background:var(--gold);align-items:center;justify-content:center;flex-shrink:0}
 .opt-check svg{width:12px;height:12px}
 
 /* Multi-select */
-.multi-hint{font-size:0.8rem;color:#8a96a3;margin-bottom:14px;font-style:italic}
-.option-btn.checkbox-mode .opt-check{display:flex;background:var(--border)}
+.multi-hint{font-size:0.72rem;color:var(--text-muted);margin-bottom:18px;font-style:italic;letter-spacing:1px}
+.option-btn.checkbox-mode .opt-check{display:flex;background:rgba(198,169,108,0.15);border:1px solid rgba(198,169,108,0.3)}
 .option-btn.checkbox-mode .opt-check svg path{stroke:transparent}
-.option-btn.checkbox-mode.selected .opt-check{background:var(--teal)}
-.option-btn.checkbox-mode.selected .opt-check svg path{stroke:white}
+.option-btn.checkbox-mode.selected .opt-check{background:var(--gold);border-color:var(--gold)}
+.option-btn.checkbox-mode.selected .opt-check svg path{stroke:var(--black)}
 
 /* Continue Button */
-.btn-continue{margin-top:20px}
+.btn-continue{margin-top:24px}
+.btn-continue:disabled{opacity:0.3;cursor:default}
 
-/* Slide Transitions */
+/* Slide Transitions - Elegant fades */
 .slide-container{position:relative;overflow:hidden}
-.slide{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateX(60px);transition:all 0.35s ease;pointer-events:none}
-.slide.active{position:relative;opacity:1;transform:translateX(0);pointer-events:all}
-.slide.exit-left{opacity:0;transform:translateX(-60px)}
-.slide.exit-right{opacity:0;transform:translateX(60px)}
+.slide{position:absolute;top:0;left:0;width:100%;opacity:0;transition:all 0.55s ease;pointer-events:none}
+.slide.active{position:relative;opacity:1;pointer-events:all}
+.slide.exit-left{opacity:0}
+.slide.exit-right{opacity:0}
 
 /* Analyzing Screen */
-.analyzing-section{display:none;padding:80px 0;text-align:center}
-.analyzing-section.active{display:block}
-.analyzer{margin:0 auto;width:120px;height:120px;position:relative;margin-bottom:32px}
-.ring-track{fill:none;stroke:var(--border);stroke-width:6}
-.ring-fill{fill:none;stroke:var(--teal);stroke-width:6;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transform-origin:center;animation:ringDraw 2.8s ease forwards}
+.analyzing-section{display:none;padding:0;text-align:center;min-height:100vh;align-items:center;justify-content:center}
+.analyzing-section.active{display:flex}
+.analyzing-inner{width:100%}
+.analyzer{margin:0 auto;width:140px;height:140px;position:relative;margin-bottom:40px}
+.ring-track{fill:none;stroke:rgba(198,169,108,0.15);stroke-width:2}
+.ring-fill{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transform-origin:center;animation:ringDraw 2.8s ease forwards}
 @keyframes ringDraw{to{stroke-dashoffset:16}}
-.analyzer-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.6rem;font-weight:800;color:var(--teal)}
-.analyze-step{font-size:0.95rem;color:#5a6a7a;margin-bottom:8px;opacity:0;transition:opacity 0.4s}
+.analyzer-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;font-weight:400;color:var(--gold);letter-spacing:2px}
+.analyze-step{font-size:0.85rem;color:var(--text-muted);margin-bottom:10px;opacity:0;transition:opacity 0.5s ease;font-weight:300;letter-spacing:0.5px}
 .analyze-step.visible{opacity:1}
-.analyze-step.done{color:var(--teal);font-weight:600}
+.analyze-step.done{color:var(--gold)}
 .analyze-step .check-mark{display:none;margin-left:4px}
 .analyze-step.done .check-mark{display:inline}
 
-/* Results Section */
-.results-section{display:none;padding:8px 0 100px}
+/* Results Section - Light cream background */
+.results-section{display:none;padding:8px 0 100px;position:relative;z-index:2}
 .results-section.active{display:block}
 
-.result-header{text-align:center;padding:32px 0 24px}
-.result-header .label{font-size:0.82rem;color:#8a96a3;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;margin-bottom:16px}
-.match-ring-wrap{width:140px;height:140px;margin:0 auto 16px;position:relative}
-.match-ring-track{fill:none;stroke:var(--border);stroke-width:8}
-.match-ring-fill{fill:none;stroke:var(--coral);stroke-width:8;stroke-linecap:round;stroke-dasharray:377;transition:stroke-dashoffset 1.2s ease}
-.match-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.2rem;font-weight:800;color:var(--coral)}
-.match-pct span{font-size:1rem;font-weight:600}
-.result-header .match-text{font-size:1rem;color:var(--navy);max-width:340px;margin:0 auto;line-height:1.5}
-.result-header .match-text strong{color:var(--teal)}
+.results-bg{background:var(--cream-light);position:relative;z-index:2}
+.results-bg .container{max-width:680px}
+
+.result-header{text-align:center;padding:56px 0 40px}
+.result-header .label{font-size:0.65rem;color:var(--gold-dark);text-transform:uppercase;letter-spacing:5px;font-weight:400;margin-bottom:24px}
+.match-ring-wrap{width:150px;height:150px;margin:0 auto 20px;position:relative}
+.match-ring-track{fill:none;stroke:rgba(198,169,108,0.2);stroke-width:2}
+.match-ring-fill{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:377;transition:stroke-dashoffset 1.2s ease}
+.match-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.4rem;font-weight:400;color:var(--gold-dark);letter-spacing:2px}
+.match-pct span{font-size:1rem;font-weight:300}
+.result-header .match-text{font-size:1rem;color:var(--text-dark);max-width:420px;margin:0 auto;line-height:1.8;font-weight:300}
+.result-header .match-text strong{color:var(--gold-dark)}
 
 /* Benefit Cards */
-.benefit-cards{margin-bottom:32px}
-.benefit-card{background:var(--ice);border-radius:14px;padding:18px 18px;margin-bottom:12px}
-.benefit-card .bc-label{font-size:0.75rem;color:var(--teal);text-transform:uppercase;font-weight:700;letter-spacing:0.4px;margin-bottom:6px}
-.benefit-card p{font-size:0.92rem;color:var(--navy);line-height:1.5}
+.benefit-cards{margin-bottom:40px}
+.benefit-card{background:var(--cream-light);border-top:1px solid var(--gold);padding:24px 0;margin-bottom:0}
+.benefit-card .bc-label{font-size:0.62rem;color:var(--gold-dark);text-transform:uppercase;font-weight:400;letter-spacing:4px;margin-bottom:10px}
+.benefit-card p{font-size:0.92rem;color:var(--text-dark);line-height:1.8;font-weight:300}
 
 /* Social Proof */
-.social-proof{padding:28px 0;border-top:1px solid var(--border)}
-.social-proof .sp-img{border-radius:12px;margin-bottom:16px}
-.social-proof .sp-count{font-size:0.95rem;font-weight:700;color:var(--teal);text-align:center;margin-bottom:20px}
-.testimonial{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
-.testimonial .stars{color:#f5a623;font-size:0.85rem;margin-bottom:6px;letter-spacing:1px}
-.testimonial p{font-size:0.9rem;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:8px}
-.testimonial .attr{font-size:0.8rem;color:#8a96a3;font-weight:600}
+.social-proof{padding:40px 0;border-top:1px solid rgba(198,169,108,0.2)}
+.social-proof .sp-img{border-radius:2px;margin-bottom:20px}
+.social-proof .sp-count{font-size:0.72rem;font-weight:400;color:var(--gold-dark);text-align:center;margin-bottom:28px;letter-spacing:3px;text-transform:uppercase}
+.testimonial{background:transparent;border:none;border-left:2px solid var(--gold);padding:20px 24px;margin-bottom:20px}
+.testimonial .stars{color:var(--gold);font-size:0.8rem;margin-bottom:8px;letter-spacing:2px}
+.testimonial p{font-size:0.95rem;font-style:italic;color:var(--text-dark);line-height:1.8;margin-bottom:8px;font-weight:300}
+.testimonial .attr{font-size:0.72rem;color:var(--gold-dark);font-weight:400;letter-spacing:2px;text-transform:uppercase}
 
 /* Video */
-.video-section{padding:24px 0;text-align:center}
-.video-section video{border-radius:12px;width:100%;margin-bottom:8px}
-.video-section .caption{font-size:0.82rem;color:#8a96a3}
+.video-section{padding:32px 0;text-align:center}
+.video-section video{border-radius:2px;width:100%;margin-bottom:10px}
+.video-section .caption{font-size:0.72rem;color:var(--gold-dark);letter-spacing:2px;text-transform:uppercase}
 
 /* Product Offer */
-.offer-card{background:var(--ice);border:2px solid var(--teal);border-radius:18px;padding:24px 20px;margin:28px 0;text-align:center}
-.offer-card .offer-img{border-radius:12px;margin:0 auto 16px;max-height:260px;object-fit:cover}
-.offer-card .offer-rec{font-size:0.75rem;color:var(--teal);text-transform:uppercase;font-weight:700;letter-spacing:0.5px;margin-bottom:8px}
-.offer-card h3{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3}
-.offer-card .offer-detail{font-size:0.88rem;color:#5a6a7a;margin-bottom:4px}
-.offer-card .offer-qualify{font-size:0.92rem;color:var(--coral);font-weight:700;margin:14px 0 18px}
-.offer-card .btn-primary{font-size:1.05rem;margin-bottom:12px}
-.offer-card .guarantees{font-size:0.78rem;color:#8a96a3;line-height:1.6}
-.trust-badges{display:flex;justify-content:center;gap:16px;margin-top:16px;flex-wrap:wrap}
-.trust-badge{display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--teal);font-weight:600}
-.trust-badge svg{width:16px;height:16px;flex-shrink:0}
+.offer-card{background:var(--black);border:1px solid rgba(198,169,108,0.3);border-radius:0;padding:40px 28px;margin:40px 0;text-align:center}
+.offer-card .offer-img{border-radius:2px;margin:0 auto 24px;max-height:300px;object-fit:cover}
+.offer-card .offer-rec{font-size:0.6rem;color:var(--gold);text-transform:uppercase;font-weight:400;letter-spacing:5px;margin-bottom:16px}
+.offer-card h3{font-size:1.35rem;font-weight:400;color:var(--cream);margin-bottom:12px;line-height:1.4;letter-spacing:0.5px}
+.offer-card .offer-detail{font-size:0.85rem;color:var(--text-muted);margin-bottom:4px;font-weight:300;letter-spacing:0.5px}
+.offer-card .offer-qualify{font-size:0.88rem;color:var(--gold);font-weight:400;margin:20px 0 28px;letter-spacing:1px}
+.offer-card .btn-primary{font-size:0.75rem;margin-bottom:16px;letter-spacing:3px}
+.offer-card .guarantees{font-size:0.7rem;color:rgba(245,240,232,0.4);line-height:1.8;font-weight:300;letter-spacing:0.5px}
+.trust-badges{display:flex;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:0.62rem;color:var(--gold);font-weight:400;letter-spacing:2px;text-transform:uppercase}
+.trust-badge svg{width:14px;height:14px;flex-shrink:0}
+
+/* Results page buttons */
+.results-section .btn-primary{color:var(--text-dark);border-color:var(--gold-dark)}
+.results-section .btn-primary:hover{background:var(--gold-dark);color:var(--cream-light)}
+.offer-card .btn-primary{color:var(--gold);border-color:var(--gold)}
+.offer-card .btn-primary:hover{background:var(--gold);color:var(--black)}
 
 /* Sticky CTA */
-.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);z-index:100;text-align:center}
-.sticky-cta .btn-primary{max-width:480px;margin:0 auto;font-size:1rem}
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--black);padding:14px 24px;box-shadow:0 -1px 0 rgba(198,169,108,0.2);z-index:100;text-align:center;border-top:1px solid rgba(198,169,108,0.15)}
+.sticky-cta .btn-primary{max-width:520px;margin:0 auto;font-size:0.7rem;letter-spacing:2px;padding:16px 24px}
 
 /* Footer */
-.footer{text-align:center;padding:32px 16px;font-size:0.75rem;color:#8a96a3;line-height:1.8;border-top:1px solid var(--border);margin-top:20px}
-.footer a{color:#8a96a3;text-decoration:underline}
+.footer{text-align:center;padding:40px 24px;font-size:0.72rem;color:var(--gold-dark);line-height:2;font-weight:300;letter-spacing:0.5px;border-top:1px solid rgba(198,169,108,0.15);margin-top:0;background:var(--cream-light)}
+.footer a{color:var(--gold-dark);text-decoration:none;border-bottom:1px solid rgba(184,149,106,0.3)}
+.footer a:hover{border-bottom-color:var(--gold-dark)}
 
 /* Fade-in animation for results */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.fade-up{animation:fadeUp 0.5s ease forwards;opacity:0}
-.fade-up-d1{animation-delay:0.1s}
-.fade-up-d2{animation-delay:0.2s}
-.fade-up-d3{animation-delay:0.3s}
-.fade-up-d4{animation-delay:0.5s}
-.fade-up-d5{animation-delay:0.7s}
-.fade-up-d6{animation-delay:0.9s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.6s ease forwards;opacity:0}
+.fade-up-d1{animation-delay:0.15s}
+.fade-up-d2{animation-delay:0.3s}
+.fade-up-d3{animation-delay:0.45s}
+.fade-up-d4{animation-delay:0.65s}
+.fade-up-d5{animation-delay:0.85s}
+.fade-up-d6{animation-delay:1.05s}
+
+/* Thin decorative line */
+.divider-line{width:60px;height:1px;background:var(--gold);margin:0 auto 32px;opacity:0.5}
+
+/* Desktop tweaks */
+@media(min-width:600px){
+  .hero h1{font-size:2.2rem}
+  .question-card{padding:44px 36px}
+  .question-card h2{font-size:1.3rem}
+  .offer-card{padding:48px 36px}
+  .results-bg .container{padding:0 40px}
+}
+
+/* Small mobile tweaks */
+@media(max-width:380px){
+  .hero h1{font-size:1.5rem}
+  .question-card{padding:28px 20px}
+  .option-btn{padding:14px 14px;font-size:0.84rem}
+  .hero-img{width:180px;height:180px}
+}
 </style>
 </head>
 <body>
+
+<!-- VIDEO BACKGROUND -->
+<div class="video-bg" id="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696945/final_2_wrrjdp.mp4" type="video/mp4">
+  </video>
+</div>
 
 <!-- TOP BAR -->
 <div class="top-bar">Dermatologist-Developed Skin Assessment</div>
@@ -170,6 +221,7 @@ a{color:var(--teal);text-decoration:none}
 <!-- PHASE 1: HERO / QUIZ LANDING -->
 <div id="phase-hero" class="container">
   <div class="hero">
+    <div class="hero-brand">OLENIS</div>
     <img class="hero-img" src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/video_B1_forced_perspective-end-a12262a2c7_gne52x.jpg" alt="Bright Eyes Peptide Patches clinical assessment" loading="eager">
     <h1>Find Out If Peptide Patches Are Right For Your Under-Eyes</h1>
     <p>Take our 90-second skin assessment. Developed with board-certified dermatologists.</p>
@@ -180,6 +232,7 @@ a{color:var(--teal);text-decoration:none}
 
 <!-- PHASE 2: THE QUIZ -->
 <div id="phase-quiz" class="quiz-section container">
+  <div class="quiz-inner">
   <div class="progress-wrap"><div class="progress-fill" id="progress-fill" style="width:20%"></div></div>
   <div class="quiz-header">
     <button class="quiz-back hidden" id="btn-back">&#8592; Back</button>
@@ -194,23 +247,23 @@ a{color:var(--teal);text-decoration:none}
         <h2>What concerns you most about your under-eye area?</h2>
         <button class="option-btn" data-value="puffiness" onclick="selectSingle(this,1)">
           <span class="opt-icon">&#128167;</span><span>Puffiness &amp; bags</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="dark_circles" onclick="selectSingle(this,1)">
           <span class="opt-icon">&#127761;</span><span>Dark circles</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="fine_lines" onclick="selectSingle(this,1)">
           <span class="opt-icon">&#10024;</span><span>Fine lines &amp; wrinkles</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="crepey" onclick="selectSingle(this,1)">
           <span class="opt-icon">&#128172;</span><span>Crepey, dry texture</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="all" onclick="selectSingle(this,1)">
           <span class="opt-icon">&#128308;</span><span>All of the above</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
       </div>
     </div>
@@ -221,19 +274,19 @@ a{color:var(--teal);text-decoration:none}
         <h2>How much have you spent on under-eye products in the past year?</h2>
         <button class="option-btn" data-value="under50" onclick="selectSingle(this,2)">
           <span class="opt-icon">&#128176;</span><span>Less than $50</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="50-150" onclick="selectSingle(this,2)">
           <span class="opt-icon">&#128178;</span><span>$50 &#8211; $150</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="150-500" onclick="selectSingle(this,2)">
           <span class="opt-icon">&#128179;</span><span>$150 &#8211; $500</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="500plus" onclick="selectSingle(this,2)">
           <span class="opt-icon">&#128184;</span><span>$500+</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
       </div>
     </div>
@@ -245,23 +298,23 @@ a{color:var(--teal);text-decoration:none}
         <p class="multi-hint">Select all that apply</p>
         <button class="option-btn checkbox-mode" data-value="creams" onclick="toggleMulti(this)">
           <span class="opt-icon">&#129524;</span><span>Eye creams &amp; serums</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn checkbox-mode" data-value="retinol" onclick="toggleMulti(this)">
           <span class="opt-icon">&#128300;</span><span>Retinol or retinoid products</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn checkbox-mode" data-value="botox" onclick="toggleMulti(this)">
           <span class="opt-icon">&#128137;</span><span>Botox or fillers</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn checkbox-mode" data-value="devices" onclick="toggleMulti(this)">
           <span class="opt-icon">&#128161;</span><span>LED devices or tools</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn checkbox-mode" data-value="nothing" onclick="toggleMulti(this)">
           <span class="opt-icon">&#127793;</span><span>Nothing yet &#8212; just starting</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="btn-primary btn-continue" id="btn-q3-continue" onclick="goNext()" disabled>Continue</button>
       </div>
@@ -273,15 +326,15 @@ a{color:var(--teal);text-decoration:none}
         <h2>How much time can you dedicate to your eye care routine?</h2>
         <button class="option-btn" data-value="5min" onclick="selectSingle(this,4)">
           <span class="opt-icon">&#9889;</span><span>5 minutes or less</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="10-20min" onclick="selectSingle(this,4)">
           <span class="opt-icon">&#9201;</span><span>10&#8211;20 minutes</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="overnight" onclick="selectSingle(this,4)">
           <span class="opt-icon">&#127769;</span><span>I need something I can do overnight</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
       </div>
     </div>
@@ -292,30 +345,32 @@ a{color:var(--teal);text-decoration:none}
         <h2>What would make you confident this actually works?</h2>
         <button class="option-btn" data-value="clinical" onclick="selectSingle(this,5)">
           <span class="opt-icon">&#129514;</span><span>Clinical ingredient proof</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="photos" onclick="selectSingle(this,5)">
           <span class="opt-icon">&#128248;</span><span>Real before &amp; after photos</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="guarantee" onclick="selectSingle(this,5)">
           <span class="opt-icon">&#128274;</span><span>Money-back guarantee</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
         <button class="option-btn" data-value="derm" onclick="selectSingle(this,5)">
           <span class="opt-icon">&#129657;</span><span>Recommendation from a dermatologist</span>
-          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>
+          <span class="opt-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" fill="none"/></svg></span>
         </button>
       </div>
     </div>
 
   </div><!-- /slide-container -->
+  </div><!-- /quiz-inner -->
 </div>
 
 <!-- PHASE 3: ANALYZING -->
 <div id="phase-analyzing" class="analyzing-section container">
+  <div class="analyzing-inner">
   <div class="analyzer">
-    <svg viewBox="0 0 120 120" width="120" height="120">
+    <svg viewBox="0 0 120 120" width="140" height="140">
       <circle class="ring-track" cx="60" cy="60" r="52"/>
       <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"/>
     </svg>
@@ -324,16 +379,20 @@ a{color:var(--teal);text-decoration:none}
   <div class="analyze-step" id="step-1">Analyzing your skin profile...</div>
   <div class="analyze-step" id="step-2">Matching ingredient needs...</div>
   <div class="analyze-step" id="step-3">Generating your recommendation...</div>
+  </div>
 </div>
 
 <!-- PHASE 4: RESULTS -->
-<div id="phase-results" class="results-section container">
+<div id="phase-results" class="results-section">
+<div class="results-bg">
+<div class="container">
 
   <!-- Result Header -->
   <div class="result-header fade-up">
     <div class="label">Your Skin Assessment Results</div>
+    <div class="divider-line"></div>
     <div class="match-ring-wrap">
-      <svg viewBox="0 0 140 140" width="140" height="140">
+      <svg viewBox="0 0 140 140" width="150" height="150">
         <circle class="match-ring-track" cx="70" cy="70" r="60"/>
         <circle class="match-ring-fill" id="match-ring" cx="70" cy="70" r="60" stroke-dashoffset="377" transform="rotate(-90 70 70)"/>
       </svg>
@@ -386,15 +445,15 @@ a{color:var(--teal);text-decoration:none}
     <p class="guarantees">30-Day Money-Back Guarantee &nbsp;|&nbsp; Free Shipping on $50+</p>
     <div class="trust-badges">
       <span class="trust-badge">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.35 4.76 5.25.77-3.8 3.7.9 5.22L8 13.27l-4.7 2.48.9-5.22-3.8-3.7 5.25-.77L8 1z" fill="var(--teal)"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.35 4.76 5.25.77-3.8 3.7.9 5.22L8 13.27l-4.7 2.48.9-5.22-3.8-3.7 5.25-.77L8 1z" fill="#C6A96C"/></svg>
         Dermatologist Approved
       </span>
       <span class="trust-badge">
-        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--teal)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--teal)" stroke-width="1.5" fill="none"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C6A96C" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#C6A96C" stroke-width="1.5" fill="none"/></svg>
         Cruelty Free
       </span>
       <span class="trust-badge">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zm0 2v4l3 1.5" stroke="var(--teal)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zm0 2v4l3 1.5" stroke="#C6A96C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
         Paraben Free
       </span>
     </div>
@@ -402,8 +461,10 @@ a{color:var(--teal);text-decoration:none}
 
   <!-- Footer CTA -->
   <div class="fade-up fade-up-d5" style="padding:8px 0 20px">
-    <a href="https://landing.olenis.com/703/01" class="btn-primary cta-link">Get My 50% Off &#8212; Limited Availability</a>
+    <a href="https://landing.olenis.com/703/01" class="btn-primary btn-gold-fill cta-link">Get My 50% Off &#8212; Limited Availability</a>
   </div>
+
+</div><!-- /container -->
 
   <!-- Footer -->
   <div class="footer">
@@ -411,6 +472,8 @@ a{color:var(--teal);text-decoration:none}
     Individual results may vary.<br>
     <a href="https://shop.olenis.com/policies/privacy-policy">Privacy</a> &bull; <a href="https://shop.olenis.com/policies/terms-of-service">Terms</a>
   </div>
+
+</div><!-- /results-bg -->
 </div>
 
 <!-- Sticky CTA (mobile, after quiz) -->
@@ -431,6 +494,7 @@ a{color:var(--teal);text-decoration:none}
   var quizEl = document.getElementById('phase-quiz');
   var analyzingEl = document.getElementById('phase-analyzing');
   var resultsEl = document.getElementById('phase-results');
+  var videoBg = document.getElementById('video-bg');
   var progressFill = document.getElementById('progress-fill');
   var stepLabel = document.getElementById('quiz-step');
   var backBtn = document.getElementById('btn-back');
@@ -465,18 +529,15 @@ a{color:var(--teal);text-decoration:none}
     if(currentSlide){
       currentSlide.classList.remove('active');
       currentSlide.classList.add(dir === 'forward' ? 'exit-left' : 'exit-right');
-      setTimeout(function(){ currentSlide.classList.remove('exit-left','exit-right'); }, 400);
+      setTimeout(function(){ currentSlide.classList.remove('exit-left','exit-right'); }, 600);
     }
 
-    // Prepare next slide entry direction
-    nextSlide.style.transform = dir === 'forward' ? 'translateX(60px)' : 'translateX(-60px)';
     nextSlide.style.opacity = '0';
 
     // Force reflow
     void nextSlide.offsetWidth;
 
     nextSlide.classList.add('active');
-    nextSlide.style.transform = '';
     nextSlide.style.opacity = '';
 
     currentQ = q;
@@ -497,7 +558,7 @@ a{color:var(--teal);text-decoration:none}
       } else {
         startAnalyzing();
       }
-    }, 350);
+    }, 400);
   };
 
   // Multi-select toggle (Q3)
@@ -570,6 +631,11 @@ a{color:var(--teal);text-decoration:none}
   function showResults(){
     analyzingEl.classList.remove('active');
     analyzingEl.style.display='none';
+
+    // Hide video background, show cream results
+    videoBg.style.display='none';
+    document.body.style.background='#FAF7F2';
+
     resultsEl.classList.add('active');
 
     // Set match percentage

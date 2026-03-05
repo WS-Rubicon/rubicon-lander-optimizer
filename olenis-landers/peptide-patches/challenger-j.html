@@ -8,7 +8,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1B1B3A;background:#FFF8F5;max-width:480px;margin:0 auto;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1B1B3A;background:#FFF8F5;margin:0 auto;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,video{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
@@ -18,6 +18,7 @@ a{text-decoration:none;color:inherit}
 
 /* Hero */
 .hero{position:relative;padding:32px 20px 28px;background:linear-gradient(170deg,#FDF2EE 0%,#FFF8F5 100%)}
+.hero-inner{max-width:480px;margin:0 auto}
 .phone-frame{width:220px;margin:0 auto 24px;position:relative;border-radius:28px;border:3px solid #2A2A3A;padding:8px 6px;background:#000;box-shadow:0 12px 40px rgba(27,27,58,0.15)}
 .phone-frame::before{content:'';display:block;width:60px;height:6px;background:#2A2A3A;border-radius:3px;margin:0 auto 6px;position:relative;z-index:2}
 .phone-frame video{width:100%;border-radius:16px;display:block}
@@ -27,6 +28,7 @@ a{text-decoration:none;color:inherit}
 .hero-stars{display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:20px;font-size:14px;color:#D4956B}
 .hero-stars .rating-num{color:#1B1B3A;font-weight:700;margin-left:6px;font-size:13px}
 .btn{display:block;width:100%;max-width:320px;margin:0 auto;padding:16px 24px;background:#C4727F;color:#fff;text-align:center;font-size:16px;font-weight:700;border-radius:50px;border:none;cursor:pointer;letter-spacing:0.2px;transition:background 0.2s}
+.btn:hover{background:#B5656F}
 .btn:active{background:#A85E6A}
 
 /* As Seen In */
@@ -44,6 +46,7 @@ a{text-decoration:none;color:inherit}
 
 /* UGC Gallery */
 .ugc{padding:32px 16px 28px;background:#FFF8F5}
+.ugc-inner{max-width:480px;margin:0 auto}
 .ugc h2{font-size:22px;font-weight:800;text-align:center;margin-bottom:6px;letter-spacing:-0.3px}
 .ugc .ugc-sub{text-align:center;font-size:13px;color:#8B7E7E;margin-bottom:20px}
 .ugc-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:none}
@@ -74,6 +77,7 @@ a{text-decoration:none;color:inherit}
 
 /* Why It Works */
 .why{padding:28px 20px;background:#FDF2EE}
+.why-inner{max-width:480px;margin:0 auto}
 .why-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(196,114,127,0.08)}
 .why-row:last-child{border-bottom:none}
 .why-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center;line-height:1.4}
@@ -82,12 +86,14 @@ a{text-decoration:none;color:inherit}
 
 /* Second Video */
 .video2{padding:28px 20px 32px;background:#FFF8F5;text-align:center}
+.video2-inner{max-width:480px;margin:0 auto}
 .video2 .v2-label{font-size:18px;font-weight:800;margin-bottom:14px;letter-spacing:-0.3px}
 .video2-wrap{border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(27,27,58,0.08)}
 .video2-wrap video{width:100%;display:block}
 
 /* Final CTA */
 .final-cta{padding:36px 20px 28px;text-align:center;background:linear-gradient(180deg,#FFF8F5 0%,#FDF2EE 100%)}
+.final-cta-inner{max-width:480px;margin:0 auto}
 .final-cta h3{font-size:22px;font-weight:800;margin-bottom:18px;letter-spacing:-0.3px}
 .final-cta .btn{margin-bottom:16px}
 .final-cta .guarantees{font-size:12px;color:#8B7E7E;margin-bottom:20px;line-height:1.6}
@@ -99,15 +105,123 @@ a{text-decoration:none;color:inherit}
 .footer{padding:24px 20px;text-align:center;font-size:11px;color:#A89A9A;line-height:1.8;background:#FDF2EE;border-top:1px solid rgba(196,114,127,0.08)}
 .footer a{color:#8B7E7E;text-decoration:underline}
 
-/* Sticky CTA */
-.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,248,245,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:12px 16px;box-shadow:0 -2px 16px rgba(27,27,58,0.08);text-align:center;max-width:480px;margin:0 auto}
+/* Sticky CTA — mobile only */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,248,245,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:12px 16px;box-shadow:0 -2px 16px rgba(27,27,58,0.08);text-align:center}
 .sticky-cta .btn{padding:14px 20px;font-size:15px;max-width:100%}
 
-/* Spacing for sticky bar */
+/* Spacing for sticky bar on mobile */
 body::after{content:'';display:block;height:70px}
 
-@media(min-width:481px){
-  .ugc-card{min-width:260px;max-width:260px}
+/* ============================================================
+   TABLET — 768px+
+   ============================================================ */
+@media(min-width:768px){
+  body::after{display:none}
+
+  .top-bar{font-size:14px;padding:12px 24px}
+
+  /* Hero — side by side */
+  .hero{padding:48px 40px 44px}
+  .hero-inner{max-width:900px;display:flex;align-items:center;gap:40px;flex-direction:row}
+  .phone-frame{width:260px;min-width:260px;margin:0;flex-shrink:0}
+  .hero-text{text-align:left;flex:1}
+  .hero-text h1{font-size:32px}
+  .hero-text .sub{font-size:15px}
+  .hero-stars{justify-content:flex-start}
+  .btn{margin:0}
+
+  /* UGC — 2-column grid */
+  .ugc{padding:40px 32px 36px}
+  .ugc-inner{max-width:900px}
+  .ugc .ugc-sub{font-size:14px}
+  .ugc-scroll{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;overflow-x:visible;scroll-snap-type:none;padding-bottom:0}
+  .ugc-card{min-width:unset;max-width:unset;width:100%}
+
+  /* Why It Works — 3 columns */
+  .why{padding:36px 32px}
+  .why-inner{max-width:900px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .why-row{flex-direction:column;align-items:center;text-align:center;border-bottom:none;padding:20px 12px;background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(27,27,58,0.05)}
+  .why-icon{width:auto;margin-bottom:8px}
+  .why-text{font-size:14px}
+
+  /* Second Video */
+  .video2{padding:36px 32px 40px}
+  .video2-inner{max-width:640px}
+  .video2 .v2-label{font-size:20px;margin-bottom:18px}
+
+  /* Final CTA */
+  .final-cta{padding:48px 32px 36px}
+  .final-cta-inner{max-width:640px}
+  .final-cta h3{font-size:26px}
+  .final-cta .btn{max-width:400px;margin:0 auto 16px}
+
+  /* Footer */
+  .footer{padding:28px 32px;font-size:12px}
+
+  /* Sticky CTA — hidden on tablet+ */
+  .sticky-cta{display:none !important}
+}
+
+/* ============================================================
+   DESKTOP — 1024px+
+   ============================================================ */
+@media(min-width:1024px){
+  .top-bar{font-size:14px;padding:12px 32px}
+
+  /* Hero */
+  .hero{padding:56px 60px 52px}
+  .hero-inner{max-width:1100px;gap:56px}
+  .phone-frame{width:300px;min-width:300px}
+  .hero-text h1{font-size:38px;margin-bottom:14px}
+  .hero-text .sub{font-size:16px;margin-bottom:12px}
+  .hero-stars{margin-bottom:28px}
+  .hero-stars .rating-num{font-size:14px}
+  .btn{padding:18px 28px;font-size:17px;max-width:360px}
+
+  /* As Seen In */
+  .seen-in{padding:22px 0}
+  .marquee-track .logo-set{gap:56px;padding:0 28px}
+  .marquee-track .logo-item{font-size:19px}
+  .marquee-track .logo-item.elle{font-size:23px}
+  .marquee-track .logo-item.vogue{font-size:21px}
+  .marquee-track .logo-item.glamour{font-size:17px}
+  .marquee-track .logo-item.byrdie{font-size:22px}
+  .marquee-track .logo-item.allure{font-size:21px}
+
+  /* UGC — still 2 columns but wider, or switch to 4 if desired */
+  .ugc{padding:48px 60px 44px}
+  .ugc-inner{max-width:1100px}
+  .ugc h2{font-size:26px;margin-bottom:8px}
+  .ugc .ugc-sub{font-size:15px;margin-bottom:28px}
+  .ugc-scroll{grid-template-columns:repeat(4,1fr);gap:24px}
+  .ugc-card-head{padding:14px 16px}
+  .ugc-card-footer{padding:14px 16px 18px}
+  .ugc-caption{font-size:14px}
+
+  /* Why It Works */
+  .why{padding:44px 60px}
+  .why-inner{max-width:1100px;gap:32px}
+  .why-row{padding:28px 20px;border-radius:16px}
+  .why-icon svg{width:28px;height:28px}
+  .why-text{font-size:15px}
+
+  /* Second Video */
+  .video2{padding:48px 60px 52px}
+  .video2-inner{max-width:720px}
+  .video2 .v2-label{font-size:22px;margin-bottom:22px}
+
+  /* Final CTA */
+  .final-cta{padding:56px 60px 44px}
+  .final-cta-inner{max-width:720px}
+  .final-cta h3{font-size:30px;margin-bottom:24px}
+  .final-cta .btn{max-width:440px;padding:18px 32px;font-size:17px}
+  .final-cta .guarantees{font-size:13px;margin-bottom:24px}
+  .trust-row{gap:24px}
+  .trust-badge{font-size:12px}
+  .trust-badge svg{width:16px;height:16px}
+
+  /* Footer */
+  .footer{padding:32px 60px;font-size:12px}
 }
 </style>
 </head>
@@ -118,21 +232,23 @@ body::after{content:'';display:block;height:70px}
 
 <!-- Hero -->
 <section class="hero">
-  <div class="phone-frame">
-    <video autoplay muted loop playsinline poster="#FDF2EE" src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696945/final_2_wrrjdp.mp4"></video>
-  </div>
-  <div class="hero-text">
-    <h1>The eye patches taking over everyone's feed</h1>
-    <p class="sub">47,000+ women made the switch this month</p>
-    <div class="hero-stars">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-      <span class="rating-num">4.9/5</span>
+  <div class="hero-inner">
+    <div class="phone-frame">
+      <video autoplay muted loop playsinline poster="#FDF2EE" src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696945/final_2_wrrjdp.mp4"></video>
     </div>
-    <a href="https://landing.olenis.com/703/01" class="btn cta-link">See What The Hype Is About</a>
+    <div class="hero-text">
+      <h1>The eye patches taking over everyone's feed</h1>
+      <p class="sub">47,000+ women made the switch this month</p>
+      <div class="hero-stars">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4956B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <span class="rating-num">4.9/5</span>
+      </div>
+      <a href="https://landing.olenis.com/703/01" class="btn cta-link">See What The Hype Is About</a>
+    </div>
   </div>
 </section>
 
@@ -159,120 +275,128 @@ body::after{content:'';display:block;height:70px}
 
 <!-- UGC Gallery -->
 <section class="ugc">
-  <h2>Real women. Real results. No filters.</h2>
-  <p class="ugc-sub">Swipe to see what everyone's saying</p>
-  <div class="ugc-scroll">
+  <div class="ugc-inner">
+    <h2>Real women. Real results. No filters.</h2>
+    <p class="ugc-sub">Swipe to see what everyone's saying</p>
+    <div class="ugc-scroll">
 
-    <!-- Card 1: Instagram Reels -->
-    <div class="ugc-card">
-      <div class="ugc-card-head">
-        <div class="ugc-avatar a1">J</div>
-        <span class="ugc-username">@jessica.m</span>
-        <span class="platform-tag ig">Reels</span>
+      <!-- Card 1: Instagram Reels -->
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-avatar a1">J</div>
+          <span class="ugc-username">@jessica.m</span>
+          <span class="platform-tag ig">Reels</span>
+        </div>
+        <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/scene_teudap.jpg" alt="Jessica using Bright Eyes patches" loading="lazy" width="280" height="280">
+        <div class="ugc-card-footer">
+          <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 2,847</div>
+          <p class="ugc-caption"><strong>My holy grail!</strong> I use these every morning while making coffee. 10 minutes and my bags are GONE</p>
+          <p class="ugc-age">jessica.m, 39</p>
+        </div>
       </div>
-      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/scene_teudap.jpg" alt="Jessica using Bright Eyes patches" loading="lazy" width="280" height="280">
-      <div class="ugc-card-footer">
-        <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 2,847</div>
-        <p class="ugc-caption"><strong>My holy grail!</strong> I use these every morning while making coffee. 10 minutes and my bags are GONE</p>
-        <p class="ugc-age">jessica.m, 39</p>
+
+      <!-- Card 2: TikTok -->
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-avatar a2">S</div>
+          <span class="ugc-username">@sarah.k</span>
+          <span class="platform-tag tt">TikTok</span>
+        </div>
+        <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697088/02-playful-ugc-genz-COSRX_ln59yl.jpg" alt="Sarah showing eye patch results" loading="lazy" width="280" height="280">
+        <div class="ugc-card-footer">
+          <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 14.2K</div>
+          <p class="ugc-caption"><strong>ok but these patches are literally magic??</strong> my under-eyes have never looked this good</p>
+          <p class="ugc-age">sarah.k, 26</p>
+        </div>
       </div>
+
+      <!-- Card 3: Story -->
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-avatar a3">R</div>
+          <span class="ugc-username">@rachel.t</span>
+          <span class="platform-tag story">Story</span>
+        </div>
+        <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/scene_1_mr5gie.jpg" alt="Rachel's morning routine with patches" loading="lazy" width="280" height="280">
+        <div class="ugc-card-footer">
+          <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 1,203</div>
+          <p class="ugc-caption"><strong>Morning routine game changer.</strong> Even my husband noticed the difference after 3 days</p>
+          <p class="ugc-age">rachel.t, 44</p>
+        </div>
+      </div>
+
+      <!-- Card 4: Pro -->
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-avatar a4">A</div>
+          <span class="ugc-username">@dr.amelia</span>
+          <span class="platform-tag pro">Esthetician</span>
+        </div>
+        <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/video_B1_forced_perspective-end-a12262a2c7_gne52x.jpg" alt="Dr. Amelia's product review" loading="lazy" width="280" height="280">
+        <div class="ugc-card-footer">
+          <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 5,691</div>
+          <p class="ugc-caption"><strong>Peptides + Collagen + Hyaluronic Acid</strong> delivered through hydrogel. This is what $80 eye creams wish they could do</p>
+          <p class="ugc-age">Dr. Amelia, Esthetician</p>
+        </div>
+      </div>
+
     </div>
-
-    <!-- Card 2: TikTok -->
-    <div class="ugc-card">
-      <div class="ugc-card-head">
-        <div class="ugc-avatar a2">S</div>
-        <span class="ugc-username">@sarah.k</span>
-        <span class="platform-tag tt">TikTok</span>
-      </div>
-      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697088/02-playful-ugc-genz-COSRX_ln59yl.jpg" alt="Sarah showing eye patch results" loading="lazy" width="280" height="280">
-      <div class="ugc-card-footer">
-        <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 14.2K</div>
-        <p class="ugc-caption"><strong>ok but these patches are literally magic??</strong> my under-eyes have never looked this good</p>
-        <p class="ugc-age">sarah.k, 26</p>
-      </div>
-    </div>
-
-    <!-- Card 3: Story -->
-    <div class="ugc-card">
-      <div class="ugc-card-head">
-        <div class="ugc-avatar a3">R</div>
-        <span class="ugc-username">@rachel.t</span>
-        <span class="platform-tag story">Story</span>
-      </div>
-      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/scene_1_mr5gie.jpg" alt="Rachel's morning routine with patches" loading="lazy" width="280" height="280">
-      <div class="ugc-card-footer">
-        <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 1,203</div>
-        <p class="ugc-caption"><strong>Morning routine game changer.</strong> Even my husband noticed the difference after 3 days</p>
-        <p class="ugc-age">rachel.t, 44</p>
-      </div>
-    </div>
-
-    <!-- Card 4: Pro -->
-    <div class="ugc-card">
-      <div class="ugc-card-head">
-        <div class="ugc-avatar a4">A</div>
-        <span class="ugc-username">@dr.amelia</span>
-        <span class="platform-tag pro">Esthetician</span>
-      </div>
-      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697089/video_B1_forced_perspective-end-a12262a2c7_gne52x.jpg" alt="Dr. Amelia's product review" loading="lazy" width="280" height="280">
-      <div class="ugc-card-footer">
-        <div class="ugc-hearts"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 5,691</div>
-        <p class="ugc-caption"><strong>Peptides + Collagen + Hyaluronic Acid</strong> delivered through hydrogel. This is what $80 eye creams wish they could do</p>
-        <p class="ugc-age">Dr. Amelia, Esthetician</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- Why It Works -->
 <section class="why">
-  <div class="why-row">
-    <div class="why-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6l3-3"/><path d="M12 2v6l-3-3"/><path d="M12 22v-6"/><circle cx="12" cy="15" r="3"/><path d="M3 12h3"/><path d="M18 12h3"/></svg>
+  <div class="why-inner">
+    <div class="why-row">
+      <div class="why-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6l3-3"/><path d="M12 2v6l-3-3"/><path d="M12 22v-6"/><circle cx="12" cy="15" r="3"/><path d="M3 12h3"/><path d="M18 12h3"/></svg>
+      </div>
+      <p class="why-text"><strong>Hydrogel delivers 5-8x deeper</strong> than creams</p>
     </div>
-    <p class="why-text"><strong>Hydrogel delivers 5-8x deeper</strong> than creams</p>
-  </div>
-  <div class="why-row">
-    <div class="why-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <div class="why-row">
+      <div class="why-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <p class="why-text"><strong>Visible results in 10-20 minutes</strong></p>
     </div>
-    <p class="why-text"><strong>Visible results in 10-20 minutes</strong></p>
-  </div>
-  <div class="why-row">
-    <div class="why-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <div class="why-row">
+      <div class="why-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4727F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <p class="why-text"><strong>Clinical-grade peptides</strong> at $0.38/treatment</p>
     </div>
-    <p class="why-text"><strong>Clinical-grade peptides</strong> at $0.38/treatment</p>
   </div>
 </section>
 
 <!-- Second Video -->
 <section class="video2">
-  <p class="v2-label">See the results for yourself</p>
-  <div class="video2-wrap">
-    <video autoplay muted loop playsinline poster="#FDF2EE" src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696950/final_5_edao4y.mp4"></video>
+  <div class="video2-inner">
+    <p class="v2-label">See the results for yourself</p>
+    <div class="video2-wrap">
+      <video autoplay muted loop playsinline poster="#FDF2EE" src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696950/final_5_edao4y.mp4"></video>
+    </div>
   </div>
 </section>
 
 <!-- Final CTA -->
 <section class="final-cta">
-  <h3>Ready to see the difference?</h3>
-  <a href="https://landing.olenis.com/703/01" class="btn cta-link">Check Availability &mdash; 50% Off Today</a>
-  <p class="guarantees">Free Shipping on $50+ &nbsp;|&nbsp; 30-Day Money-Back Guarantee</p>
-  <div class="trust-row">
-    <div class="trust-badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
-      Dermatologist Approved
-    </div>
-    <div class="trust-badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
-      Cruelty Free
-    </div>
-    <div class="trust-badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
-      Paraben Free
+  <div class="final-cta-inner">
+    <h3>Ready to see the difference?</h3>
+    <a href="https://landing.olenis.com/703/01" class="btn cta-link">Check Availability &mdash; 50% Off Today</a>
+    <p class="guarantees">Free Shipping on $50+ &nbsp;|&nbsp; 30-Day Money-Back Guarantee</p>
+    <div class="trust-row">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
+        Dermatologist Approved
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
+        Cruelty Free
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
+        Paraben Free
+      </div>
     </div>
   </div>
 </section>
