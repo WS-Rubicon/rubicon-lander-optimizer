@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Nighttime Skin Assessment | OLENIS</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#FFFFFF;--cream:#F5F0EB;--cream-dark:#E8E0D8;
+  --plum:#3D2B4F;--plum-light:#5A3D72;--plum-pale:#7B5A96;
+  --gold:#C4956A;--gold-dark:#A87B52;
+  --text:#3D2B4F;--text-mid:#555;--text-light:#888;
+  --border:#D5CCC4;
+  --card-bg:rgba(255,255,255,0.92);
+  --overlay:rgba(10,8,14,0.55);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;height:auto;display:block}
+a{color:var(--plum);text-decoration:none}
+
+/* Video Background */
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;background:#0a080e}
+.video-bg video{width:100%;height:100%;object-fit:contain}
+.video-bg::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--overlay)}
+
+/* Top Nav */
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);padding:14px 24px;text-align:center}
+.top-nav .brand{font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--plum)}
+.top-nav .back-btn{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--text);cursor:pointer;background:none;border:none;padding:4px 8px;display:none}
+.top-nav .back-btn:hover{opacity:0.6}
+
+/* Progress Bar */
+.progress-bar{position:fixed;top:52px;left:0;right:0;z-index:49;height:3px;background:rgba(0,0,0,0.06);display:none}
+.progress-fill{height:100%;background:var(--plum);transition:width 0.5s ease;width:0%}
+
+/* ===== HERO ===== */
+.hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px 40px;position:relative;z-index:2}
+.hero-inner{max-width:520px}
+.hero-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--white);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:6px 16px;border-radius:20px;margin-bottom:32px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero-section h1{font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;font-weight:400;line-height:1.3;color:var(--white);margin-bottom:16px;letter-spacing:0.3px}
+.hero-section p{font-size:1rem;color:rgba(255,255,255,0.7);margin-bottom:8px;line-height:1.7}
+.hero-section .quiz-count{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:40px}
+.hero-section .quiz-count span{border-bottom:1px solid rgba(255,255,255,0.25);padding-bottom:1px}
+.btn-start{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;background:var(--white);color:var(--text);border:none;border-radius:30px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-family:inherit;letter-spacing:0.3px}
+.btn-start:hover{background:var(--cream);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.btn-start svg{width:16px;height:16px;transition:transform 0.3s ease}
+.btn-start:hover svg{transform:translateX(3px)}
+
+/* ===== QUIZ ===== */
+.quiz-section{display:none;min-height:100vh;padding:80px 24px 40px;align-items:center;justify-content:center;position:relative;z-index:2}
+.quiz-section.active{display:flex}
+.quiz-inner{width:100%;max-width:640px;margin:0 auto}
+
+.q-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:44px 36px;box-shadow:0 8px 40px rgba(0,0,0,0.08)}
+.q-card h2{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem;font-weight:400;line-height:1.45;color:var(--text);margin-bottom:28px;text-align:center}
+
+.answer-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:18px 20px;margin-bottom:10px;background:var(--white);border:1.5px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);cursor:pointer;transition:all 0.25s ease;text-align:left;font-family:inherit;line-height:1.45}
+.answer-btn:last-of-type{margin-bottom:0}
+.answer-btn .chevron{color:var(--plum);font-size:18px;flex-shrink:0;margin-left:12px;transition:transform 0.25s ease}
+.answer-btn:hover{border-color:var(--plum);background:#F5F0EB}
+.answer-btn:hover .chevron{transform:translateX(2px)}
+.answer-btn.selected{border-color:var(--plum);background:#EDE6DF;box-shadow:0 0 0 1px var(--plum)}
+
+.slide{display:none}
+.slide.active{display:block;animation:fadeIn 0.35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== INTERSTITIAL MODAL ===== */
+.interstitial-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(10,8,14,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+.interstitial-overlay.active{display:flex}
+.interstitial-card{background:var(--white);border-radius:16px;max-width:480px;width:100%;overflow:hidden;animation:modalIn 0.35s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.interstitial-card .inter-img{width:100%;height:200px;object-fit:cover}
+.interstitial-card .inter-body{padding:28px 32px 32px}
+.interstitial-card h3{font-family:Georgia,'Times New Roman',serif;font-size:1.4rem;font-weight:400;color:var(--text);margin-bottom:12px;text-align:center;line-height:1.35}
+.interstitial-card p{font-size:14px;color:var(--text-mid);line-height:1.7;text-align:center;margin-bottom:24px}
+.btn-inter-continue{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:14px;background:var(--plum);color:var(--white);border:none;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-family:inherit}
+.btn-inter-continue:hover{background:var(--plum-light)}
+.btn-inter-continue svg{width:14px;height:14px}
+
+/* ===== ANALYZING ===== */
+.analyzing-section{display:none;min-height:100vh;padding:80px 24px 40px;align-items:center;justify-content:center;text-align:center;position:relative;z-index:2}
+.analyzing-section.active{display:flex}
+.analyzing-inner{max-width:400px;margin:0 auto}
+.analyzer-ring{width:140px;height:140px;margin:0 auto 36px;position:relative}
+.ring-track{fill:none;stroke:rgba(255,255,255,0.15);stroke-width:2.5}
+.ring-fill{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transform-origin:center;animation:ringDraw 2.8s ease forwards}
+@keyframes ringDraw{to{stroke-dashoffset:16}}
+.analyzer-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,'Times New Roman',serif;font-size:2rem;color:var(--white);letter-spacing:1px}
+.analyze-step{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:8px;opacity:0;transition:all 0.4s ease}
+.analyze-step.visible{opacity:1}
+.analyze-step.done{color:var(--gold)}
+
+/* ===== RESULTS ===== */
+.results-section{display:none}
+.results-section.active{display:block}
+.results-bg{background:var(--cream);min-height:100vh;padding-bottom:100px}
+
+.result-header{text-align:center;padding:80px 24px 40px;max-width:560px;margin:0 auto}
+.result-header .olenis-mark{font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--plum);margin-bottom:32px}
+.result-match{width:160px;height:160px;margin:0 auto 24px;position:relative}
+.match-ring-track{fill:none;stroke:rgba(61,43,79,0.2);stroke-width:2.5}
+.match-ring-fill{fill:none;stroke:var(--plum);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:377;transition:stroke-dashoffset 1.2s ease}
+.match-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,'Times New Roman',serif;font-size:2.6rem;color:var(--plum)}
+.match-pct span{font-size:1rem}
+.result-header h2{font-family:Georgia,'Times New Roman',serif;font-size:1.4rem;font-weight:400;color:var(--text);margin-bottom:12px;line-height:1.4}
+.result-header p{font-size:15px;color:var(--text-mid);line-height:1.7}
+.result-header p strong{color:var(--plum)}
+
+.results-container{max-width:640px;margin:0 auto;padding:0 24px}
+.benefit-cards{margin-bottom:40px}
+.benefit-card{background:var(--white);border-radius:12px;padding:24px 28px;margin-bottom:12px;border:1px solid rgba(61,43,79,0.15)}
+.benefit-card .bc-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:8px}
+.benefit-card p{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+.social-section{padding:40px 0;border-top:1px solid var(--border)}
+.social-section .sp-label{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--plum);text-align:center;margin-bottom:24px}
+.review-card{background:var(--white);border-radius:12px;padding:20px 24px;margin-bottom:12px;border:1px solid rgba(0,0,0,0.05)}
+.review-card .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:6px}
+.review-card p{font-size:14px;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:8px}
+.review-card .attr{font-size:12px;color:var(--text-light);font-weight:600}
+
+/* Video in results */
+.results-video{text-align:center;padding:32px 0}
+.results-video video{border-radius:12px;width:100%;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.results-video .cap{font-size:12px;color:var(--text-light);margin-top:12px;letter-spacing:1px;text-transform:uppercase}
+
+.offer-card{background:var(--white);border-radius:16px;padding:40px 32px;margin:32px 0;text-align:center;border:1px solid rgba(61,43,79,0.2);box-shadow:0 4px 24px rgba(0,0,0,0.04)}
+.offer-card .offer-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--plum);margin-bottom:16px}
+.offer-card img{border-radius:8px;margin:0 auto 20px;max-height:280px;object-fit:contain}
+.offer-card h3{font-family:Georgia,'Times New Roman',serif;font-size:1.3rem;font-weight:400;color:var(--text);margin-bottom:8px}
+.offer-card .detail{font-size:14px;color:var(--text-mid);margin-bottom:4px}
+.offer-card .qualify{font-size:15px;color:var(--plum);font-weight:600;margin:16px 0 24px}
+.btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;background:var(--plum);color:var(--white);border:none;border-radius:30px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-family:inherit;text-decoration:none}
+.btn-cta:hover{background:var(--plum-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(61,43,79,0.25)}
+.offer-card .guarantee{font-size:12px;color:var(--text-light);margin-top:16px;line-height:1.7}
+.trust-row{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--plum)}
+.trust-item svg{width:14px;height:14px;flex-shrink:0}
+
+.final-cta{padding:8px 0 32px}
+
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 24px;box-shadow:0 -2px 16px rgba(0,0,0,0.06);z-index:100;text-align:center;border-top:1px solid rgba(0,0,0,0.05)}
+.sticky-cta .btn-cta{max-width:480px;margin:0 auto;padding:14px}
+
+.footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-light);line-height:2;background:var(--cream);border-top:1px solid var(--border)}
+.footer a{color:var(--text-light);text-decoration:underline;text-underline-offset:2px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.5s ease forwards;opacity:0}
+.fd1{animation-delay:0.1s}.fd2{animation-delay:0.2s}.fd3{animation-delay:0.3s}.fd4{animation-delay:0.4s}.fd5{animation-delay:0.5s}.fd6{animation-delay:0.6s}
+
+@media(min-width:640px){
+  .video-bg video{object-fit:cover}
+  .hero-section h1{font-size:2.8rem}
+  .q-card{padding:52px 48px}
+  .q-card h2{font-size:1.65rem}
+  .answer-btn{padding:20px 24px;font-size:16px}
+  .interstitial-card .inter-img{height:240px}
+  .offer-card{padding:48px 40px}
+}
+
+@media(max-width:380px){
+  .hero-section h1{font-size:1.8rem}
+  .q-card{padding:32px 24px}
+  .q-card h2{font-size:1.25rem}
+  .answer-btn{padding:15px 16px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<div class="video-bg" id="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772791171/showcase_03_dramatic_nhaz9l.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- TOP NAV -->
+<nav class="top-nav" id="top-nav">
+  <button class="back-btn" id="btn-back" aria-label="Go back">&#8592;</button>
+  <div class="brand">OLENIS</div>
+</nav>
+<div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- INTERSTITIAL MODAL -->
+<div class="interstitial-overlay" id="interstitial">
+  <div class="interstitial-card">
+    <img class="inter-img" id="inter-img" src="" alt="" loading="lazy">
+    <div class="inter-body">
+      <h3 id="inter-title"></h3>
+      <p id="inter-text"></p>
+      <button class="btn-inter-continue" id="btn-inter-continue">Continue <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 1: HERO -->
+<div id="phase-hero">
+  <div class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-badge">Overnight Collagen Assessment</div>
+      <h1>Your Night Cream Evaporates in 2 Hours. Here's What Works Instead.</h1>
+      <p>Answer 3 quick questions to see if collagen wrapping technology is right for your skin.</p>
+      <p class="quiz-count"><span>31,247 women have taken this quiz</span></p>
+      <button class="btn-start" id="btn-start">Start My Assessment <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2: QUIZ -->
+<div id="phase-quiz" class="quiz-section">
+  <div class="quiz-inner">
+    <div id="slide-wrap">
+
+      <!-- Q1 -->
+      <div class="slide active" data-q="1">
+        <div class="q-card">
+          <h2>What frustrates you most when you wake up?</h2>
+          <button class="answer-btn" data-value="dull" onclick="selectSingle(this,1)"><span>Dull, tired-looking skin</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="lines" onclick="selectSingle(this,1)"><span>Fine lines look deeper in the morning</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="dry" onclick="selectSingle(this,1)"><span>Tight, dehydrated feeling</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="greasy" onclick="selectSingle(this,1)"><span>Greasy pillow &amp; sticky residue</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="all" onclick="selectSingle(this,1)"><span>All of the above</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="slide" data-q="2">
+        <div class="q-card">
+          <h2>How much have you spent on night skincare in the past year?</h2>
+          <button class="answer-btn" data-value="under50" onclick="selectSingle(this,2)"><span>Less than $50</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="50-150" onclick="selectSingle(this,2)"><span>$50 &#8211; $150</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="150-500" onclick="selectSingle(this,2)"><span>$150 &#8211; $500</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="500plus" onclick="selectSingle(this,2)"><span>$500+</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="slide" data-q="3">
+        <div class="q-card">
+          <h2>How much time do you want to spend on your nighttime routine?</h2>
+          <button class="answer-btn" data-value="minimal" onclick="selectSingle(this,3)"><span>Under 1 minute &#8212; just apply and sleep</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="moderate" onclick="selectSingle(this,3)"><span>2&#8211;5 minutes is fine</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="dedicated" onclick="selectSingle(this,3)"><span>I don't mind a longer routine if it works</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3: ANALYZING -->
+<div id="phase-analyzing" class="analyzing-section">
+  <div class="analyzing-inner">
+    <div class="analyzer-ring">
+      <svg viewBox="0 0 120 120" width="140" height="140">
+        <circle class="ring-track" cx="60" cy="60" r="52"/>
+        <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"/>
+      </svg>
+      <div class="analyzer-pct" id="analyzer-pct">0%</div>
+    </div>
+    <div class="analyze-step" id="step-1">Evaluating your overnight routine...</div>
+    <div class="analyze-step" id="step-2">Matching collagen delivery method...</div>
+    <div class="analyze-step" id="step-3">Building your recommendation...</div>
+  </div>
+</div>
+
+<!-- PHASE 4: RESULTS -->
+<div id="phase-results" class="results-section">
+<div class="results-bg">
+
+  <div class="result-header fade-up">
+    <div class="olenis-mark">OLENIS</div>
+    <div class="result-match">
+      <svg viewBox="0 0 140 140" width="160" height="160">
+        <circle class="match-ring-track" cx="70" cy="70" r="60"/>
+        <circle class="match-ring-fill" id="match-ring" cx="70" cy="70" r="60" stroke-dashoffset="377" transform="rotate(-90 70 70)"/>
+      </svg>
+      <div class="match-pct" id="match-pct">0<span>%</span></div>
+    </div>
+    <h2>Your Overnight Skin Assessment</h2>
+    <p>Based on your answers, the <strong>Collagen Night Wrapping Mask</strong> is an excellent match for your skin.</p>
+  </div>
+
+  <div class="results-container">
+
+    <div class="benefit-cards fade-up fd1" id="benefit-cards"></div>
+
+    <div class="social-section fade-up fd2">
+      <p class="sp-label">28,000+ Women Scored a 90%+ Match</p>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"I used to layer 3 products at night. Now I just wrap and wake up glowing. My husband noticed on day two."</p>
+        <div class="attr">&#8212; Amanda, 41</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"No more sticky pillowcase. This actually absorbs and works overnight. My skin feels 10 years younger in the morning."</p>
+        <div class="attr">&#8212; Danielle, 36</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Replaced my $85 La Mer night cream. Better results, fraction of the price. I'm never going back."</p>
+        <div class="attr">&#8212; Christine, 48</div>
+      </div>
+    </div>
+
+    <div class="results-video fade-up fd3">
+      <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772791171/showcase_02_botanical_rzzt5w.mp4" type="video/mp4">
+      </video>
+      <p class="cap">See the collagen wrapping technology</p>
+    </div>
+
+    <div class="offer-card fade-up fd4">
+      <div class="offer-label">Recommended For You</div>
+      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772789559/ecom_collagen-mask_001_xlxkmg.jpg" alt="Collagen Night Wrapping Mask" loading="lazy">
+      <h3>Collagen Night Wrapping Mask</h3>
+      <p class="detail">Replaces night cream, serum &amp; sleeping mask in one step</p>
+      <p class="qualify">Your assessment qualifies you for a special offer</p>
+      <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">See My Recommended Treatment</a>
+      <p class="guarantee">30-Day Money-Back Guarantee &nbsp;|&nbsp; Free Shipping on $50+</p>
+      <div class="trust-row">
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.35 4.76 5.25.77-3.8 3.7.9 5.22L8 13.27l-4.7 2.48.9-5.22-3.8-3.7 5.25-.77L8 1z" fill="#3D2B4F"/></svg>Dermatologist Tested</span>
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#3D2B4F" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#3D2B4F" stroke-width="1.5" fill="none"/></svg>Cruelty Free</span>
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zm0 2v4l3 1.5" stroke="#3D2B4F" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>Works Overnight</span>
+      </div>
+    </div>
+
+    <div class="final-cta fade-up fd5">
+      <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">Claim Your <span id="final-pct">97</span>% Match &#8212; See Offer</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    &copy; 2026 Olenis. All rights reserved.<br>
+    Individual results may vary.<br>
+    <a href="https://shop.olenis.com/policies/privacy-policy">Privacy</a> &bull; <a href="https://shop.olenis.com/policies/terms-of-service">Terms</a>
+  </div>
+
+</div>
+</div>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">See Your <span id="sticky-pct">97</span>% Match &#8212; Special Offer</a>
+</div>
+
+<script>
+(function(){
+  var answers={q1:null,q2:null,q3:null};
+  var currentQ=1,totalQ=3;
+  var matchPct=93+Math.floor(Math.random()*6);
+
+  var heroEl=document.getElementById('phase-hero');
+  var quizEl=document.getElementById('phase-quiz');
+  var analyzingEl=document.getElementById('phase-analyzing');
+  var resultsEl=document.getElementById('phase-results');
+  var videoBg=document.getElementById('video-bg');
+  var progressBar=document.getElementById('progress-bar');
+  var progressFill=document.getElementById('progress-fill');
+  var backBtn=document.getElementById('btn-back');
+
+  var interOverlay=document.getElementById('interstitial');
+  var interImg=document.getElementById('inter-img');
+  var interTitle=document.getElementById('inter-title');
+  var interText=document.getElementById('inter-text');
+  var interContinue=document.getElementById('btn-inter-continue');
+  var pendingNextQ=null;
+
+  var interstitials={
+    1:{
+      dull:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg',title:'Good news for dull skin.',text:'Most night creams evaporate within 2 hours, leaving your skin to fend for itself. Collagen wrapping creates an occlusive seal that delivers actives for a full 8 hours \u2014 triggering overnight renewal instead of just sitting on the surface.'},
+      lines:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg',title:'Fine lines respond fast to wrapping.',text:'Lines deepen overnight because skin loses moisture while you sleep. The wrapping mask creates a collagen-infused seal that presses peptides directly into wrinkle troughs for 8 hours \u2014 plumping from within instead of coating the surface.'},
+      dry:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg',title:'Dehydration solved overnight.',text:'Your skin loses up to 300ml of water per night through transepidermal water loss. No cream can stop that. The wrapping mask creates a moisture-locking barrier that holds 3\u20135x more hydration against your skin than any topical product.'},
+      greasy:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg',title:'Finally \u2014 no more sticky pillows.',text:'Heavy creams sit on the surface because your skin can only absorb so much at once. The wrapping mask uses micro-delivery technology \u2014 a lightweight, breathable seal that feeds collagen into skin all night without greasy residue.'},
+      all:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg',title:'Multiple concerns? Even better.',text:'The wrapping mask was engineered for exactly this \u2014 collagen delivery, deep hydration, and overnight renewal working simultaneously. One product replacing your entire nighttime routine.'}
+    },
+    2:{
+      under50:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789550/ecom_collagen-mask_008_szwcwt.jpg',title:'Smart budget, smarter delivery.',text:'Most affordable night creams use the right ingredients but the wrong method. The wrapping mask delivers those same actives 3\u20135x deeper than any cream at the same price point \u2014 because delivery is everything.'},
+      '50-150':{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789550/ecom_collagen-mask_008_szwcwt.jpg',title:'You deserve better per-dollar results.',text:'Products in this range contain quality ingredients. The issue isn\u2019t the formula \u2014 it\u2019s the delivery method. Creams evaporate. The wrapping seal holds actives against your skin for 8 full hours.'},
+      '150-500':{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789550/ecom_collagen-mask_008_szwcwt.jpg',title:'Here\u2019s what that spending reveals.',text:'You\u2019re investing in premium ingredients \u2014 but up to 90% of active ingredients in creams evaporate before they penetrate. Wrapping technology locks everything in for 8 hours of continuous delivery.'},
+      '500plus':{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789550/ecom_collagen-mask_008_szwcwt.jpg',title:'$500+ and still searching? There\u2019s a reason.',text:'Luxury night creams use the same collagen peptides as this mask. The difference: creams sit on top and evaporate. The wrapping seal delivers 3\u20135x deeper \u2014 for a fraction of what you\u2019ve been spending.'}
+    },
+    3:{
+      minimal:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789575/endframe_blonde_005_shaaf1.jpg',title:'Perfect \u2014 one step is all it takes.',text:'Apply in under 60 seconds before bed. The mask does all the work while you sleep. No layering, no waiting between products, no sticky pillow. Wake up and rinse.'},
+      moderate:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789575/endframe_blonde_005_shaaf1.jpg',title:'You have time to spare.',text:'The mask only needs 30 seconds to apply \u2014 then it works for 8 hours while you sleep. That\u2019s 2\u20134 minutes freed up from your current routine to use however you want.'},
+      dedicated:{img:'https://res.cloudinary.com/dndik3mpf/image/upload/v1772789575/endframe_blonde_005_shaaf1.jpg',title:'The mask replaces the whole routine.',text:'No need for a long multi-step process. The wrapping technology delivers what would normally require serum + night cream + sleeping mask in a single application. One product, full results.'}
+    }
+  };
+
+  document.getElementById('btn-start').addEventListener('click',function(){
+    heroEl.style.display='none';
+    quizEl.classList.add('active');
+    progressBar.style.display='block';
+    updateUI();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  backBtn.addEventListener('click',function(){
+    if(currentQ>1) goToQuestion(currentQ-1);
+  });
+
+  function updateUI(){
+    progressFill.style.width=(currentQ/totalQ*100)+'%';
+    backBtn.style.display=currentQ>1?'block':'none';
+  }
+
+  function goToQuestion(q){
+    var cur=document.querySelector('.slide.active');
+    var next=document.querySelector('.slide[data-q="'+q+'"]');
+    if(cur) cur.classList.remove('active');
+    next.classList.add('active');
+    currentQ=q;
+    updateUI();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function showInterstitial(q,value,nextQ){
+    var data=interstitials[q]&&interstitials[q][value];
+    if(!data){
+      if(nextQ>totalQ) startAnalyzing();
+      else goToQuestion(nextQ);
+      return;
+    }
+    interImg.src=data.img;
+    interTitle.textContent=data.title;
+    interText.textContent=data.text;
+    pendingNextQ=nextQ;
+    interOverlay.classList.add('active');
+  }
+
+  interContinue.addEventListener('click',function(){
+    interOverlay.classList.remove('active');
+    if(pendingNextQ>totalQ) startAnalyzing();
+    else goToQuestion(pendingNextQ);
+  });
+
+  window.selectSingle=function(btn,q){
+    var sibs=btn.parentNode.querySelectorAll('.answer-btn');
+    for(var i=0;i<sibs.length;i++) sibs[i].classList.remove('selected');
+    btn.classList.add('selected');
+    answers['q'+q]=btn.getAttribute('data-value');
+    setTimeout(function(){
+      showInterstitial(q,answers['q'+q],q+1);
+    },300);
+  };
+
+  function startAnalyzing(){
+    quizEl.classList.remove('active');
+    quizEl.style.display='none';
+    progressBar.style.display='none';
+    backBtn.style.display='none';
+    analyzingEl.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+
+    var pctEl=document.getElementById('analyzer-pct');
+    var steps=[document.getElementById('step-1'),document.getElementById('step-2'),document.getElementById('step-3')];
+    var count=0;
+    var iv=setInterval(function(){
+      count++;
+      if(count>matchPct){clearInterval(iv);return;}
+      pctEl.textContent=count+'%';
+    },28);
+
+    steps[0].classList.add('visible');
+    setTimeout(function(){steps[0].classList.add('done');steps[1].classList.add('visible');},1000);
+    setTimeout(function(){steps[1].classList.add('done');steps[2].classList.add('visible');},2000);
+    setTimeout(function(){steps[2].classList.add('done');},2800);
+    setTimeout(function(){showResults();},3200);
+  }
+
+  function showResults(){
+    analyzingEl.classList.remove('active');
+    analyzingEl.style.display='none';
+    videoBg.style.display='none';
+    document.getElementById('top-nav').style.background='rgba(245,240,235,0.95)';
+    document.body.style.background='#F5F0EB';
+    resultsEl.classList.add('active');
+
+    document.getElementById('match-pct').innerHTML=matchPct+'<span>%</span>';
+    document.getElementById('sticky-pct').textContent=matchPct;
+    document.getElementById('final-pct').textContent=matchPct;
+
+    var circ=2*Math.PI*60;
+    var off=circ-(matchPct/100*circ);
+    setTimeout(function(){document.getElementById('match-ring').style.strokeDashoffset=off;},100);
+
+    buildBenefitCards(answers.q1);
+    document.getElementById('sticky-cta').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function buildBenefitCards(concern){
+    var cards=[];
+    switch(concern){
+      case 'dull':
+        cards=[
+          {l:'For Your Dull Skin',t:'Concentrated collagen wraps your face in a moisture-sealing film overnight, triggering your skin\u2019s natural renewal cycle so you wake up visibly brighter \u2014 not flat.'},
+          {l:'Why Creams Fail Here',t:'Regular night creams evaporate within 2 hours. The wrapping mask creates an occlusive barrier that locks actives against your skin for 8 full hours of delivery.'},
+          {l:'Morning Difference',t:'Women report visible glow improvement after the very first night \u2014 the kind of difference coworkers actually notice.'}
+        ];break;
+      case 'lines':
+        cards=[
+          {l:'For Your Fine Lines',t:'Collagen peptides penetrate under an occlusive wrap, signaling your skin to rebuild its structural matrix overnight \u2014 smoothing lines from the inside out.'},
+          {l:'Why Creams Fail Here',t:'Serums and creams sit on top of skin and evaporate. The wrapping technology presses active ingredients into wrinkle troughs for 8 hours of continuous treatment.'},
+          {l:'Morning Difference',t:'Lines appear softer after one use because skin is deeply plumped with moisture \u2014 not just temporarily coated like with a regular cream.'}
+        ];break;
+      case 'dry':
+        cards=[
+          {l:'For Your Dehydration',t:'The mask creates a collagen-infused moisture barrier that prevents transepidermal water loss all night \u2014 your skin retains hydration instead of losing it to your pillow.'},
+          {l:'Why Creams Fail Here',t:'Even rich night creams can\u2019t prevent overnight water loss. The wrapping seal holds 3\u20135x more moisture against your skin than any topical cream.'},
+          {l:'Morning Difference',t:'Wake up to skin that feels supple and bouncy \u2014 no tightness, no dry patches, no need to rush to moisturize.'}
+        ];break;
+      case 'greasy':
+        cards=[
+          {l:'For Your Sticky Problem',t:'The wrapping mask absorbs completely into skin \u2014 no greasy film, no pillowcase stains. Collagen delivery happens through a lightweight, breathable seal.'},
+          {l:'Why Creams Fail Here',t:'Heavy night creams sit on the surface because your skin can only absorb so much. The wrapping technology bypasses this limit with sustained micro-delivery.'},
+          {l:'Morning Difference',t:'Clean pillow, no residue on your face, and skin that\u2019s actually nourished \u2014 not just coated in a greasy layer that transfers everywhere.'}
+        ];break;
+      default:
+        cards=[
+          {l:'Complete Match',t:'Your combination of concerns is exactly what the wrapping mask was designed for \u2014 collagen delivery, deep hydration, and overnight renewal in a single non-greasy step.'},
+          {l:'Replaces Your Whole Routine',t:'One product replaces night cream, serum, and sleeping mask. The wrapping technology delivers all active ingredients simultaneously for 8 hours.'},
+          {l:'Morning Difference',t:'Women with multiple concerns see the biggest improvement \u2014 brighter, smoother, more hydrated skin from a single product that actually works while you sleep.'}
+        ];
+    }
+    var h='';
+    for(var i=0;i<cards.length;i++) h+='<div class="benefit-card"><div class="bc-label">'+cards[i].l+'</div><p>'+cards[i].t+'</p></div>';
+    document.getElementById('benefit-cards').innerHTML=h;
+  }
+
+  updateUI();
+
+  var st=document.querySelector('.sticky-cta');
+  if(st&&window.innerWidth<=600){window.addEventListener('scroll',function(){st.style.display=window.scrollY>300?'block':'none'})}
+})();
+</script><script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+</body>
+</html>
