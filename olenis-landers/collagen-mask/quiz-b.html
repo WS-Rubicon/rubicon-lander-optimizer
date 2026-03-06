@@ -45,7 +45,6 @@ button{font-family:inherit;cursor:pointer}
 .screen.active{display:block}
 
 /* ===== START SCREEN ===== */
-.start-screen{display:none;min-height:100vh}
 .start-screen.active{display:flex}
 .start-layout{display:flex;width:100%;min-height:100vh;padding-top:56px}
 .start-left{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 48px;background:var(--white)}
@@ -61,7 +60,8 @@ button{font-family:inherit;cursor:pointer}
 .btn-start:hover svg{transform:translateX(3px)}
 
 /* ===== QUESTION SCREEN ===== */
-.question-screen{padding-top:80px;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;background:var(--white)}
+.question-screen{padding-top:80px;align-items:flex-start;justify-content:center;min-height:100vh;background:var(--white)}
+.question-screen.active{display:flex}
 .question-inner{width:100%;max-width:640px;padding:60px 24px 40px;text-align:center}
 .question-inner h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;line-height:1.35;color:var(--text);margin-bottom:36px;letter-spacing:-0.2px}
 .answer-list{display:flex;flex-direction:column;gap:12px;text-align:left}
@@ -84,7 +84,8 @@ button{font-family:inherit;cursor:pointer}
 .btn-continue svg{width:16px;height:16px}
 
 /* ===== ANALYZING SCREEN ===== */
-.analyzing-screen{padding-top:56px;display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--white);text-align:center}
+.analyzing-screen{padding-top:56px;align-items:center;justify-content:center;min-height:100vh;background:var(--white);text-align:center}
+.analyzing-screen.active{display:flex}
 .analyzing-inner{max-width:400px;padding:24px}
 .analyzing-inner h2{font-family:Georgia,'Times New Roman',serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:32px}
 .analyze-steps{text-align:left;margin-bottom:32px}
@@ -98,6 +99,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ===== RESULTS PAGE ===== */
 .results-screen{padding-top:56px;background:var(--white)}
+.results-screen.active{display:block}
 
 /* Results Hero */
 .results-hero{display:flex;min-height:70vh;overflow:hidden}
