@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Under-Eye Skin Assessment | OLENIS</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#FFFFFF;--cream:#F5F3F8;--cream-dark:#EBE8F0;
+  --navy:#242655;--navy-light:#363878;--navy-pale:#4A4C8A;
+  --coral:#D4836B;--coral-dark:#C06A52;
+  --text:#242655;--text-mid:#555;--text-light:#888;
+  --border:#D8D6E0;
+  --card-bg:rgba(255,255,255,0.92);
+  --overlay:rgba(10,10,10,0.6);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;height:auto;display:block}
+a{color:var(--navy);text-decoration:none}
+
+/* Video Background */
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden}
+.video-bg video{width:100%;height:100%;object-fit:cover}
+.video-bg::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--overlay)}
+
+/* Top Nav */
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);padding:14px 24px;text-align:center}
+.top-nav .brand{font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--navy)}
+.top-nav .back-btn{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--text);cursor:pointer;background:none;border:none;padding:4px 8px;display:none}
+.top-nav .back-btn:hover{opacity:0.6}
+
+/* Progress Bar */
+.progress-bar{position:fixed;top:52px;left:0;right:0;z-index:49;height:3px;background:rgba(0,0,0,0.06);display:none}
+.progress-fill{height:100%;background:var(--navy);transition:width 0.5s ease;width:0%}
+
+/* ===== HERO / START PAGE ===== */
+.hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px 40px;position:relative;z-index:2}
+.hero-inner{max-width:520px}
+.hero-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--white);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:6px 16px;border-radius:20px;margin-bottom:32px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero-section h1{font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;font-weight:400;line-height:1.3;color:var(--white);margin-bottom:16px;letter-spacing:0.3px}
+.hero-section p{font-size:1rem;color:rgba(255,255,255,0.7);margin-bottom:8px;line-height:1.7}
+.hero-section .quiz-count{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:40px}
+.hero-section .quiz-count span{border-bottom:1px solid rgba(255,255,255,0.25);padding-bottom:1px}
+.btn-start{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;background:var(--white);color:var(--text);border:none;border-radius:30px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-family:inherit;letter-spacing:0.3px}
+.btn-start:hover{background:var(--cream);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.btn-start svg{width:16px;height:16px;transition:transform 0.3s ease}
+.btn-start:hover svg{transform:translateX(3px)}
+
+/* ===== QUIZ SECTION ===== */
+.quiz-section{display:none;min-height:100vh;padding:80px 24px 40px;align-items:center;justify-content:center;position:relative;z-index:2}
+.quiz-section.active{display:flex}
+.quiz-inner{width:100%;max-width:640px;margin:0 auto}
+
+/* Question Card */
+.q-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:44px 36px;box-shadow:0 8px 40px rgba(0,0,0,0.08)}
+.q-card h2{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem;font-weight:400;line-height:1.45;color:var(--text);margin-bottom:28px;text-align:center}
+
+/* Answer Buttons */
+.answer-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:18px 20px;margin-bottom:10px;background:var(--white);border:1.5px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);cursor:pointer;transition:all 0.25s ease;text-align:left;font-family:inherit;line-height:1.45}
+.answer-btn:last-of-type{margin-bottom:0}
+.answer-btn .chevron{color:var(--navy);font-size:18px;flex-shrink:0;margin-left:12px;transition:transform 0.25s ease}
+.answer-btn:hover{border-color:var(--navy);background:#F5F3F8}
+.answer-btn:hover .chevron{transform:translateX(2px)}
+.answer-btn.selected{border-color:var(--navy);background:#EEEDF5;box-shadow:0 0 0 1px var(--navy)}
+
+/* Slide transitions */
+.slide{display:none}
+.slide.active{display:block;animation:fadeIn 0.35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== ANALYZING ===== */
+.analyzing-section{display:none;min-height:100vh;padding:80px 24px 40px;align-items:center;justify-content:center;text-align:center;position:relative;z-index:2}
+.analyzing-section.active{display:flex}
+.analyzing-inner{max-width:400px;margin:0 auto}
+.analyzer-ring{width:140px;height:140px;margin:0 auto 36px;position:relative}
+.ring-track{fill:none;stroke:rgba(255,255,255,0.15);stroke-width:2.5}
+.ring-fill{fill:none;stroke:var(--navy);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transform-origin:center;animation:ringDraw 2.8s ease forwards}
+@keyframes ringDraw{to{stroke-dashoffset:16}}
+.analyzer-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,'Times New Roman',serif;font-size:2rem;color:var(--white);letter-spacing:1px}
+.analyze-step{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:8px;opacity:0;transition:all 0.4s ease}
+.analyze-step.visible{opacity:1}
+.analyze-step.done{color:var(--navy)}
+
+/* ===== RESULTS ===== */
+.results-section{display:none}
+.results-section.active{display:block}
+.results-bg{background:var(--cream);min-height:100vh;padding-bottom:100px}
+
+.result-header{text-align:center;padding:80px 24px 40px;max-width:560px;margin:0 auto}
+.result-header .olenis-mark{font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--navy);margin-bottom:32px}
+.result-match{width:160px;height:160px;margin:0 auto 24px;position:relative}
+.match-ring-track{fill:none;stroke:rgba(36,38,85,0.2);stroke-width:2.5}
+.match-ring-fill{fill:none;stroke:var(--navy);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:377;transition:stroke-dashoffset 1.2s ease}
+.match-pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,'Times New Roman',serif;font-size:2.6rem;color:var(--navy)}
+.match-pct span{font-size:1rem}
+.result-header h2{font-family:Georgia,'Times New Roman',serif;font-size:1.4rem;font-weight:400;color:var(--text);margin-bottom:12px;line-height:1.4}
+.result-header p{font-size:15px;color:var(--text-mid);line-height:1.7}
+.result-header p strong{color:var(--navy)}
+
+/* Benefit cards */
+.results-container{max-width:640px;margin:0 auto;padding:0 24px}
+.benefit-cards{margin-bottom:40px}
+.benefit-card{background:var(--white);border-radius:12px;padding:24px 28px;margin-bottom:12px;border:1px solid rgba(36,38,85,0.15)}
+.benefit-card .bc-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
+.benefit-card p{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+/* Social proof */
+.social-section{padding:40px 0;border-top:1px solid var(--border)}
+.social-section .sp-label{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--navy);text-align:center;margin-bottom:24px}
+.review-card{background:var(--white);border-radius:12px;padding:20px 24px;margin-bottom:12px;border:1px solid rgba(0,0,0,0.05)}
+.review-card .stars{color:var(--coral);font-size:14px;letter-spacing:2px;margin-bottom:6px}
+.review-card p{font-size:14px;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:8px}
+.review-card .attr{font-size:12px;color:var(--text-light);font-weight:600}
+
+/* Video in results */
+.results-video{text-align:center;padding:32px 0}
+.results-video video{border-radius:12px;width:100%;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.results-video .cap{font-size:12px;color:var(--text-light);margin-top:12px;letter-spacing:1px;text-transform:uppercase}
+
+/* Offer card */
+.offer-card{background:var(--white);border-radius:16px;padding:40px 32px;margin:32px 0;text-align:center;border:1px solid rgba(36,38,85,0.2);box-shadow:0 4px 24px rgba(0,0,0,0.04)}
+.offer-card .offer-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--navy);margin-bottom:16px}
+.offer-card img{border-radius:8px;margin:0 auto 20px;max-height:280px;object-fit:cover}
+.offer-card h3{font-family:Georgia,'Times New Roman',serif;font-size:1.3rem;font-weight:400;color:var(--text);margin-bottom:8px}
+.offer-card .detail{font-size:14px;color:var(--text-mid);margin-bottom:4px}
+.offer-card .qualify{font-size:15px;color:var(--navy);font-weight:600;margin:16px 0 24px}
+.btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;background:var(--navy);color:var(--white);border:none;border-radius:30px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-family:inherit;text-decoration:none}
+.btn-cta:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 8px 24px rgba(36,38,85,0.25)}
+.offer-card .guarantee{font-size:12px;color:var(--text-light);margin-top:16px;line-height:1.7}
+.trust-row{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.trust-item svg{width:14px;height:14px;flex-shrink:0}
+
+/* Final CTA */
+.final-cta{padding:8px 0 32px}
+
+/* Sticky CTA */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 24px;box-shadow:0 -2px 16px rgba(0,0,0,0.06);z-index:100;text-align:center;border-top:1px solid rgba(0,0,0,0.05)}
+.sticky-cta .btn-cta{max-width:480px;margin:0 auto;padding:14px}
+
+/* Footer */
+.footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-light);line-height:2;background:var(--cream);border-top:1px solid var(--border)}
+.footer a{color:var(--text-light);text-decoration:underline;text-underline-offset:2px}
+
+/* Fade animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.5s ease forwards;opacity:0}
+.fd1{animation-delay:0.1s}.fd2{animation-delay:0.2s}.fd3{animation-delay:0.3s}.fd4{animation-delay:0.4s}.fd5{animation-delay:0.5s}
+
+/* Desktop */
+@media(min-width:640px){
+  .hero-section h1{font-size:2.8rem}
+  .q-card{padding:52px 48px}
+  .q-card h2{font-size:1.65rem}
+  .answer-btn{padding:20px 24px;font-size:16px}
+  .offer-card{padding:48px 40px}
+}
+
+/* Small mobile */
+@media(max-width:380px){
+  .hero-section h1{font-size:1.8rem}
+  .q-card{padding:32px 24px}
+  .q-card h2{font-size:1.25rem}
+  .answer-btn{padding:15px 16px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<div class="video-bg" id="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696945/final_2_wrrjdp.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- TOP NAV -->
+<nav class="top-nav" id="top-nav">
+  <button class="back-btn" id="btn-back" aria-label="Go back">&#8592;</button>
+  <div class="brand">OLENIS</div>
+</nav>
+<div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- PHASE 1: HERO -->
+<div id="phase-hero">
+  <div class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-badge">Dermatologist-Developed Assessment</div>
+      <h1>Find Out If Peptide Patches Are Right For Your Under-Eyes</h1>
+      <p>Take our 30-second skin assessment. Developed with board-certified dermatologists.</p>
+      <p class="quiz-count"><span>43,893 women have taken this quiz</span></p>
+      <button class="btn-start" id="btn-start">Start My Assessment <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2: QUIZ (NO POPUPS - straight flow) -->
+<div id="phase-quiz" class="quiz-section">
+  <div class="quiz-inner">
+    <div id="slide-wrap">
+
+      <!-- Q1 -->
+      <div class="slide active" data-q="1">
+        <div class="q-card">
+          <h2>What concerns you most about your under-eye area?</h2>
+          <button class="answer-btn" data-value="puffiness" onclick="selectSingle(this,1)"><span>Puffiness &amp; bags</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="dark_circles" onclick="selectSingle(this,1)"><span>Dark circles</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="fine_lines" onclick="selectSingle(this,1)"><span>Fine lines &amp; wrinkles</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="crepey" onclick="selectSingle(this,1)"><span>Crepey, dry texture</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="all" onclick="selectSingle(this,1)"><span>All of the above</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="slide" data-q="2">
+        <div class="q-card">
+          <h2>How much have you spent on under-eye products in the past year?</h2>
+          <button class="answer-btn" data-value="under50" onclick="selectSingle(this,2)"><span>Less than $50</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="50-150" onclick="selectSingle(this,2)"><span>$50 &#8211; $150</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="150-500" onclick="selectSingle(this,2)"><span>$150 &#8211; $500</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="500plus" onclick="selectSingle(this,2)"><span>$500+</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="slide" data-q="3">
+        <div class="q-card">
+          <h2>How much time can you dedicate to your eye care routine?</h2>
+          <button class="answer-btn" data-value="5min" onclick="selectSingle(this,3)"><span>5 minutes or less</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="10-20min" onclick="selectSingle(this,3)"><span>10&#8211;20 minutes</span><span class="chevron">&#8250;</span></button>
+          <button class="answer-btn" data-value="overnight" onclick="selectSingle(this,3)"><span>I prefer something overnight</span><span class="chevron">&#8250;</span></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3: ANALYZING -->
+<div id="phase-analyzing" class="analyzing-section">
+  <div class="analyzing-inner">
+    <div class="analyzer-ring">
+      <svg viewBox="0 0 120 120" width="140" height="140">
+        <circle class="ring-track" cx="60" cy="60" r="52"/>
+        <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"/>
+      </svg>
+      <div class="analyzer-pct" id="analyzer-pct">0%</div>
+    </div>
+    <div class="analyze-step" id="step-1">Analyzing your skin profile...</div>
+    <div class="analyze-step" id="step-2">Matching ingredient needs...</div>
+    <div class="analyze-step" id="step-3">Generating your recommendation...</div>
+  </div>
+</div>
+
+<!-- PHASE 4: RESULTS -->
+<div id="phase-results" class="results-section">
+<div class="results-bg">
+
+  <div class="result-header fade-up">
+    <div class="olenis-mark">OLENIS</div>
+    <div class="result-match">
+      <svg viewBox="0 0 140 140" width="160" height="160">
+        <circle class="match-ring-track" cx="70" cy="70" r="60"/>
+        <circle class="match-ring-fill" id="match-ring" cx="70" cy="70" r="60" stroke-dashoffset="377" transform="rotate(-90 70 70)"/>
+      </svg>
+      <div class="match-pct" id="match-pct">0<span>%</span></div>
+    </div>
+    <h2>Your Skin Assessment Results</h2>
+    <p>Based on your answers, <strong>Bright Eyes Peptide Patches</strong> are an excellent match for your under-eye concerns.</p>
+  </div>
+
+  <div class="results-container">
+
+    <div class="benefit-cards fade-up fd1" id="benefit-cards"></div>
+
+    <div class="social-section fade-up fd2">
+      <p class="sp-label">47,000+ Women Scored a 90%+ Match</p>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Took the quiz, tried the patches, threw away my eye cream."</p>
+        <div class="attr">&#8212; Jessica, 39</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"97% match and they were right. Best skincare purchase I've made."</p>
+        <div class="attr">&#8212; Rachel, 44</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"My quiz said I was overspending. They were right &#8212; $0.38 per use vs $8 per cream application."</p>
+        <div class="attr">&#8212; Michelle, 52</div>
+      </div>
+    </div>
+
+    <div class="results-video fade-up fd3">
+      <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772696950/final_5_edao4y.mp4" type="video/mp4">
+      </video>
+      <p class="cap">See how the patches work</p>
+    </div>
+
+    <div class="offer-card fade-up fd4">
+      <div class="offer-label">Recommended For You</div>
+      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772697088/02-playful-ugc-genz-COSRX_ln59yl.jpg" alt="Bright Eyes Peptide Collagen Patches" loading="lazy">
+      <h3>Bright Eyes Peptide Collagen Patches</h3>
+      <p class="detail">60 patches per box &nbsp;|&nbsp; $0.38 per treatment</p>
+      <p class="qualify">Your assessment qualifies you for 50% off today</p>
+      <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">Claim My Recommended Match &#8212; 50% Off</a>
+      <p class="guarantee">30-Day Money-Back Guarantee &nbsp;|&nbsp; Free Shipping on $50+</p>
+      <div class="trust-row">
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.35 4.76 5.25.77-3.8 3.7.9 5.22L8 13.27l-4.7 2.48.9-5.22-3.8-3.7 5.25-.77L8 1z" fill="#242655"/></svg>Dermatologist Approved</span>
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#242655" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#242655" stroke-width="1.5" fill="none"/></svg>Cruelty Free</span>
+        <span class="trust-item"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zm0 2v4l3 1.5" stroke="#242655" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>Paraben Free</span>
+      </div>
+    </div>
+
+    <div class="final-cta fade-up fd5">
+      <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">Get My 50% Off &#8212; Limited Availability</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    &copy; 2026 Olenis. All rights reserved.<br>
+    Individual results may vary.<br>
+    <a href="https://shop.olenis.com/policies/privacy-policy">Privacy</a> &bull; <a href="https://shop.olenis.com/policies/terms-of-service">Terms</a>
+  </div>
+
+</div>
+</div>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">Claim Your <span id="sticky-pct">97</span>% Match &#8212; 50% Off</a>
+</div>
+
+<script>
+(function(){
+  var answers={q1:null,q2:null,q3:null};
+  var currentQ=1,totalQ=3;
+  var matchPct=95+Math.floor(Math.random()*4);
+
+  var heroEl=document.getElementById('phase-hero');
+  var quizEl=document.getElementById('phase-quiz');
+  var analyzingEl=document.getElementById('phase-analyzing');
+  var resultsEl=document.getElementById('phase-results');
+  var videoBg=document.getElementById('video-bg');
+  var progressBar=document.getElementById('progress-bar');
+  var progressFill=document.getElementById('progress-fill');
+  var backBtn=document.getElementById('btn-back');
+
+  // Start quiz
+  document.getElementById('btn-start').addEventListener('click',function(){
+    heroEl.style.display='none';
+    quizEl.classList.add('active');
+    progressBar.style.display='block';
+    updateUI();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  // Back
+  backBtn.addEventListener('click',function(){
+    if(currentQ>1) goToQuestion(currentQ-1);
+  });
+
+  function updateUI(){
+    progressFill.style.width=(currentQ/totalQ*100)+'%';
+    backBtn.style.display=currentQ>1?'block':'none';
+  }
+
+  function goToQuestion(q){
+    var cur=document.querySelector('.slide.active');
+    var next=document.querySelector('.slide[data-q="'+q+'"]');
+    if(cur) cur.classList.remove('active');
+    next.classList.add('active');
+    currentQ=q;
+    updateUI();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  // Single select - NO popups, go straight to next question
+  window.selectSingle=function(btn,q){
+    var sibs=btn.parentNode.querySelectorAll('.answer-btn');
+    for(var i=0;i<sibs.length;i++) sibs[i].classList.remove('selected');
+    btn.classList.add('selected');
+    answers['q'+q]=btn.getAttribute('data-value');
+    setTimeout(function(){
+      if(q>=totalQ) startAnalyzing();
+      else goToQuestion(q+1);
+    },300);
+  };
+
+  // Analyzing
+  function startAnalyzing(){
+    quizEl.classList.remove('active');
+    quizEl.style.display='none';
+    progressBar.style.display='none';
+    backBtn.style.display='none';
+    analyzingEl.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+
+    var pctEl=document.getElementById('analyzer-pct');
+    var steps=[document.getElementById('step-1'),document.getElementById('step-2'),document.getElementById('step-3')];
+    var count=0;
+    var iv=setInterval(function(){
+      count++;
+      if(count>matchPct){clearInterval(iv);return;}
+      pctEl.textContent=count+'%';
+    },28);
+
+    steps[0].classList.add('visible');
+    setTimeout(function(){steps[0].classList.add('done');steps[1].classList.add('visible');},1000);
+    setTimeout(function(){steps[1].classList.add('done');steps[2].classList.add('visible');},2000);
+    setTimeout(function(){steps[2].classList.add('done');},2800);
+    setTimeout(function(){showResults();},3200);
+  }
+
+  // Results
+  function showResults(){
+    analyzingEl.classList.remove('active');
+    analyzingEl.style.display='none';
+    videoBg.style.display='none';
+    document.getElementById('top-nav').style.background='rgba(250,247,242,0.95)';
+    document.body.style.background='#F5F3F8';
+    resultsEl.classList.add('active');
+
+    document.getElementById('match-pct').innerHTML=matchPct+'<span>%</span>';
+    document.getElementById('sticky-pct').textContent=matchPct;
+
+    var circ=2*Math.PI*60;
+    var off=circ-(matchPct/100*circ);
+    setTimeout(function(){document.getElementById('match-ring').style.strokeDashoffset=off;},100);
+
+    buildBenefitCards(answers.q1);
+    document.getElementById('sticky-cta').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function buildBenefitCards(concern){
+    var cards=[];
+    switch(concern){
+      case 'puffiness':
+        cards=[{l:'For Your Puffiness',t:'Cooling hydrogel constricts blood vessels on contact, actively draining fluid and reducing bags in minutes \u2014 not hours.'},{l:'Bonus Match',t:'Peptide complex supports long-term firmness around the delicate orbital area, preventing future sagging.'},{l:'Deep Delivery',t:'Hydrogel seals active ingredients against skin \u2014 delivering 5-8x deeper than any cream or serum.'}];break;
+      case 'dark_circles':
+        cards=[{l:'For Your Dark Circles',t:'Niacinamide and peptides target melanin deposits and strengthen capillary walls \u2014 reducing discoloration at the source.'},{l:'Bonus Match',t:'Hyaluronic acid plumps thin under-eye skin, making dark pigmentation less visible immediately.'},{l:'Deep Delivery',t:'Hydrogel seals active ingredients against skin \u2014 delivering 5-8x deeper than topical creams.'}];break;
+      case 'fine_lines':
+        cards=[{l:'For Your Fine Lines',t:'Collagen peptides signal your skin to produce more collagen, smoothing creases and preventing new ones.'},{l:'Bonus Match',t:'Hyaluronic acid holds 1000x its weight in water, plumping fine lines from within instantly.'},{l:'Deep Delivery',t:'Hydrogel presses active ingredients directly into wrinkle troughs \u2014 5-8x deeper than eye cream.'}];break;
+      case 'crepey':
+        cards=[{l:'For Your Texture',t:'Deep hydration from hyaluronic acid and ceramide precursors restores the moisture barrier, transforming crepey skin.'},{l:'Bonus Match',t:'Peptide complex rebuilds the structural protein matrix, improving skin density and bounce over time.'},{l:'Deep Delivery',t:'Hydrogel locks a concentrated moisture reservoir against skin \u2014 5-8x more effective than cream hydration.'}];break;
+      default:
+        cards=[{l:'Complete Match',t:'Your combination of concerns is exactly what this formula was engineered for \u2014 six active ingredients working in concert.'},{l:'Multi-Action',t:'Each patch replaces the need for separate eye cream, serum, and mask products in a single 20-minute treatment.'},{l:'Deep Delivery',t:'Hydrogel seals the full ingredient complex against skin \u2014 5-8x deeper than layering multiple products.'}];
+    }
+    var h='';
+    for(var i=0;i<cards.length;i++) h+='<div class="benefit-card"><div class="bc-label">'+cards[i].l+'</div><p>'+cards[i].t+'</p></div>';
+    document.getElementById('benefit-cards').innerHTML=h;
+  }
+
+  updateUI();
+
+  // Sticky scroll on mobile
+  var st=document.querySelector('.sticky-cta');
+  if(st&&window.innerWidth<=600){window.addEventListener('scroll',function(){st.style.display=window.scrollY>300?'block':'none'})}
+})();
+</script><script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+</body>
+</html>
