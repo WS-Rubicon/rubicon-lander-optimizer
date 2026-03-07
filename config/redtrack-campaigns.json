@@ -65,6 +65,53 @@
           "retired_reason": "0 conversions, CTA linked to Shopify instead of RT offer URL"
         }
       }
+    },
+    "ecommerce_medicube": {
+      "campaign_name": "Wesley - Medicube Night Mask - Facebook - Ecomm",
+      "rt_campaign_id": "",
+      "rt_offer_id": "",
+      "offer_url": "",
+      "traffic_source": "Wesley - Ecomm - Facebook",
+      "status": "active",
+      "optimizer_status": "needs-rt-ids",
+      "landers": {
+        "editorial_v1": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-editorial-v1",
+          "url": "https://firstlightrituals.com/collagen-mask/editorial-v1.html"
+        },
+        "comparison_v2": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-comparison-v2",
+          "url": "https://firstlightrituals.com/collagen-mask/comparison-v2.html"
+        },
+        "reveal_v3": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-reveal-v3",
+          "url": "https://firstlightrituals.com/collagen-mask/reveal-v3.html"
+        },
+        "video_v4": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-video-v4",
+          "url": "https://firstlightrituals.com/collagen-mask/video-v4.html"
+        },
+        "pdp_v5": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-pdp-v5",
+          "url": "https://firstlightrituals.com/collagen-mask/pdp-v5.html"
+        },
+        "quiz_a": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-quiz-a",
+          "url": "https://firstlightrituals.com/collagen-mask/quiz-a.html"
+        },
+        "quiz_b": {
+          "rt_lander_id": "",
+          "lander_id": "ecomm-collagen-quiz-b",
+          "url": "https://firstlightrituals.com/collagen-mask/quiz-b.html"
+        }
+      },
+      "retired_landers": {}
     }
   }
 }

@@ -478,6 +478,18 @@ a{color:var(--plum);text-decoration:none}
   var st=document.querySelector('.sticky-cta');
   if(st&&window.innerWidth<=600){window.addEventListener('scroll',function(){st.style.display=window.scrollY>300?'block':'none'})}
 })();
-</script><script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+</script>
+<!-- Click ID passthrough -->
+<script>
+(function(){
+    var p=new URLSearchParams(window.location.search);
+    var c=p.get('rtkcid')||p.get('sub2')||p.get('clickid')||p.get('rt_clickid');
+    if(c){document.querySelectorAll('a.js-offer-link,a.cta-link').forEach(function(l){
+        var s=l.href.indexOf('?')>-1?'&':'?';
+        l.href=l.href+s+'sub2='+encodeURIComponent(c)
+    })}
+})();
+</script>
+<script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
 </body>
 </html>

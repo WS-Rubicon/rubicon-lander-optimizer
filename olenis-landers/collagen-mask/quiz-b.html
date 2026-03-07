@@ -370,7 +370,7 @@ button{font-family:inherit;cursor:pointer}
         <h1>Your Skin Deserves This Overnight Transformation</h1>
         <p>Based on your answers, the Medicube Collagen Night Wrapping Mask is an excellent match for your skin type and goals.</p>
         <p>Join thousands who wake up to visibly plumper, smoother, more hydrated skin &mdash; with just one simple step before bed.</p>
-        <a href="https://hpkpn.ttrk.io/click" class="btn-cta">
+        <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">
           Try It Now
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -463,7 +463,7 @@ button{font-family:inherit;cursor:pointer}
           <span>Total</span>
           <span>$24.00</span>
         </div>
-        <a href="https://hpkpn.ttrk.io/click" class="btn-buy">
+        <a href="https://hpkpn.ttrk.io/click" class="btn-buy cta-link">
           Shop Now
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -589,27 +589,17 @@ function showResults() {
 }
 </script>
 
-<!-- RedTrack click passthrough -->
+<!-- Click ID passthrough -->
 <script>
 (function(){
-  var defined=false;
-  function rtclk(){
-    if(defined)return;defined=true;
-    var links=document.querySelectorAll('a[href*="ttrk.io/click"]');
-    for(var i=0;i<links.length;i++){
-      (function(a){
-        a.addEventListener('click',function(e){
-          if(window.TRClick){
-            e.preventDefault();
-            window.TRClick(a.href);
-          }
-        });
-      })(links[i]);
-    }
-  }
-  if(document.readyState==='complete'||document.readyState==='interactive'){rtclk()}
-  else{document.addEventListener('DOMContentLoaded',rtclk)}
+    var p=new URLSearchParams(window.location.search);
+    var c=p.get('rtkcid')||p.get('sub2')||p.get('clickid')||p.get('rt_clickid');
+    if(c){document.querySelectorAll('a.js-offer-link,a.cta-link').forEach(function(l){
+        var s=l.href.indexOf('?')>-1?'&':'?';
+        l.href=l.href+s+'sub2='+encodeURIComponent(c)
+    })}
 })();
 </script>
+<script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
 </body>
 </html>
