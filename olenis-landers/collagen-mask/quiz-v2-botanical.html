@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Skin Quiz | OLENIS</title>
+<!-- RedTrack -->
+<script src="//hpkpn.ttrk.io/track.js" data-cfasync="false"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#FFFFFF;
+  --cream:#F5F0EB;
+  --plum:#3D2B4F;
+  --plum-dark:#2E1F3D;
+  --plum-light:#5A3D72;
+  --gold:#C4956A;
+  --gold-dark:#A87B52;
+  --text:#1A1A1A;
+  --text-mid:#444;
+  --text-light:#777;
+  --border:#E0DAD4;
+  --green-accent:#6B8F71;
+}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;height:auto;display:block}
+a{color:var(--plum);text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== NAV BAR ===== */
+.quiz-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px 20px;background:var(--white);border-bottom:1px solid rgba(0,0,0,0.06)}
+.quiz-nav .back-btn{position:absolute;left:20px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:22px;color:var(--text);padding:4px 8px;display:none;cursor:pointer}
+.quiz-nav .back-btn:hover{opacity:0.6}
+.quiz-nav .brand{font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--plum)}
+.quiz-nav .close-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:22px;color:var(--text);padding:4px 8px;cursor:pointer}
+.quiz-nav .close-btn:hover{opacity:0.6}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar{position:fixed;top:56px;left:0;right:0;z-index:99;height:4px;background:rgba(0,0,0,0.06);display:none}
+.progress-fill{height:100%;background:var(--plum);border-radius:0 2px 2px 0;transition:width 0.5s ease;width:0%}
+
+/* ===== SCREENS ===== */
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+
+/* ===== START SCREEN ===== */
+.start-screen.active{display:flex}
+.start-layout{display:flex;width:100%;min-height:100vh;padding-top:56px}
+.start-left{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 48px;background:var(--white)}
+.start-right{flex:1;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.start-right video{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.start-content{max-width:480px}
+.start-content h1{font-family:Georgia,'Times New Roman',serif;font-size:2.6rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:24px;letter-spacing:-0.3px}
+.start-content p{font-size:1rem;color:var(--text-mid);margin-bottom:16px;line-height:1.7}
+.start-content .disclaimer{font-size:13px;color:var(--text-light);font-style:italic;margin-bottom:32px;text-decoration:underline;text-underline-offset:2px}
+.btn-start{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--plum);color:var(--white);border:none;border-radius:40px;font-size:15px;font-weight:600;letter-spacing:0.3px;transition:all 0.25s ease;font-family:inherit}
+.btn-start:hover{background:var(--plum-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(61,43,79,0.25)}
+.btn-start svg{width:16px;height:16px;transition:transform 0.25s ease}
+.btn-start:hover svg{transform:translateX(3px)}
+
+/* ===== QUESTION SCREEN ===== */
+.question-screen{padding-top:80px;align-items:flex-start;justify-content:center;min-height:100vh;background:var(--white)}
+.question-screen.active{display:flex}
+.question-inner{width:100%;max-width:640px;padding:60px 24px 40px;text-align:center}
+.question-inner h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;line-height:1.35;color:var(--text);margin-bottom:36px;letter-spacing:-0.2px}
+.answer-list{display:flex;flex-direction:column;gap:12px;text-align:left}
+.answer-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-size:15px;color:var(--text);line-height:1.5;transition:all 0.2s ease;text-align:left}
+.answer-btn:hover{border-color:var(--plum);background:rgba(61,43,79,0.03)}
+.answer-btn .chevron{flex-shrink:0;margin-left:16px;color:var(--text-light);font-size:18px;transition:transform 0.2s ease}
+.answer-btn:hover .chevron{transform:translateX(3px);color:var(--plum)}
+
+/* ===== INTERSTITIAL MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(30,30,30,0.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+.modal-overlay.active{display:flex}
+.modal-card{background:var(--white);border-radius:16px;max-width:520px;width:100%;overflow:hidden;animation:modalIn 0.35s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-img{width:100%;height:220px;object-fit:cover}
+.modal-body{padding:28px 28px 24px}
+.modal-body h3{font-family:Georgia,'Times New Roman',serif;font-size:1.4rem;font-weight:400;line-height:1.35;color:var(--text);margin-bottom:14px}
+.modal-body p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:20px}
+.btn-continue{width:100%;padding:16px;background:var(--plum);color:var(--white);border:none;border-radius:12px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s ease}
+.btn-continue:hover{background:var(--plum-dark)}
+.btn-continue svg{width:16px;height:16px}
+
+/* ===== ANALYZING SCREEN ===== */
+.analyzing-screen{padding-top:56px;align-items:center;justify-content:center;min-height:100vh;background:var(--white);text-align:center}
+.analyzing-screen.active{display:flex}
+.analyzing-inner{max-width:400px;padding:24px}
+.analyzing-inner h2{font-family:Georgia,'Times New Roman',serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:32px}
+.analyze-steps{text-align:left;margin-bottom:32px}
+.analyze-step{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.06);font-size:14px;color:var(--text-mid);opacity:0.4;transition:opacity 0.4s ease}
+.analyze-step.active{opacity:1;color:var(--text)}
+.analyze-step.done{opacity:1;color:var(--green-accent)}
+.step-icon{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:all 0.3s ease}
+.analyze-step.active .step-icon{border-color:var(--plum);animation:pulse 1.2s infinite}
+.analyze-step.done .step-icon{border-color:var(--green-accent);background:var(--green-accent);color:var(--white)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+/* ===== RESULTS PAGE ===== */
+.results-screen{padding-top:56px;background:var(--white)}
+.results-screen.active{display:block}
+
+/* Results Hero */
+.results-hero{display:flex;min-height:70vh;overflow:hidden}
+.results-hero-media{flex:1;position:relative;overflow:hidden;max-height:80vh}
+.results-hero-media video{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.results-hero-content{flex:1;display:flex;align-items:center;padding:60px 48px;background:var(--white)}
+.results-hero-inner{max-width:480px}
+.results-hero-inner h1{font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:20px}
+.results-hero-inner p{font-size:1rem;color:var(--text-mid);line-height:1.7;margin-bottom:16px}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--plum);color:var(--white);border:none;border-radius:40px;font-size:15px;font-weight:600;letter-spacing:0.3px;transition:all 0.25s ease;font-family:inherit;text-decoration:none;margin-top:8px}
+.btn-cta:hover{background:var(--plum-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(61,43,79,0.25)}
+.btn-cta svg{width:16px;height:16px}
+
+/* Science Section */
+.science-section{display:flex;gap:0;overflow:hidden;background:var(--cream)}
+.science-text{flex:1;padding:60px 48px;display:flex;flex-direction:column;justify-content:center}
+.science-text h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;line-height:1.3;color:var(--text);margin-bottom:16px}
+.science-text p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:24px}
+.science-stats{display:flex;gap:32px;margin-bottom:12px}
+.stat-item .stat-num{font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;font-weight:400;color:var(--plum)}
+.stat-item .stat-label{font-size:12px;color:var(--text-mid);line-height:1.4;max-width:160px}
+.science-img{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;min-height:400px}
+.science-img img{max-width:100%;max-height:420px;border-radius:12px;object-fit:cover}
+
+/* Ingredients Section */
+.ingredients-section{background:var(--white);padding:60px 48px;display:flex;align-items:center;gap:48px;max-width:1100px;margin:0 auto}
+.ingredients-img{flex:1;display:flex;justify-content:center}
+.ingredients-img img{max-height:400px;border-radius:12px;object-fit:contain}
+.ingredients-text{flex:1}
+.ingredients-text h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;color:var(--text);margin-bottom:8px}
+.ingredients-text .subtitle{font-size:14px;color:var(--text-mid);margin-bottom:24px}
+.ingredient-list{display:flex;flex-direction:column;gap:14px}
+.ingredient-item{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--text)}
+.ingredient-dot{width:10px;height:10px;border-radius:50%;background:var(--plum);flex-shrink:0}
+
+/* Testimonials */
+.testimonials-section{background:var(--cream);padding:60px 24px;text-align:center}
+.testimonials-section h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;color:var(--text);margin-bottom:40px}
+.testimonial-cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.testimonial-card{background:var(--white);border-radius:12px;padding:28px;max-width:280px;text-align:left}
+.testimonial-card .stars{color:var(--gold);font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.testimonial-card blockquote{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testimonial-card .author{font-size:13px;font-weight:600;color:var(--text)}
+.testimonial-card .verified{font-size:12px;color:var(--green-accent)}
+
+/* Offer Section */
+.offer-section{background:var(--white);padding:60px 24px;text-align:center}
+.offer-section h2{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;font-weight:400;color:var(--text);margin-bottom:32px}
+.offer-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;max-width:480px;margin:0 auto;text-align:left;overflow:hidden}
+.offer-card-header{padding:24px 28px;border-bottom:1px solid var(--border)}
+.offer-card-header .product-name{font-family:Georgia,'Times New Roman',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.offer-card-header .product-desc{font-size:13px;color:var(--text-mid)}
+.offer-card-row{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid rgba(0,0,0,0.04)}
+.offer-card-row .label{font-size:14px;color:var(--text)}
+.offer-card-row .value{font-size:14px;font-weight:600;color:var(--text)}
+.offer-card-row .value.free{color:var(--green-accent)}
+.offer-card-row .value .strike{text-decoration:line-through;color:var(--text-light);font-weight:400;margin-left:8px}
+.offer-card-footer{padding:24px 28px;display:flex;flex-direction:column;gap:12px}
+.offer-total{display:flex;justify-content:space-between;font-size:16px;font-weight:600;color:var(--text);padding-bottom:16px;border-bottom:1px solid var(--border)}
+.btn-buy{width:100%;padding:18px;background:var(--plum);color:var(--white);border:none;border-radius:40px;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.25s ease;text-decoration:none}
+.btn-buy:hover{background:var(--plum-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(61,43,79,0.25)}
+.offer-badges{display:flex;justify-content:center;gap:24px;padding-top:8px}
+.offer-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-mid)}
+.offer-badge svg{width:16px;height:16px;color:var(--plum)}
+
+/* Footer disclaimer */
+.footer-disclaimer{background:var(--cream);padding:32px 24px;text-align:center}
+.footer-disclaimer p{font-size:11px;color:var(--text-light);max-width:600px;margin:0 auto;line-height:1.6}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .start-layout{flex-direction:column}
+  .start-left{padding:40px 24px;order:2}
+  .start-right{min-height:45vh;order:1}
+  .start-right video{object-fit:contain;background:var(--cream)}
+  .start-content h1{font-size:1.9rem}
+  .question-inner h2{font-size:1.5rem}
+  .answer-btn{padding:16px 20px;font-size:14px}
+  .results-hero{flex-direction:column}
+  .results-hero-media{min-height:45vh}
+  .results-hero-content{padding:40px 24px}
+  .results-hero-inner h1{font-size:1.8rem}
+  .science-section{flex-direction:column}
+  .science-text{padding:40px 24px}
+  .science-img{padding:0 24px 40px;min-height:auto}
+  .science-stats{gap:20px}
+  .stat-item .stat-num{font-size:1.8rem}
+  .ingredients-section{flex-direction:column;padding:40px 24px;gap:32px}
+  .testimonial-cards{flex-direction:column;align-items:center}
+  .modal-img{height:180px}
+  .modal-body{padding:24px 20px 20px}
+  .modal-body h3{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="quiz-nav">
+  <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
+  <div class="brand">OLENIS</div>
+  <button class="close-btn" onclick="window.history.back()">&#10005;</button>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- ===== START SCREEN ===== -->
+<div class="screen start-screen active" id="startScreen">
+  <div class="start-layout">
+    <div class="start-left">
+      <div class="start-content">
+        <h1>Find out if the Collagen Night Mask is right for you</h1>
+        <p>This short quiz will help you discover how the Medicube Collagen Night Wrapping Mask can transform your nighttime routine. Whether you're battling dullness, fine lines, or dehydration, we'll show you how it fits into your life.</p>
+        <p>Let's explore what's possible for your skin.</p>
+        <p class="disclaimer">This tool is not intended to diagnose or treat any condition</p>
+        <button class="btn-start" onclick="startQuiz()">
+          Start Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="start-right">
+      <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772791171/showcase_03_dramatic_nhaz9l.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUESTION SCREENS ===== -->
+<div class="screen question-screen" id="q1">
+  <div class="question-inner">
+    <h2>What's your biggest skin frustration right now?</h2>
+    <div class="answer-list">
+      <button class="answer-btn" onclick="answer(1,'dull')">Dull, tired-looking skin when I wake up <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(1,'lines')">Fine lines and wrinkles getting more visible <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(1,'dry')">Dry, tight skin that never feels hydrated <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(1,'uneven')">Uneven texture or rough patches <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(1,'all')">Honestly, a bit of everything <span class="chevron">&#8250;</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="screen question-screen" id="q2">
+  <div class="question-inner">
+    <h2>What does your current nighttime routine look like?</h2>
+    <div class="answer-list">
+      <button class="answer-btn" onclick="answer(2,'nothing')">Wash face and go to bed &mdash; nothing extra <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(2,'basic')">Cleanser + moisturizer, but nothing special <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(2,'multi')">Full routine &mdash; serums, eye cream, the works <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(2,'varies')">It varies &mdash; depends on how tired I am <span class="chevron">&#8250;</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="screen question-screen" id="q3">
+  <div class="question-inner">
+    <h2>Have you tried overnight masks or sleeping packs before?</h2>
+    <div class="answer-list">
+      <button class="answer-btn" onclick="answer(3,'yes')">Yes, I love them! <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(3,'tried')">I've tried one, but it felt heavy or greasy <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(3,'no')">No, this would be my first time <span class="chevron">&#8250;</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="screen question-screen" id="q4">
+  <div class="question-inner">
+    <h2>What matters most to you in a skincare product?</h2>
+    <div class="answer-list">
+      <button class="answer-btn" onclick="answer(4,'results')">Visible results I can actually see <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(4,'simple')">Simplicity &mdash; one step that does a lot <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(4,'ingredients')">Clean, quality ingredients I trust <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(4,'value')">Good value for what I'm getting <span class="chevron">&#8250;</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="screen question-screen" id="q5">
+  <div class="question-inner">
+    <h2>How committed are you to upgrading your skin this month?</h2>
+    <div class="answer-list">
+      <button class="answer-btn" onclick="answer(5,'allin')">All in &mdash; I'm ready to invest in my skin <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(5,'open')">Fairly committed &mdash; I know I need to make changes <span class="chevron">&#8250;</span></button>
+      <button class="answer-btn" onclick="answer(5,'curious')">Just curious &mdash; exploring my options <span class="chevron">&#8250;</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTERSTITIAL MODALS ===== -->
+<div class="modal-overlay" id="modal1">
+  <div class="modal-card">
+    <img class="modal-img" src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_010_ubpxap.jpg" alt="Wake up glowing">
+    <div class="modal-body">
+      <h3>Your skin works hardest while you sleep</h3>
+      <p>Night is when your skin enters repair mode. The Collagen Night Wrapping Mask is designed to work with your body's natural overnight regeneration cycle, delivering deep hydration and collagen peptides while you rest.</p>
+      <button class="btn-continue" onclick="closeModal('modal1')">
+        Continue
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal2">
+  <div class="modal-card">
+    <img class="modal-img" src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_008_szwcwt.jpg" alt="Lightweight formula">
+    <div class="modal-body">
+      <h3>Not your typical heavy mask</h3>
+      <p>Unlike traditional sleeping packs, this mask uses a lightweight wrapping technology that absorbs fully into the skin. No sticky residue, no stained pillowcases &mdash; just soft, plump skin by morning.</p>
+      <button class="btn-continue" onclick="closeModal('modal2')">
+        Continue
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal3">
+  <div class="modal-card">
+    <div class="modal-body">
+      <h3>One step replaces your entire night routine</h3>
+      <p>The Collagen Night Wrapping Mask combines hydrating serum, collagen treatment, and overnight mask into a single step. Apply after cleansing and wake up to visibly smoother, firmer-looking skin.</p>
+      <button class="btn-continue" onclick="closeModal('modal3')">
+        Continue
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ANALYZING SCREEN ===== -->
+<div class="screen analyzing-screen" id="analyzingScreen">
+  <div class="analyzing-inner">
+    <h2>Analyzing your skin profile...</h2>
+    <div class="analyze-steps">
+      <div class="analyze-step" id="step1">
+        <div class="step-icon"></div>
+        <span>Reviewing your skin concerns</span>
+      </div>
+      <div class="analyze-step" id="step2">
+        <div class="step-icon"></div>
+        <span>Matching ingredients to your needs</span>
+      </div>
+      <div class="analyze-step" id="step3">
+        <div class="step-icon"></div>
+        <span>Building your personalized recommendation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULTS SCREEN ===== -->
+<div class="screen results-screen" id="resultsScreen">
+
+  <!-- Results Hero -->
+  <div class="results-hero">
+    <div class="results-hero-media">
+      <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dndik3mpf/video/upload/v1772791171/showcase_02_botanical_rzzt5w.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="results-hero-content">
+      <div class="results-hero-inner">
+        <h1>Your Skin Deserves This Overnight Transformation</h1>
+        <p>Based on your answers, the Medicube Collagen Night Wrapping Mask is an excellent match for your skin type and goals.</p>
+        <p>Join thousands who wake up to visibly plumper, smoother, more hydrated skin &mdash; with just one simple step before bed.</p>
+        <a href="https://hpkpn.ttrk.io/click" class="btn-cta cta-link">
+          Try It Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Science / Clinical Section -->
+  <div class="science-section">
+    <div class="science-text">
+      <h2>Formulated for real results. Ingredient-backed.</h2>
+      <p>Medicube's collagen peptide formula penetrates deep into the skin barrier while you sleep, delivering clinically studied ingredients that support skin elasticity, hydration retention, and overnight repair.</p>
+      <div class="science-stats">
+        <div class="stat-item">
+          <div class="stat-num">93%</div>
+          <div class="stat-label">reported visibly smoother skin after 2 weeks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.8</div>
+          <div class="stat-label">average star rating from verified buyers</div>
+        </div>
+      </div>
+    </div>
+    <div class="science-img">
+      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_001_xlxkmg.jpg" alt="Collagen Night Mask">
+    </div>
+  </div>
+
+  <!-- Key Ingredients -->
+  <div class="ingredients-section">
+    <div class="ingredients-img">
+      <img src="https://res.cloudinary.com/dndik3mpf/image/upload/v1772789544/ecom_collagen-mask_008_szwcwt.jpg" alt="Night Mask Ingredients">
+    </div>
+    <div class="ingredients-text">
+      <h2>Key Active Ingredients</h2>
+      <p class="subtitle">Everything your skin needs, nothing it doesn't</p>
+      <div class="ingredient-list">
+        <div class="ingredient-item"><div class="ingredient-dot"></div>Hydrolyzed Collagen Peptides</div>
+        <div class="ingredient-item"><div class="ingredient-dot"></div>Hyaluronic Acid Complex</div>
+        <div class="ingredient-item"><div class="ingredient-dot"></div>Niacinamide (Vitamin B3)</div>
+        <div class="ingredient-item"><div class="ingredient-dot"></div>Adenosine for Firming</div>
+        <div class="ingredient-item"><div class="ingredient-dot"></div>Centella Asiatica Extract</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testimonials-section">
+    <h2>What real customers are saying</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I wake up and my skin literally looks different. Plumper, smoother, like I got a facial overnight. This is the only night product I'll use now."</blockquote>
+        <div class="author">Jessica M.</div>
+        <div class="verified">Verified Buyer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I was skeptical about another overnight mask, but this one is different. It's not greasy or heavy and my fine lines actually look softer after a week."</blockquote>
+        <div class="author">Priya K.</div>
+        <div class="verified">Verified Buyer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Replaced my entire night routine with just this. The collagen really works &mdash; my skin feels bouncy and hydrated all day. Best purchase this year."</blockquote>
+        <div class="author">Lauren T.</div>
+        <div class="verified">Verified Buyer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offer Card -->
+  <div class="offer-section">
+    <h2>Start Your Overnight Skin Upgrade</h2>
+    <div class="offer-card">
+      <div class="offer-card-header">
+        <div class="product-name">Medicube Collagen Night Wrapping Mask</div>
+        <div class="product-desc">Full-size jar &bull; 30+ nights of use</div>
+      </div>
+      <div class="offer-card-row">
+        <span class="label">Collagen Night Mask</span>
+        <span class="value">$24.00 <span class="strike">$29.99</span></span>
+      </div>
+      <div class="offer-card-row">
+        <span class="label">Free Shipping</span>
+        <span class="value free">Free</span>
+      </div>
+      <div class="offer-card-footer">
+        <div class="offer-total">
+          <span>Total</span>
+          <span>$24.00</span>
+        </div>
+        <a href="https://hpkpn.ttrk.io/click" class="btn-buy cta-link">
+          Shop Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="offer-badges">
+          <div class="offer-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            30-day money back guarantee
+          </div>
+          <div class="offer-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            Cruelty-free & dermatologist tested
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Disclaimer -->
+  <div class="footer-disclaimer">
+    <p>Individual results may vary. The Collagen Night Wrapping Mask is a cosmetic product and is not intended to diagnose, treat, cure, or prevent any disease. Customer testimonials reflect individual experiences.</p>
+  </div>
+</div>
+
+<script>
+// State
+let currentQ = 0;
+const totalQ = 5;
+const answers = {};
+const modalAfterQ = {1:'modal1', 3:'modal2', 4:'modal3'};
+let pendingNextQ = 0;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function updateProgress() {
+  const pct = (currentQ / totalQ) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function startQuiz() {
+  currentQ = 1;
+  document.getElementById('progressBar').style.display = 'block';
+  document.getElementById('backBtn').style.display = 'block';
+  updateProgress();
+  showScreen('q1');
+}
+
+function answer(q, val) {
+  answers[q] = val;
+  const nextQ = q + 1;
+
+  // Check if this question triggers an interstitial
+  if (modalAfterQ[q]) {
+    pendingNextQ = nextQ;
+    document.getElementById(modalAfterQ[q]).classList.add('active');
+    return;
+  }
+
+  goToNext(nextQ);
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+  goToNext(pendingNextQ);
+}
+
+function goToNext(nextQ) {
+  if (nextQ > totalQ) {
+    showAnalyzing();
+    return;
+  }
+  currentQ = nextQ;
+  updateProgress();
+  showScreen('q' + nextQ);
+}
+
+function goBack() {
+  if (currentQ <= 1) {
+    currentQ = 0;
+    document.getElementById('progressBar').style.display = 'none';
+    document.getElementById('backBtn').style.display = 'none';
+    showScreen('startScreen');
+    return;
+  }
+  currentQ--;
+  updateProgress();
+  showScreen('q' + currentQ);
+}
+
+function showAnalyzing() {
+  document.getElementById('progressBar').style.display = 'none';
+  document.getElementById('backBtn').style.display = 'none';
+  showScreen('analyzingScreen');
+
+  const steps = ['step1','step2','step3'];
+  let i = 0;
+
+  function runStep() {
+    if (i > 0) {
+      document.getElementById(steps[i-1]).classList.remove('active');
+      document.getElementById(steps[i-1]).classList.add('done');
+      document.getElementById(steps[i-1]).querySelector('.step-icon').innerHTML = '&#10003;';
+    }
+    if (i < steps.length) {
+      document.getElementById(steps[i]).classList.add('active');
+      i++;
+      setTimeout(runStep, 1200);
+    } else {
+      setTimeout(showResults, 600);
+    }
+  }
+  runStep();
+}
+
+function showResults() {
+  showScreen('resultsScreen');
+  // Show nav but hide back/progress
+  document.getElementById('backBtn').style.display = 'none';
+}
+</script>
+
+<!-- Click ID passthrough -->
+<script>
+(function(){
+    var p=new URLSearchParams(window.location.search);
+    var c=p.get('rtkcid')||p.get('sub2')||p.get('clickid')||p.get('rt_clickid');
+    if(c){document.querySelectorAll('a.js-offer-link,a.cta-link').forEach(function(l){
+        var s=l.href.indexOf('?')>-1?'&':'?';
+        l.href=l.href+s+'sub2='+encodeURIComponent(c)
+    })}
+})();
+</script>
+<script type="text/javascript" src="//hpkpn.ttrk.io/track.js"></script>
+</body>
+</html>
