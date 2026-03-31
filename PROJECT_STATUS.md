@@ -1,7 +1,9 @@
 # Rubicon Lander Optimizer — Project Status
 
-**Last Updated:** 2026-03-05
-**Last Session:** Quiz funnel (L) declared winner of cycle-002. Created two optimization variants (M: no popups, N: 1 question) for cycle-003. Registered in RT, attached to campaign.
+**Last Updated:** 2026-03-31
+**Last Session (Timeshare):** **ts-cycle-001 started.** First timeshare lander optimization cycle. No prior champion — both landers are new. Editorial V2 (VSL + refi learnings: institutional header, blue CTA, cycle scarcity, 10min timer, loss-aversion body, autoplay video) vs Quiz V1 (RF3D-AA clone: 3-question eligibility screening, answer-echo headline, 10min timer). 50/50 split on RT campaign `68e374a8246ae5e16b8347ea`. Quiz questions designed to NOT overlap with offer page (gettimesharefree.com). Deployed to clearpathbenefitstoday.com via Netlify auto-deploy from WS-Rubicon/campaigns repo.
+**Last Session (Refi):** **Refi cycle-008 completed (early cut), cycle-009 started.** AA retained champion (6.93% CVR today, 8.08% baseline). AM lost: 5.02% CVR, 219 clicks, 11 conv, $1.21 EPC, -$52 loss (card_title_question_dollar + processing_personalized_steps). AN lost: 6.20% CVR, 258 clicks, 16 conv, $1.49 EPC, $32 profit (alert_positive_funding + timer_above_cta). None statistically significant (all p>0.05). AM 28% below AA = probable loser. AN 11% below AA, 23% below baseline. Cycle-009 started: AA champion (34%) vs AR (fullscreen step flow / Rocket Mortgage UX + dashboard panels, 33%) vs AS (official determination notice / document format + bordered amount box, 33%). First architecture-level tests for refi.
+**Last Session (Ecom):** **Cycle-011 scrapped, cycle-012 started.** Cycle-011 was compromised: user cleared all landers from RT rotation mid-test. AA retained as champion with lifetime 2.19% CVR / $0.65 EPC over 1612 clicks. Cycle-012: AA champion (34%) vs AE (concern-specific Q3 + personalized offer subtitle, 33%) vs AF (outcome hero headline + timer-in-CTA, 33%).
 
 ---
 
@@ -133,6 +135,24 @@ A **Claude-orchestrated A/B testing system for landing pages**. It runs optimiza
 | Peptides_L9 (Challenger H - Problem-Agitate-Solve) | `6985b883715248442a337f17` |
 | **Peptides_L10 (Challenger M - Quiz No Popups)** | `69aa7a783e246949aa0e3dd7` |
 | **Peptides_L11 (Challenger N - Quiz 1 Question)** | `69aa7a7a3e246949aa0e3ddf` |
+| **Peptides_L12 (Challenger O - Urgency Offer)** | `69ab805f516b7da137d01bf5` |
+| **Peptides_L13 (Challenger P - Pain Quiz)** | `69ab8065263ab1fa61ba6ae0` |
+| **Peptides_L14 (Challenger Q - Dual Scarcity)** | `69ad41de7e0c33894d182a2e` (retired cycle-005) |
+| **Peptides_L15 (Challenger R - Pain Quiz + Urgency)** | `69ad4202bed5e3cc060e38e4` (retired cycle-005) |
+| **Peptides_L16 (Challenger S - Video Swap)** | `69ae8c2d516b7da1377bada3` |
+| **Peptides_L17 (Challenger T - Science Headline + Batch)** | `69ae8c3b263ab1fa616336d6` |
+| **Peptides_L18 (Challenger U - Readable Analyzer + Transactional CTA)** | `69afb9ec...` (retired cycle-007) |
+| **Peptides_L19 (Challenger V - Competitive Ranking + Guarantee Badge)** | `69afb9ee...` (retired cycle-007) |
+| **Peptides_L20 (Challenger W - Featured Product Card + Coral CTA)** | `69b0f5cccd8173f43000f234` |
+| **Peptides_L21 (Challenger X - Review Snippet + Daily Count)** | `69b0f5c4cd8173f43000f05e` (retired cycle-008) |
+| **Peptides_L22 (Challenger Y - Personalized Headline + Review Snippet)** | `69b26b75cd8173f43059e433` |
+| **Peptides_L23 (Challenger Z - Recency Count + Clinical Proof)** | `69b26b77cd8173f43059e81c` (retired cycle-009) |
+| **Peptides_L24 (Challenger AA - Personalized Analyzer + CTA)** | `69b3b1c94d550bb2a59f1b7e` |
+| **Peptides_L25 (Challenger AB - Matched Review + Live Toasts)** | `69b3b1cbe5032d87d2e035b2` |
+| **Peptides_L28 (Challenger AE - Concern Q3 + Personalized Subtitle)** | `69c20d072dbecf7657196e6c` |
+| **Peptides_L29 (Challenger AF - Outcome Hero + Timer CTA)** | `69c20d09eadb3df5558f2ea1` |
+| ~~Peptides_L26 (Challenger AC - scrapped cycle-011)~~ | `69b7813bb9db85550292f813` |
+| ~~Peptides_L27 (Challenger AD - scrapped cycle-011)~~ | `69b7813eb9db85550292f819` |
 | ~~Peptides_L1 (champion, retired)~~ | `6981b203f161a8800ef4ab5a` |
 | ~~Peptides_L2 (challenger A, retired)~~ | `6981b204f161a8800ef4ab5b` |
 | ~~Peptides_L3 (challenger B, retired)~~ | `6981b205f161a8800ef4ab5c` |
@@ -180,20 +200,23 @@ curl -s -X PUT "https://api.redtrack.io/campaigns/CAMPAIGN_ID?api_key=API_KEY" \
 
 ### How we deployed to Netlify
 
-Node.js isn't available in WSL, so the Netlify CLI doesn't work. We deploy via the Netlify API:
+**IMPORTANT: Git push does NOT deploy to Netlify.** The Netlify site is NOT connected to GitHub for auto-deploys. There are no webhooks. Pushing to GitHub only stores source code — you MUST deploy via the Netlify API separately.
+
+Auth token location: `~/.config/netlify/config.json` → `users.{userId}.auth.token`
 
 ```bash
-# 1. Calculate SHA1 hashes for all files (excluding .git)
-# 2. POST to /api/v1/sites/{SITE_ID}/deploys with {"files": {"/path": "sha1hash"}}
-# 3. Upload each "required" file via PUT /api/v1/deploys/{DEPLOY_ID}/files/{path}
-# 4. Deploy auto-publishes when all required files are uploaded
+# 1. cd into olenis-landers/ (the publish directory)
+# 2. Calculate SHA1 hashes for all files (excluding .netlify/)
+# 3. POST to /api/v1/sites/{SITE_ID}/deploys with {"files": {"/path": "sha1hash"}}
+# 4. Upload each "required" file via PUT /api/v1/deploys/{DEPLOY_ID}/files/{path}
+# 5. Deploy auto-publishes when all required files are uploaded
 ```
 
 ---
 
 ## Blockers
 
-1. **No Node.js in WSL** — Netlify CLI fails. Workaround: deploy via Netlify REST API with curl (documented above).
+1. **No Node.js in WSL** — Netlify CLI fails. Workaround: deploy via Netlify REST API with curl (documented above). **Git push does NOT trigger Netlify deploys — no auto-deploy is configured.**
 2. **MCP `rt_update_campaign` is limited** — Cannot modify campaign streams/landers. Workaround: use RedTrack API directly with the API key (documented above).
 3. **Champion page is on Framer** — Cannot extract full content via WebFetch (JS-rendered). Champion schema has partial/null component values because of this.
 4. **`presales_generate` doesn't support ecommerce** — Challengers must be built as manual HTML. Can't use the presales MCP tool for this vertical.

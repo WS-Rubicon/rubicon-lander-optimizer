@@ -27,25 +27,43 @@
         "aov": 23.0
       },
       "status": "active",
-      "optimizer_status": "cycle-002-active",
+      "optimizer_status": "cycle-012-running",
       "landers": {
-        "challenger_c": {
-          "rt_lander_id": "69827f5dc697e6db7e4e88e8",
-          "lander_id": "ecomm-peptide-v002-c",
-          "url": "https://firstlightrituals.com/peptide-patches/challenger-c.html"
+        "challenger_aa": {
+          "rt_lander_id": "69b3b1c94d550bb2a59f1b7e",
+          "lander_id": "ecomm-peptide-v010-aa",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-aa.html",
+          "role": "champion",
+          "description": "Full personalization thread (analyzer steps + headline + CTA all echo Q1 concern) — retained champion (2.19% CVR, $0.65 EPC over 1612 clicks)"
         },
-        "challenger_d": {
-          "rt_lander_id": "69827f5ec697e6db7e4e88ec",
-          "lander_id": "ecomm-peptide-v002-d",
-          "url": "https://firstlightrituals.com/peptide-patches/challenger-d.html"
+        "challenger_ae": {
+          "rt_lander_id": "69c20d072dbecf7657196e6c",
+          "lander_id": "ecomm-peptide-v012-ae",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ae.html",
+          "role": "challenger",
+          "description": "Concern-specific Q3 follow-up + personalized offer subtitle (Targets [concern] in as few as 3 uses)"
         },
-        "challenger_e": {
-          "rt_lander_id": "69827f5ec697e6db7e4e88ed",
-          "lander_id": "ecomm-peptide-v002-e",
-          "url": "https://firstlightrituals.com/peptide-patches/challenger-e.html"
+        "challenger_af": {
+          "rt_lander_id": "69c20d09eadb3df5558f2ea1",
+          "lander_id": "ecomm-peptide-v012-af",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-af.html",
+          "role": "challenger",
+          "description": "Outcome hero headline (What If You Could Fix Your Under-Eyes in Just 7 Days?) + live countdown timer in CTA button"
         }
       },
       "retired_landers": {
+        "challenger_ac_v011": {
+          "rt_lander_id": "69b7813bb9db85550292f813",
+          "lander_id": "ecomm-peptide-v011-ac",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ac.html",
+          "retired_reason": "Cycle-011 scrapped: campaign rotation cleared by user. Only 105 clicks (1 conv, 0.95% CVR). Inconclusive."
+        },
+        "challenger_ad_v011": {
+          "rt_lander_id": "69b7813eb9db85550292f819",
+          "lander_id": "ecomm-peptide-v011-ad",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ad.html",
+          "retired_reason": "Cycle-011 scrapped: campaign rotation cleared by user. Only 104 clicks (1 conv, 0.96% CVR). Inconclusive."
+        },
         "champion_v001": {
           "rt_lander_id": "6981b203f161a8800ef4ab5a",
           "lander_id": "ecomm-peptide-v001",
@@ -63,6 +81,66 @@
           "lander_id": "ecomm-peptide-v001-b",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-b",
           "retired_reason": "0 conversions, CTA linked to Shopify instead of RT offer URL"
+        },
+        "challenger_q_v005": {
+          "rt_lander_id": "69ad41de7e0c33894d182a2e",
+          "lander_id": "ecomm-peptide-v005-q",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-q.html",
+          "retired_reason": "Cycle-005 loser: dual scarcity (3min timer + stock counter) — 2.31% CVR vs champion O at 2.86%"
+        },
+        "challenger_r_v005": {
+          "rt_lander_id": "69ad4202bed5e3cc060e38e4",
+          "lander_id": "ecomm-peptide-v005-r",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-r.html",
+          "retired_reason": "Cycle-005 loser: pain-first quiz questions — 1.04% CVR vs champion O at 2.86%"
+        },
+        "challenger_s_v006": {
+          "rt_lander_id": "69ae8c2d516b7da1377bada3",
+          "lander_id": "ecomm-peptide-v006-s",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-s.html",
+          "retired_reason": "Cycle-006 loser: Veo closeup results video — 0 conv on 104 clicks (0% CVR) vs champion O at 2.50%"
+        },
+        "challenger_t_v006": {
+          "rt_lander_id": "69ae8c3b263ab1fa616336d6",
+          "lander_id": "ecomm-peptide-v006-t",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-t.html",
+          "retired_reason": "Cycle-006 loser: science headline + batch scarcity — 0.46% CVR (1 conv on 216 clicks) vs champion O at 2.50%"
+        },
+        "challenger_o_v008": {
+          "rt_lander_id": "69ab805f516b7da137d01bf5",
+          "lander_id": "ecomm-peptide-v004-o",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-o.html",
+          "retired_reason": "Cycle-008: Dethroned by W. EPC $0.61 vs W $0.73. Compact offer row + navy CTA outperformed by featured product card + coral CTA."
+        },
+        "challenger_x_v008": {
+          "rt_lander_id": "69b0f5c4cd8173f43000f05e",
+          "lander_id": "ecomm-peptide-v008-x",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-x.html",
+          "retired_reason": "Cycle-008: Highest LP CTR (30.3%) but lowest EPC ($0.49). Review snippet sets expectations Shopify checkout doesn't fulfill."
+        },
+        "challenger_w_v009": {
+          "rt_lander_id": "69b0f5cccd8173f43000f234",
+          "lander_id": "ecomm-peptide-v008-w",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-w.html",
+          "retired_reason": "Cycle-009: Dethroned by Y. 2.36% CVR / $0.67 EPC vs Y at 3.21% / $1.00. Generic headline couldn't compete with personalized concern echo."
+        },
+        "challenger_z_v009": {
+          "rt_lander_id": "69b26b77cd8173f43059e81c",
+          "lander_id": "ecomm-peptide-v009-z",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-z.html",
+          "retired_reason": "Cycle-009: Recency hero count + clinical proof. 2.50% CVR / $1.00 EPC vs Y at 3.21% / $1.00. Daily count (2nd loss) and clinical proof didn't outperform personalization."
+        },
+        "challenger_y_v010": {
+          "rt_lander_id": "69b26b75cd8173f43059e433",
+          "lander_id": "ecomm-peptide-v009-y",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-y.html",
+          "retired_reason": "Cycle-010: Dethroned by AA. 1.95% CVR / $0.66 EPC vs AA at 2.58% / $0.66. Generic analyzer + generic CTA lost to full personalization thread."
+        },
+        "challenger_ab_v010": {
+          "rt_lander_id": "69b3b1cbe5032d87d2e035b2",
+          "lander_id": "ecomm-peptide-v010-ab",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ab.html",
+          "retired_reason": "Cycle-010: Concern-matched reviews + toast notifications. 1.48% CVR / $0.44 EPC. Matched reviews feel manufactured, toasts are negative signal. Lowest LP CTR at 14.4%."
         }
       }
     },
@@ -112,6 +190,175 @@
         }
       },
       "retired_landers": {}
+    },
+    "timeshare": {
+      "campaign_name": "Wesley - Timeshare Exits - Facebook",
+      "rt_campaign_id": "68e374a8246ae5e16b8347ea",
+      "rt_offer_id": "69af2ca6a46edb296f238509",
+      "offer_url": "https://hpkpn.ttrk.io/click",
+      "traffic_source": "Wesley - Timeshare Exits - Facebook",
+      "status": "active",
+      "optimizer_status": "ts-cycle-001-running",
+      "landers": {
+        "editorial_v2": {
+          "rt_lander_id": "69cba1f150f494d219b92c4f",
+          "lander_id": "ts-editorial-v2",
+          "url": "https://clearpathbenefitstoday.com/timeshare-exit/case-evaluation/",
+          "role": "challenger",
+          "description": "Editorial VSL with refi learnings: institutional header, blue CTA, cycle scarcity, 10min timer, loss-aversion body copy, autoplay video"
+        },
+        "quiz_v1": {
+          "rt_lander_id": "69cba1f335ccebffe9893482",
+          "lander_id": "ts-quiz-v1",
+          "url": "https://clearpathbenefitstoday.com/timeshare-exit/eligibility/",
+          "role": "challenger",
+          "description": "Quiz format cloned from refi RF3D-AA champion: 3 questions (ownership duration, prior exit attempts, aspirational outcome), answer-echo headline, 10min timer, institutional framing"
+        }
+      },
+      "retired_landers": {
+        "editorial_v1": {
+          "rt_lander_id": "",
+          "lander_id": "ts-editorial-v1",
+          "url": "https://clearpathbenefitstoday.com/timeshare-exit/review/",
+          "retired_reason": "Original clone from easybenefithub.com. Not registered in RT. Replaced by editorial-v2 with refi optimization learnings applied."
+        }
+      }
+    },
+    "refi": {
+      "campaign_name": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "rt_offer_id": "68ca56292af551454e148f8e",
+      "offer_url": "https://hpkpn.ttrk.io/click",
+      "traffic_source": "Wesley - Ecomm - Facebook",
+      "status": "active",
+      "optimizer_status": "refi-cycle-009-running",
+      "landers": {
+        "rf3d_aa": {
+          "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+          "lander_id": "refi-rf3d-aa",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+          "role": "champion",
+          "description": "Answer-echo headline + 10min reservation timer — confirmed champion through 8 cycles (6.93% CVR, $1.66 EPC in cycle-008)"
+        },
+        "rf3d_ar": {
+          "rt_lander_id": "69c4c4c9b16f0b1058f15855",
+          "lander_id": "refi-rf3d-ar",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AR.html",
+          "role": "challenger",
+          "description": "Full-screen step flow (Rocket Mortgage UX + gov aesthetic). One question per screen, thin progress bar, immersive centered layout, dashboard-panel result page."
+        },
+        "rf3d_as": {
+          "rt_lander_id": "69c4c4cab16f0b1058f15856",
+          "lander_id": "refi-rf3d-as",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AS.html",
+          "role": "challenger",
+          "description": "Official determination notice. Document/letter format with reference number, date, inline pill verification, formal determination section with bordered amount box."
+        }
+      },
+      "retired_landers": {
+        "rf3d_am_v008": {
+          "rt_lander_id": "69c372beeadb3df555d7fa61",
+          "lander_id": "refi-rf3d-am",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AM.html",
+          "retired_reason": "Refi-cycle-008: Probable loser (early cut). 5.02% CVR, $1.21 EPC, -$52 loss (219 clicks, 11 conv). 28% below AA. Question title + personalized processing did not improve performance."
+        },
+        "rf3d_an_v008": {
+          "rt_lander_id": "69c372c02dbecf76576439af",
+          "lander_id": "refi-rf3d-an",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AN.html",
+          "retired_reason": "Refi-cycle-008: Below baseline (early cut). 6.20% CVR, $1.49 EPC, $32 profit (258 clicks, 16 conv). 11% below AA today, 23% below baseline. Positive alert + timer above CTA did not improve performance."
+        },
+        "rf3d_ak_v007": {
+          "rt_lander_id": "69c0f7b63a45b95aaed4bcc9",
+          "lander_id": "refi-rf3d-ak",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AK.html",
+          "retired_reason": "Refi-cycle-007: Statistical tie with AA (p=0.74). AK trended better on all metrics (8.52% CVR, $2.04 EPC, $481 profit vs AA 8.08%, $1.86, $372) but not significant. Components isolated into AM and AN for cycle-008."
+        },
+        "rf3d_al_v007": {
+          "rt_lander_id": "69c0f7b83a45b95aaed4bcca",
+          "lander_id": "refi-rf3d-al",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AL.html",
+          "retired_reason": "Refi-cycle-007: Early cut (day 1). Worst on every metric: 7.03% CVR, $1.69 EPC, $101 profit vs AK at 8.52%/$2.05/$175 and AA at 8.07%/$1.87/$167. Step-progress title + range anchor added no value."
+        },
+        "rf3d_y_v002": {
+          "rt_lander_id": "69b0fab0cd8173f43002284c",
+          "lander_id": "refi-rf3d-y",
+          "url": "https://clearpathbenefitstoday.com/RF3D-Y.html",
+          "retired_reason": "Refi-cycle-002: Dethroned by AA. 7.12% CVR vs AA 9.95%. Generic headline couldn't compete with answer-echo personalization + timer."
+        },
+        "rf3d_ab_v002": {
+          "rt_lander_id": "69b26b846fa76759ff6d47fe",
+          "lander_id": "refi-rf3d-ab",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AB.html",
+          "retired_reason": "Refi-cycle-002: Never properly in RT rotation. 6.87% CVR, -$4 loss. Salesy CTA broke gov tone, applicant counter interrupted result flow."
+        },
+        "rf3d_w": {
+          "rt_lander_id": "69afc45c28972f6ff4b6e8b7",
+          "lander_id": "refi-rf3d-w",
+          "url": "https://clearpathbenefitstoday.com/rf3d-w.html",
+          "retired_reason": "Refi-cycle-001 loser: dollar CTA + 15min timer — 7.58% CVR vs winner Y at 8.02%"
+        },
+        "rf3d_x": {
+          "rt_lander_id": "69afc45fda2b5ae87817504b",
+          "lander_id": "refi-rf3d-x",
+          "url": "https://clearpathbenefitstoday.com/rf3d-x.html",
+          "retired_reason": "Refi-cycle-001 loser: 3-step verification + range — 7.36% CVR vs winner Y at 8.02%"
+        },
+        "rf3d_z": {
+          "rt_lander_id": "69b0fab350a80959df1a88f0",
+          "lander_id": "refi-rf3d-z",
+          "url": "https://clearpathbenefitstoday.com/RF3D-Z.html",
+          "retired_reason": "Refi-cycle-001 worst: loss-aversion frame — 6.58% CVR, -$45 loss"
+        },
+        "rf3d_ac_v003": {
+          "rt_lander_id": "69b3b112e5032d87d2dfe322",
+          "lander_id": "refi-rf3d-ac",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AC.html",
+          "retired_reason": "Refi-cycle-003: Q3-echo desc + green CTA. 7.14% CVR vs AA at 10.13%. Green CTA semantic confusion + description speed bump."
+        },
+        "rf3d_ad_v003": {
+          "rt_lander_id": "69b3b114845878c5a1d2e2d9",
+          "lander_id": "refi-rf3d-ad",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AD.html",
+          "retired_reason": "Refi-cycle-003: Never in RT rotation (3rd lander bug). Only 87 clicks. Inconclusive."
+        },
+        "rf3d_ae_v004": {
+          "rt_lander_id": "69b78605ef1844f6a2ea39c7",
+          "lander_id": "refi-rf3d-ae",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AE.html",
+          "retired_reason": "Refi-cycle-004: Worst performer ever. 5.45% CVR. Removing description removes needed breathing room between amount and CTA."
+        },
+        "rf3d_af_v004": {
+          "rt_lander_id": "69b78608dd1318297267b8fd",
+          "lander_id": "refi-rf3d-af",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AF.html",
+          "retired_reason": "Refi-cycle-004/005: Q3-echo headline significantly worse than Q1-echo (6.96% vs 9.50%, p<0.05). Quiz expectation = screening result, not product pitch."
+        },
+        "rf3d_ag_v005": {
+          "rt_lander_id": "69b9093cef1844f6a243a842",
+          "lander_id": "refi-rf3d-ag",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AG.html",
+          "retired_reason": "Refi-cycle-005: Statistical tie (p=0.53). Conversational Q2 + multi-step processing had zero effect."
+        },
+        "rf3d_ah_v005": {
+          "rt_lander_id": "69b9093ebbe21eca1c80d80d",
+          "lander_id": "refi-rf3d-ah",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AH.html",
+          "retired_reason": "Refi-cycle-005: Statistical tie (p=0.76). Speed subtitle + emotional Q3 had zero effect."
+        },
+        "rf3d_ai_v006": {
+          "rt_lander_id": "69bb9cb5f5c8deef5ac2a126",
+          "lander_id": "refi-rf3d-ai",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AI.html",
+          "retired_reason": "Refi-cycle-006: Statistical tie (7.06%, p=0.48). Question headline didn't improve engagement."
+        },
+        "rf3d_aj_v006": {
+          "rt_lander_id": "69bb9cb7d7e8d2e6eb28c16f",
+          "lander_id": "refi-rf3d-aj",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AJ.html",
+          "retired_reason": "Refi-cycle-006: Probable loser (4.88% CVR, 39% drop). State-based Q1 added friction, 3-min timer too aggressive."
+        }
+      }
     }
   }
 }

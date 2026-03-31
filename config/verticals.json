@@ -55,6 +55,37 @@
         "form": ["address_only", "address_bill", "full_qualification"]
       }
     },
+    "timeshare": {
+      "name": "Timeshare Exit / Cancellation",
+      "compliance_level": "high",
+      "supported_styles": ["editorial", "quiz"],
+      "default_offer_url": "https://hpkpn.ttrk.io/click",
+      "min_clicks_for_significance": 100,
+      "min_hours_before_decision": 48,
+      "target_metrics": {
+        "cvr_excellent": 5.0,
+        "cvr_good": 3.0,
+        "cvr_flag": 1.5,
+        "epc_target": 0.50
+      },
+      "proven_angles": [
+        "attorney_backed_exit",
+        "rising_fees_loss_aversion",
+        "resort_villain",
+        "family_inheritance_fear",
+        "trapped_owner_freedom"
+      ],
+      "component_tags": {
+        "headline": ["loss_aversion", "authority", "curiosity", "concrete_numbers", "villain_frame", "freedom", "urgency"],
+        "subheadline": ["social_proof", "attorney_backed", "zero_cost", "time_qualifier"],
+        "hero_image": ["stressed_couple", "resort_exterior", "legal_document", "happy_family", "consultation"],
+        "cta": ["eligibility_check", "case_review", "low_commitment", "urgency", "action_oriented"],
+        "trust": ["attorney_backed", "success_rate", "exits_completed", "bbb_badge", "zero_upfront"],
+        "quiz": ["ownership_duration", "prior_exit_attempts", "aspirational_outcome"],
+        "video": ["vsl_attorney", "testimonial", "explainer"],
+        "scarcity": ["cycle_based", "limited_capacity", "reservation_timer"]
+      }
+    },
     "ecommerce": {
       "name": "Ecommerce - Beauty/Skincare",
       "compliance_level": "medium",

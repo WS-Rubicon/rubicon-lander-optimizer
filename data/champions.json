@@ -1,18 +1,41 @@
 {
   "champions": {
     "ecommerce": {
-      "lander_id": "ecomm-peptide-v001",
-      "style": "listicle",
-      "deployed_url": "https://landing.olenis.com/703/01",
-      "rt_lander_id": "6981b203f161a8800ef4ab5a",
-      "schema_path": "landers/ecommerce/champion/schema.json",
-      "promoted_at": "2026-02-02T00:00:00Z",
-      "cycle_id": "baseline",
-      "cvr": 3.53,
-      "epc": 0.81,
-      "total_clicks": 1953,
-      "total_conversions": 69
+      "lander_id": "ecomm-peptide-v010-aa",
+      "style": "quiz",
+      "deployed_url": "https://firstlightrituals.com/peptide-patches/challenger-aa.html",
+      "rt_lander_id": "69b3b1c94d550bb2a59f1b7e",
+      "promoted_at": "2026-03-15T00:00:00Z",
+      "cycle_id": "cycle-010",
+      "cvr": 2.19,
+      "epc": 0.65,
+      "total_clicks": 1612,
+      "total_conversions": 36
     }
+  },
+  "timeshare": {
+    "lander_id": "ts-cycle-001-pending",
+    "style": "tbd",
+    "deployed_url": "",
+    "rt_lander_id": "",
+    "promoted_at": "",
+    "cycle_id": "ts-cycle-001",
+    "cvr": 0,
+    "epc": 0,
+    "total_clicks": 0,
+    "total_conversions": 0
+  },
+  "refi": {
+    "lander_id": "refi-rf3d-aa",
+    "style": "quiz",
+    "deployed_url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+    "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+    "promoted_at": "2026-03-15T12:00:00Z",
+    "cycle_id": "refi-cycle-008",
+    "cvr": 6.93,
+    "epc": 1.66,
+    "total_clicks": 923,
+    "total_conversions": 64
   },
   "_schema": {
     "vertical_id": {
@@ -20,7 +43,6 @@
       "style": "editorial|quiz|offer",
       "deployed_url": "string",
       "rt_lander_id": "string",
-      "schema": "lander_schema_object",
       "promoted_at": "ISO8601",
       "cycle_id": "string",
       "cvr": "number",

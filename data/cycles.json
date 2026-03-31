@@ -1,12 +1,48 @@
 {
   "cycles": [
     {
+      "cycle_id": "ts-cycle-001",
+      "vertical": "timeshare",
+      "campaign": "Wesley - Timeshare Exits - Facebook",
+      "rt_campaign_id": "68e374a8246ae5e16b8347ea",
+      "started_at": "2026-03-31T06:00:00Z",
+      "status": "running",
+      "champion": {
+        "lander_id": "none",
+        "rt_lander_id": "",
+        "url": "",
+        "baseline_cvr": 0,
+        "baseline_epc": 0
+      },
+      "challengers": [
+        {
+          "lander_id": "ts-editorial-v2",
+          "rt_lander_id": "69cba1f150f494d219b92c4f",
+          "url": "https://clearpathbenefitstoday.com/timeshare-exit/case-evaluation/",
+          "changes": ["institutional_header", "blue_cta", "cycle_scarcity", "10min_timer", "loss_aversion_body", "autoplay_video", "concrete_stats_row"],
+          "tags_tested": ["format_editorial_vsl", "cta_blue_institutional", "scarcity_cycle_based", "timer_10min_reservation"],
+          "description": "Editorial VSL with all refi learnings: institutional authority framing, blue CTA (not green), cycle-based scarcity, 10min reservation timer, loss-aversion in body copy, concrete stat boxes, autoplay muted video"
+        },
+        {
+          "lander_id": "ts-quiz-v1",
+          "rt_lander_id": "69cba1f335ccebffe9893482",
+          "url": "https://clearpathbenefitstoday.com/timeshare-exit/eligibility/",
+          "changes": ["quiz_format", "answer_echo_headline", "10min_timer", "cycle_scarcity", "institutional_framing"],
+          "tags_tested": ["format_quiz", "result_headline_answer_echo", "timer_10min_reservation", "scarcity_cycle_based"],
+          "description": "Quiz format cloned from refi RF3D-AA champion pattern: 3 non-overlapping questions (ownership duration, prior exit attempts, aspirational outcome), answer-echo headline on results, 10min reservation timer, consumer protection eligibility framing"
+        }
+      ],
+      "traffic_split": "50/50",
+      "min_clicks_for_significance": 100,
+      "notes": "First timeshare lander test. No baseline champion — both are new. Testing editorial VSL vs quiz format. Quiz questions designed to NOT overlap with offer page (gettimesharefree.com) which already asks: resort name, misled?, mortgage payments?, maintenance fees, financial burden."
+    },
+    {
       "cycle_id": "cycle-001",
       "vertical": "ecommerce",
       "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
       "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
       "started_at": "2026-02-03T07:00:00Z",
-      "status": "running",
+      "status": "failed",
       "champion": {
         "lander_id": "ecomm-peptide-v001",
         "rt_lander_id": "6981b203f161a8800ef4ab5a",
@@ -19,65 +55,118 @@
           "lander_id": "ecomm-peptide-v001-a",
           "rt_lander_id": "6981b204f161a8800ef4ab5b",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-a",
-          "changes": ["headline", "style", "trust_elements", "body_sections"],
-          "tags_tested": ["discovery_narrative", "ancient_origin", "authority", "nutra_editorial"],
+          "changes": [
+            "headline",
+            "style",
+            "trust_elements",
+            "body_sections"
+          ],
+          "tags_tested": [
+            "discovery_narrative",
+            "ancient_origin",
+            "authority",
+            "nutra_editorial"
+          ],
           "description": "Nutra-style editorial: historian discovers ancient Korean manuscripts linking to modern peptide patches"
         },
         {
           "lander_id": "ecomm-peptide-v001-b",
           "rt_lander_id": "6981b205f161a8800ef4ab5c",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-b",
-          "changes": ["headline", "cta"],
-          "tags_tested": ["scarcity", "purchase_count", "urgency"],
+          "changes": [
+            "headline",
+            "cta"
+          ],
+          "tags_tested": [
+            "scarcity",
+            "purchase_count",
+            "urgency"
+          ],
           "description": "Social proof + scarcity angle headline and CTA"
         }
       ],
       "traffic_split": "34/33/33",
       "min_clicks_for_significance": 100,
-      "winner": null,
       "completed_at": "2026-02-03T22:00:00Z",
-      "status": "failed",
-      "failure_reason": "0 conversions across all 3 landers after 114 clicks ($168 spent). Root cause: CTA links went directly to Shopify instead of through RT offer URL — conversion tracking was broken. Champion also had 0 LP views (Framer page missing track.js). Challenger A violated 1-3 component change rule (changed 4).",
+      "failure_reason": "0 conversions across all 3 landers after 114 clicks ($168 spent). Root cause: CTA links went directly to Shopify instead of through RT offer URL \u2014 conversion tracking was broken. Champion also had 0 LP views (Framer page missing track.js). Challenger A violated 1-3 component change rule (changed 4).",
       "results": {
-        "L1_champion": {"clicks": 32, "lp_views": 0, "conversions": 0, "spend": 48.60},
-        "L2_challenger_a": {"clicks": 34, "lp_views": 32, "conversions": 0, "spend": 48.54},
-        "L3_challenger_b": {"clicks": 48, "lp_views": 50, "conversions": 0, "spend": 70.73}
+        "L1_champion": {
+          "clicks": 32,
+          "lp_views": 0,
+          "conversions": 0,
+          "spend": 48.6
+        },
+        "L2_challenger_a": {
+          "clicks": 34,
+          "lp_views": 32,
+          "conversions": 0,
+          "spend": 48.54
+        },
+        "L3_challenger_b": {
+          "clicks": 48,
+          "lp_views": 50,
+          "conversions": 0,
+          "spend": 70.73
+        }
       }
-    }
-  ],
+    },
     {
       "cycle_id": "cycle-002",
       "vertical": "ecommerce",
       "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
       "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
       "started_at": "2026-02-03T23:00:00Z",
-      "status": "running",
+      "status": "superseded",
       "champion": null,
-      "note": "No champion — all 3 are challengers testing against each other after cycle-001 failure. Winner becomes new champion.",
+      "note": "No champion \u2014 all 3 are challengers testing against each other after cycle-001 failure. Cycles 003-004 not recorded in this file (gap). Superseded by cycle-005 which promoted challenger-o.",
       "challengers": [
         {
           "lander_id": "ecomm-peptide-v002-c",
           "rt_lander_id": "69827f5dc697e6db7e4e88e8",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-c.html",
-          "changes": ["headline", "body_sections"],
-          "tags_tested": ["authority", "comparison", "ingredient_science", "price_anchor"],
-          "description": "Ingredient science angle — dermatologists say patches beat creams, with comparison table"
+          "changes": [
+            "headline",
+            "body_sections"
+          ],
+          "tags_tested": [
+            "authority",
+            "comparison",
+            "ingredient_science",
+            "price_anchor"
+          ],
+          "description": "Ingredient science angle \u2014 dermatologists say patches beat creams, with comparison table"
         },
         {
           "lander_id": "ecomm-peptide-v002-d",
           "rt_lander_id": "69827f5ec697e6db7e4e88ec",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-d.html",
-          "changes": ["headline", "body_sections"],
-          "tags_tested": ["first_person_review", "curiosity", "transformation_journal", "honest_review"],
-          "description": "30-day honest review angle — first-person timeline showing day-by-day results with verdict box"
+          "changes": [
+            "headline",
+            "body_sections"
+          ],
+          "tags_tested": [
+            "first_person_review",
+            "curiosity",
+            "transformation_journal",
+            "honest_review"
+          ],
+          "description": "30-day honest review angle \u2014 first-person timeline showing day-by-day results with verdict box"
         },
         {
           "lander_id": "ecomm-peptide-v002-e",
           "rt_lander_id": "69827f5ec697e6db7e4e88ed",
           "url": "https://firstlightrituals.com/peptide-patches/challenger-e.html",
-          "changes": ["headline", "body_sections"],
-          "tags_tested": ["price_anchor", "value_comparison", "cost_per_use", "annual_savings"],
-          "description": "Price comparison angle — $0.38/treatment vs $3-5 eye creams with annual savings calculator"
+          "changes": [
+            "headline",
+            "body_sections"
+          ],
+          "tags_tested": [
+            "price_anchor",
+            "value_comparison",
+            "cost_per_use",
+            "annual_savings"
+          ],
+          "description": "Price comparison angle \u2014 $0.38/treatment vs $3-5 eye creams with annual savings calculator"
         }
       ],
       "traffic_split": "33/33/34",
@@ -87,12 +176,1218 @@
         "All landers have RT track.js script for LP view tracking",
         "All landers have clickid passthrough JS (captures sub2/clickid/rt_clickid from URL, appends to CTA)",
         "Each challenger changes only 2 components (headline + body_sections) for cleaner attribution",
-        "Dropped Framer champion (0 LP views) — all landers now on Netlify"
+        "Dropped Framer champion (0 LP views) \u2014 all landers now on Netlify"
       ],
-      "winner": null,
       "completed_at": null
+    },
+    {
+      "cycle_id": "cycle-005",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-01T00:00:00Z",
+      "status": "completed",
+      "champion": {
+        "lander_id": "ecomm-peptide-v004-o",
+        "rt_lander_id": "69ab805f516b7da137d01bf5",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-o.html",
+        "baseline_cvr": 2.86,
+        "baseline_epc": 0.96
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v005-q",
+          "rt_lander_id": "69ad41de7e0c33894d182a2e",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-q.html",
+          "changes": [
+            "urgency_mechanics",
+            "timer_duration"
+          ],
+          "tags_tested": [
+            "dual_scarcity",
+            "stock_counter",
+            "timer_3min"
+          ],
+          "description": "Dual scarcity \u2014 3min timer + stock counter (11\u21923)"
+        },
+        {
+          "lander_id": "ecomm-peptide-v005-r",
+          "rt_lander_id": "69ad4202bed5e3cc060e38e4",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-r.html",
+          "changes": [
+            "quiz_questions",
+            "analyzer_steps"
+          ],
+          "tags_tested": [
+            "pain_first_quiz",
+            "frustration_amplification"
+          ],
+          "description": "Pain-first quiz questions + O's urgency results page"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "completed_at": "2026-03-09T00:00:00Z",
+      "note": "Q and R never got proper traffic \u2014 campaign ran O at 100% for most of the period. Force-ended due to 7+ days without significance. O declared probable winner.",
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v004-o",
+        "winner_cvr": 2.86,
+        "winner_epc": 0.96,
+        "significance": "no \u2014 force-ended (O had 23%+ CVR edge over Q, 175% over R)",
+        "variants_tested": [
+          {
+            "id": "challenger-o",
+            "clicks": 700,
+            "conv": 20,
+            "cvr": 2.86,
+            "epc": 0.96
+          },
+          {
+            "id": "challenger-q",
+            "clicks": 130,
+            "conv": 3,
+            "cvr": 2.31,
+            "epc": 0.62
+          },
+          {
+            "id": "challenger-r",
+            "clicks": 96,
+            "conv": 1,
+            "cvr": 1.04,
+            "epc": 0.48
+          }
+        ]
+      },
+      "learnings": [
+        "Practical quiz questions (concern, spend, time) outperform pain-first questions (duration, failed products, frustration) \u2014 2.86% vs 1.04% CVR",
+        "Single 5-min timer beats dual scarcity (timer + stock counter) \u2014 2.86% vs 2.31% CVR",
+        "Pain-first quiz disconnects from the 95%+ match score \u2014 users don't understand why frustration level = product compatibility",
+        "Dual urgency signals (timer + stock) feel manipulative for a digital product"
+      ]
+    },
+    {
+      "cycle_id": "cycle-006",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-09T00:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-10T06:30:00Z",
+      "champion": {
+        "lander_id": "ecomm-peptide-v004-o",
+        "rt_lander_id": "69ab805f516b7da137d01bf5",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-o.html",
+        "baseline_cvr": 2.86,
+        "baseline_epc": 0.96
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v006-s",
+          "rt_lander_id": "69ae8c2d516b7da1377bada3",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-s.html",
+          "changes": [
+            "video_background"
+          ],
+          "tags_tested": [
+            "video_closeup_results"
+          ],
+          "description": "New video background \u2014 closeup results v2 (Veo) replacing original video"
+        },
+        {
+          "lander_id": "ecomm-peptide-v006-t",
+          "rt_lander_id": "69ae8c3b263ab1fa616336d6",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-t.html",
+          "changes": [
+            "results_headline",
+            "urgency_mechanics"
+          ],
+          "tags_tested": [
+            "headline_compatibility_science",
+            "urgency_batch_quality"
+          ],
+          "description": "Science headline ('97% Peptide Compatibility Detected') + batch scarcity ('Ships Within 24 Hours') replacing countdown timer"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v004-o",
+        "winner_cvr": 2.5,
+        "winner_epc": 1.46,
+        "significance": "no \u2014 probable winner (O had infinite CVR edge over S at 0%, 443% over T at 0.46%)",
+        "variants_tested": [
+          {
+            "id": "challenger-o",
+            "clicks": 240,
+            "conv": 6,
+            "cvr": 2.5,
+            "epc": 1.46
+          },
+          {
+            "id": "challenger-s",
+            "clicks": 104,
+            "conv": 0,
+            "cvr": 0.0,
+            "epc": 0.0
+          },
+          {
+            "id": "challenger-t",
+            "clicks": 216,
+            "conv": 1,
+            "cvr": 0.46,
+            "epc": 0.12
+          }
+        ]
+      },
+      "learnings": [
+        "Veo closeup results video killed conversion \u2014 0 conv on 104 clicks vs O's 2.50% CVR with original video. Video quality/mood during quiz affects downstream trust even though hidden on results page.",
+        "Replacing countdown timer with static 'Ships Within 24 Hours' batch scarcity dropped CVR from 2.50% to 0.46%. Countdown timer is the core urgency driver.",
+        "Science headline '97% Peptide Compatibility Detected' underperformed value headline 'Qualifies You for 50% Off'. Users need to see WHAT THEY GET, not what was detected.",
+        "LP CTR strongly correlates with urgency: O (25.4%) >> S (18.0%) = T (17.5%). Timer drives clicks.",
+        "Original video (final_2_wrrjdp.mp4) is proven \u2014 do not swap without strong reason."
+      ]
+    },
+    {
+      "cycle_id": "cycle-007",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-10T06:30:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-11T05:00:00Z",
+      "champion": {
+        "lander_id": "ecomm-peptide-v004-o",
+        "rt_lander_id": "69ab805f516b7da137d01bf5",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-o.html",
+        "baseline_cvr": 2.5,
+        "baseline_epc": 1.46
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v007-u",
+          "rt_lander_id": "69afb9ecf97be197036d5069",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-u.html",
+          "changes": [
+            "analyzer_text_readability",
+            "cta_text"
+          ],
+          "tags_tested": [
+            "analyzer_readable_text",
+            "cta_transactional_confirmation"
+          ],
+          "description": "Readable analyzer text (75% white + 95% white done state vs 50% + navy) + transactional CTA ('Get My Patches \u2014 50% Off Applied')"
+        },
+        {
+          "lander_id": "ecomm-peptide-v007-v",
+          "rt_lander_id": "69afb9eedfd9ed8898f16a55",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-v.html",
+          "changes": [
+            "qualify_message",
+            "guarantee_presentation"
+          ],
+          "tags_tested": [
+            "qualify_competitive_ranking",
+            "guarantee_prominent_badge"
+          ],
+          "description": "Competitive ranking qualify msg ('top 3% of quiz takers') + prominent guarantee badge with checkmark icon below CTA"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v004-o",
+        "winner_cvr": 1.95,
+        "winner_epc": 0.81,
+        "significance": "no \u2014 probable winner (O had infinite CVR edge over U and V at 0%, early termination day 1)",
+        "variants_tested": [
+          {
+            "id": "challenger-o",
+            "clicks": 307,
+            "conv": 6,
+            "cvr": 1.95,
+            "epc": 0.81
+          },
+          {
+            "id": "challenger-u",
+            "clicks": 83,
+            "conv": 0,
+            "cvr": 0.0,
+            "epc": 0.0
+          },
+          {
+            "id": "challenger-v",
+            "clicks": 57,
+            "conv": 0,
+            "cvr": 0.0,
+            "epc": 0.0
+          }
+        ]
+      },
+      "learnings": [
+        "Transactional CTA 'Get My Patches \u2014 50% Off Applied' got highest LP CTR (21.6%) but 0 conversions. Implies deal is done, then Shopify checkout creates expectation mismatch. Urgency-claim CTA wins.",
+        "'Top 3% of quiz takers' qualify message killed LP CTR to 7.7% (vs O at 16.2%). Unbelievable ranking from 3 simple questions triggers BS detectors. Threshold-based qualify ('Only scores above 90%') is more credible.",
+        "Prominent guarantee badge with bordered card draws attention AWAY from CTA. Plain text guarantee is subordinate and works better \u2014 reassures without competing for clicks.",
+        "O's conversion engine is built on compressed decision architecture: score \u2192 exclusive unlock \u2192 offer \u2192 ticking timer \u2192 one clear action. Both challengers disrupted this compression."
+      ]
+    },
+    {
+      "cycle_id": "cycle-008",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-11T05:00:00Z",
+      "status": "completed",
+      "champion": {
+        "lander_id": "ecomm-peptide-v004-o",
+        "rt_lander_id": "69ab805f516b7da137d01bf5",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-o.html",
+        "baseline_cvr": 1.95,
+        "baseline_epc": 0.81
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v008-w",
+          "rt_lander_id": "69b0f5cccd8173f43000f234",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-w.html",
+          "changes": [
+            "offer_presentation",
+            "cta_button_color"
+          ],
+          "tags_tested": [
+            "offer_featured_card",
+            "cta_coral_button"
+          ],
+          "description": "Featured product card (100px image, Best Seller tag, inline star rating) + coral CTA button (#D4836B) for visual contrast"
+        },
+        {
+          "lander_id": "ecomm-peptide-v008-x",
+          "rt_lander_id": "69b0f5c4cd8173f43000f05e",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-x.html",
+          "changes": [
+            "social_proof_injection",
+            "hero_social_proof"
+          ],
+          "tags_tested": [
+            "review_snippet_pre_cta",
+            "hero_daily_count"
+          ],
+          "description": "Review snippet above CTA ('I saw results after just 3 uses' \u2014 Sarah M.) + recency hero count ('2,347 women took this quiz today')"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "completed_at": "2026-03-12T12:00:00Z",
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v008-w",
+        "winner_cvr": 1.74,
+        "winner_epc": 0.73,
+        "significance": "no \u2014 probable winner (W had highest EPC $0.73 vs X $0.49 vs O $0.21; W and X tied on CVR ~1.75%, both 100%+ over O at 0.79%)",
+        "variants_tested": [
+          {
+            "id": "challenger-o",
+            "clicks": 126,
+            "conv": 1,
+            "cvr": 0.79,
+            "epc": 0.21
+          },
+          {
+            "id": "challenger-w",
+            "clicks": 115,
+            "conv": 2,
+            "cvr": 1.74,
+            "epc": 0.73
+          },
+          {
+            "id": "challenger-x",
+            "clicks": 113,
+            "conv": 2,
+            "cvr": 1.77,
+            "epc": 0.49
+          }
+        ]
+      },
+      "learnings": [
+        "Featured product card (100px centered image, Best Seller badge, star rating) outperformed compact inline row on EPC ($0.73 vs $0.21). Creates mini-PDP experience that primes user for purchase before clicking through to Shopify.",
+        "Coral CTA (#D4836B) provides visual contrast against navy/cream palette. Combined with featured card, LP CTR similar to O (20.5% vs 20%) but higher checkout completion.",
+        "Review snippet (X) drove highest LP CTR at 30.3% but lower EPC ($0.49) \u2014 social proof drives more clicks but less purchase intent than product presentation.",
+        "Recency hero count ('2,347 women took this quiz today') may contribute to X's performance but confounded with review snippet \u2014 testing isolated in cycle-009.",
+        "Champion O's 5-cycle reign ends. Its compressed decision architecture remains the template, but product presentation needed upgrading.",
+        "Product presentation quality correlates with checkout rate; social proof correlates with click-through rate. Combining both is the next test."
+      ]
+    },
+    {
+      "cycle_id": "cycle-009",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-12T12:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-12T22:00:00Z",
+      "champion": {
+        "lander_id": "ecomm-peptide-v008-w",
+        "rt_lander_id": "69b0f5cccd8173f43000f234",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-w.html",
+        "baseline_cvr": 1.74,
+        "baseline_epc": 0.73
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v009-y",
+          "rt_lander_id": "69b26b75cd8173f43059e433",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-y.html",
+          "changes": [
+            "results_headline",
+            "social_proof_injection"
+          ],
+          "tags_tested": [
+            "headline_personalized_concern",
+            "review_snippet_pre_cta"
+          ],
+          "description": "Personalized headline echoing Q1 answer ('Your Dark Circle Match: Qualifies for 50% Off') + review snippet before coral CTA (from X)"
+        },
+        {
+          "lander_id": "ecomm-peptide-v009-z",
+          "rt_lander_id": "69b26b77cd8173f43059e81c",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-z.html",
+          "changes": [
+            "hero_social_proof",
+            "offer_proof"
+          ],
+          "tags_tested": [
+            "hero_daily_count",
+            "offer_clinical_proof"
+          ],
+          "description": "Recency hero count ('2,347 women took this quiz today') + clinical proof in offer card ('Visible results after 3 uses \u2014 Clinical Study')"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v009-y",
+        "winner_cvr": 3.21,
+        "winner_epc": 1.0,
+        "significance": "no \u2014 probable winner (Y had 36%+ CVR lift over W, 28%+ over Z)",
+        "variants_tested": [
+          {
+            "id": "challenger-w",
+            "clicks": 127,
+            "conv": 3,
+            "cvr": 2.36,
+            "epc": 0.67
+          },
+          {
+            "id": "challenger-y",
+            "clicks": 187,
+            "conv": 6,
+            "cvr": 3.21,
+            "epc": 1.0
+          },
+          {
+            "id": "challenger-z",
+            "clicks": 120,
+            "conv": 3,
+            "cvr": 2.5,
+            "epc": 1.0
+          }
+        ]
+      },
+      "learnings": [
+        "Personalized headline echoing Q1 concern ('Your Dark Circle Match') creates commitment-consistency loop \u2014 user sees their own input reflected back, making the result feel tailored. 3.21% CVR vs W at 2.36%.",
+        "Review snippet before CTA (from X) combined with personalization outperforms either alone. Y's 3.21% CVR is the highest in 10 cycles.",
+        "Recency hero count ('2,347 women today') + clinical proof in offer card (Z) didn't outperform generic lifetime count + featured product card (W). Clinical proof replaces the mini-PDP product image which may reduce visual product confirmation.",
+        "Hero daily count tested twice now (X in cycle-008, Z in cycle-009) \u2014 0 wins, 2 losses. Recency framing doesn't add conversion value over lifetime social proof ('43,893 women').",
+        "RT had Y at 100% weight for part of the period (config mismatch). Data is directional, not clean A/B. Y's 36%+ CVR lift exceeds the 20% tie-breaking threshold."
+      ]
+    },
+    {
+      "cycle_id": "cycle-010",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-12T22:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-15T00:00:00Z",
+      "champion": {
+        "lander_id": "ecomm-peptide-v009-y",
+        "rt_lander_id": "69b26b75cd8173f43059e433",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-y.html",
+        "baseline_cvr": 3.21,
+        "baseline_epc": 1.0
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v010-aa",
+          "rt_lander_id": "69b3b1c94d550bb2a59f1b7e",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-aa.html",
+          "changes": [
+            "analyzer_steps",
+            "cta_text"
+          ],
+          "tags_tested": [
+            "analyzer_personalized_steps",
+            "cta_personalized_outcome"
+          ],
+          "description": "Personalized analyzer steps echoing Q1 concern during loading animation + personalized CTA ('Get My [Concern] Fix \u2014 50% Off Ends Soon')"
+        },
+        {
+          "lander_id": "ecomm-peptide-v010-ab",
+          "rt_lander_id": "69b3b1cbe5032d87d2e035b2",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ab.html",
+          "changes": [
+            "review_snippet",
+            "social_proof_notifications"
+          ],
+          "tags_tested": [
+            "review_concern_matched",
+            "social_proof_live_notifications"
+          ],
+          "description": "Concern-matched review snippet (dynamic review based on Q1 answer) + live purchase notification toasts (2 toasts at 5s and 13s after results load)"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v010-aa",
+        "winner_cvr": 2.58,
+        "winner_epc": 0.66,
+        "significance": "no \u2014 probable winner (32% CVR lift over Y, low confidence, no statistical significance)",
+        "variants_tested": [
+          {
+            "id": "challenger-y",
+            "clicks": 256,
+            "conv": 5,
+            "cvr": 1.95,
+            "epc": 0.66
+          },
+          {
+            "id": "challenger-aa",
+            "clicks": 194,
+            "conv": 5,
+            "cvr": 2.58,
+            "epc": 0.66
+          },
+          {
+            "id": "challenger-ab",
+            "clicks": 203,
+            "conv": 3,
+            "cvr": 1.48,
+            "epc": 0.44
+          }
+        ]
+      },
+      "learnings": [
+        "Full personalization thread (analyzer + headline + CTA all echoing Q1) creates strongest commitment-consistency loop. AA's personalized analyzer steps + personalized CTA outperformed Y's generic analyzer + generic CTA.",
+        "Personalized CTA self-selects for higher-quality clicks: AA had 16.0% LP CTR vs Y's 24.7%, but AA's checkout rate was 16.7% vs Y's 8.1%. Fewer but better clicks.",
+        "Concern-matched dynamic reviews (AB) likely trigger skepticism \u2014 review that perfectly matches your concern feels manufactured.",
+        "Toast purchase notifications (AB) are a negative signal for this audience/price point. Lowest LP CTR at 14.4%."
+      ]
+    },
+    {
+      "cycle_id": "cycle-011",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-16T04:05:00Z",
+      "status": "scrapped",
+      "champion": {
+        "lander_id": "ecomm-peptide-v010-aa",
+        "rt_lander_id": "69b3b1c94d550bb2a59f1b7e",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-aa.html",
+        "baseline_cvr": 2.58,
+        "baseline_epc": 0.66
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v011-ac",
+          "rt_lander_id": "69b7813bb9db85550292f813",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ac.html",
+          "changes": [
+            "offer_card",
+            "urgency_text"
+          ],
+          "tags_tested": [
+            "offer_q2_value_contrast",
+            "urgency_consequence_text"
+          ],
+          "description": "Q2-echo value contrast in offer card + urgency consequence text below CTA"
+        },
+        {
+          "lander_id": "ecomm-peptide-v011-ad",
+          "rt_lander_id": "69b7813eb9db85550292f819",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ad.html",
+          "changes": [
+            "review_position",
+            "offer_presentation"
+          ],
+          "tags_tested": [
+            "review_position_above_offer",
+            "offer_minimal_clean"
+          ],
+          "description": "Review snippet moved above offer card + minimal clean offer (no Best Seller tag, no stars)"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "completed_at": "2026-03-24T04:00:00Z",
+      "failure_reason": "Campaign rotation was cleared by user. AC/AD only got 105 clicks each (2.8% of traffic instead of 33%). 4 unknown lander IDs were added outside optimizer absorbing 20% of traffic. 35% went to no lander. Test data compromised.",
+      "results": {
+        "AA_champion": {
+          "clicks": 1418,
+          "lp_clicks": 280,
+          "conversions": 31,
+          "cvr": 2.19,
+          "epc": 0.65,
+          "revenue": 920.93
+        },
+        "AC_challenger": {
+          "clicks": 105,
+          "lp_clicks": 12,
+          "conversions": 1,
+          "cvr": 0.95,
+          "epc": 0.28,
+          "revenue": 29.9
+        },
+        "AD_challenger": {
+          "clicks": 104,
+          "lp_clicks": 13,
+          "conversions": 1,
+          "cvr": 0.96,
+          "epc": 0.52,
+          "revenue": 53.82
+        }
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-001",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-10T00:00:00Z",
+      "completed_at": "2026-03-12T00:00:00Z",
+      "status": "completed",
+      "champion": {
+        "lander_id": "refi-rf3d",
+        "rt_lander_id": "69aaaffc28972f6ff4b63a26",
+        "url": "https://clearpathbenefitstoday.com/rf3d",
+        "baseline_cvr": 7.75,
+        "baseline_epc": 1.86
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-w",
+          "rt_lander_id": "69afc45c28972f6ff4b6e8b7",
+          "url": "https://clearpathbenefitstoday.com/rf3d-w.html",
+          "changes": [
+            "cta_text",
+            "timer_reservation"
+          ],
+          "tags_tested": [
+            "cta_dollar_specific",
+            "timer_15min_reservation"
+          ],
+          "description": "Dollar-specific CTA ($185K Available) + 15min timer + security above CTA"
+        },
+        {
+          "lander_id": "refi-rf3d-x",
+          "rt_lander_id": "69afc45fda2b5ae87817504b",
+          "url": "https://clearpathbenefitstoday.com/rf3d-x.html",
+          "changes": [
+            "processing_screen",
+            "result_amount"
+          ],
+          "tags_tested": [
+            "processing_3step_verification",
+            "result_amount_range"
+          ],
+          "description": "3-step verification animation + dollar range $147K-$185K"
+        },
+        {
+          "lander_id": "refi-rf3d-y",
+          "rt_lander_id": "69b0fab0cd8173f43002284c",
+          "url": "https://clearpathbenefitstoday.com/RF3D-Y.html",
+          "changes": [
+            "quiz_questions",
+            "alert_scarcity"
+          ],
+          "tags_tested": [
+            "quiz_concrete_financial",
+            "scarcity_cycle_based"
+          ],
+          "description": "Concrete financial quiz (5yr ownership, $400K balance, 4 uses) + cycle-based scarcity"
+        },
+        {
+          "lander_id": "refi-rf3d-z",
+          "rt_lander_id": "69b0fab350a80959df1a88f0",
+          "url": "https://clearpathbenefitstoday.com/RF3D-Z.html",
+          "changes": [
+            "result_frame",
+            "above_quiz_elements"
+          ],
+          "tags_tested": [
+            "result_loss_aversion_frame",
+            "benefit_row_above_quiz"
+          ],
+          "description": "Loss-aversion result (red 'Missing Out') + 3-column benefit row above quiz"
+        }
+      ],
+      "traffic_split": "25/25/25/25",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "refi-rf3d-y",
+        "winner_cvr": 8.02,
+        "winner_epc": 1.92,
+        "significance": "no \u2014 forced pick (highest CVR, 7+ days)",
+        "variants_tested": [
+          "RF3D-W: 7.58% CVR, $1.82 EPC (501 clicks, 38 conv)",
+          "RF3D-X: 7.36% CVR, $1.77 EPC (367 clicks, 27 conv)",
+          "RF3D-Y: 8.02% CVR, $1.92 EPC (786 clicks, 63 conv) \u2014 WINNER",
+          "RF3D-Z: 6.58% CVR, $1.58 EPC (228 clicks, 15 conv) \u2014 WORST"
+        ]
+      },
+      "learnings": [
+        "Concrete financial quiz questions (5yr ownership, balance <$400K, intended use with 4 choices) create personalization bridge \u2014 user expects tailored result.",
+        "Cycle-based scarcity ('reviewed this cycle') is more credible than deadline scarcity in gov-style framework.",
+        "Dollar-specific CTA '$185K Available' creates expectation mismatch at lead form \u2014 user expects check, gets form.",
+        "3-step verification adds 3.6s processing time vs spinner \u2014 causes drop-off without added value.",
+        "Low anchor in range ($147K-$185K) reduces perceived value vs flat 'Up to $185K'.",
+        "Loss-aversion frame (red amount + 'Stop Losing Money') creates cognitive dissonance after passing eligibility quiz.",
+        "Benefit row above quiz adds visual complexity without decision-relevant info at that stage."
+      ]
+    },
+    {
+      "cycle_id": "refi-cycle-002",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-12T00:00:00Z",
+      "status": "running",
+      "champion": {
+        "lander_id": "refi-rf3d-y",
+        "rt_lander_id": "69b0fab0cd8173f43002284c",
+        "url": "https://clearpathbenefitstoday.com/RF3D-Y.html",
+        "baseline_cvr": 8.02,
+        "baseline_epc": 1.92
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-aa",
+          "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+          "changes": [
+            "result_headline",
+            "timer_reservation"
+          ],
+          "tags_tested": [
+            "result_headline_answer_echo",
+            "timer_10min_reservation"
+          ],
+          "description": "Result headline echoes Q1 answer ('Based on 5+ Years of Homeownership') + 10min reservation timer"
+        },
+        {
+          "lander_id": "refi-rf3d-ab",
+          "rt_lander_id": "69b26b846fa76759ff6d47fe",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AB.html",
+          "changes": [
+            "social_proof",
+            "cta_text"
+          ],
+          "tags_tested": [
+            "result_applicant_counter",
+            "cta_claim_slots_filling"
+          ],
+          "description": "Applicant counter ('2,847 homeowners checked this week') + urgency CTA ('Claim My Cash-Out Estimate \u2014 Slots Filling Fast')"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "completed_at": "2026-03-12T18:00:00Z",
+      "previous_cycle_results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 9.95,
+        "winner_epc": 2.28,
+        "significance": "no \u2014 probable winner (AA had 39.7% relative CVR lift over Y, p=0.098)",
+        "variants_tested": [
+          "RF3D-Y: 7.12% CVR, $1.71 EPC (646 clicks, 46 conv) \u2014 champion dethroned",
+          "RF3D-AA: 9.95% CVR, $2.28 EPC (432 clicks, 43 conv) \u2014 WINNER",
+          "RF3D-AB: 6.87% CVR, $1.47 EPC (131 clicks, 9 conv) \u2014 NOT in RT rotation, losing money"
+        ]
+      },
+      "learnings": [
+        "Answer-echo headline ('Based on 5+ Years of Homeownership') creates personalization continuity \u2014 user feels result is tailored to THEIR situation. 9.95% vs 7.12% CVR.",
+        "10-min reservation timer is congruent with gov screening framework \u2014 'eligibility result expires' is believable. Creates urgency without contradicting positive result.",
+        "Applicant counter ('2,847 homeowners') positioned ABOVE result badge interrupts eligibility \u2192 amount \u2192 action flow. Users want THEIR answer, not social proof at that moment.",
+        "'Claim My Cash-Out Estimate \u2014 Slots Filling Fast' CTA breaks institutional tone. 'View My Personalized Offer \u2192' maintains official screening voice. LP CTR dropped from 30% to 22%.",
+        "RF3D-AB was never properly added to RT rotation (only Y + AA at 50/50) \u2014 config/RT mismatch. Always verify RT campaign after cycle setup."
+      ]
+    },
+    {
+      "cycle_id": "refi-cycle-003",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-12T18:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-15T12:00:00Z",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 9.95,
+        "baseline_epc": 2.28
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ac",
+          "rt_lander_id": "69b3b112e5032d87d2dfe322",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AC.html",
+          "changes": [
+            "result_description",
+            "cta_button_color"
+          ],
+          "tags_tested": [
+            "result_desc_q3_benefit_echo",
+            "cta_green_success_color"
+          ],
+          "description": "Q3-echo result description (dynamic benefit framing based on Q3 answer) + green CTA button (#2e8540) matching eligible badge"
+        },
+        {
+          "lander_id": "refi-rf3d-ad",
+          "rt_lander_id": "69b3b114845878c5a1d2e2d9",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AD.html",
+          "changes": [
+            "result_amount_presentation",
+            "timer_duration"
+          ],
+          "tags_tested": [
+            "result_amount_highlighted_card",
+            "timer_5min_reservation"
+          ],
+          "description": "Highlighted amount card (green bg + border + 'Estimated Available Amount' label) + 5-min reservation timer"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 10.13,
+        "winner_epc": 2.43,
+        "significance": "no \u2014 probable winner (AA had 41.9% relative CVR lift over AC, p=0.14)",
+        "variants_tested": [
+          "RF3D-AA: 10.13% CVR, $2.43 EPC (375 clicks, 38 conv) \u2014 CHAMPION HOLDS",
+          "RF3D-AC: 7.14% CVR, $1.71 EPC (378 clicks, 27 conv) \u2014 Q3 echo desc + green CTA lost",
+          "RF3D-AD: 8.05% CVR, $1.93 EPC (87 clicks, 7 conv) \u2014 NOT in rotation (RT bug)"
+        ]
+      },
+      "learnings": [
+        "Green CTA (#2e8540) creates semantic confusion in gov framework \u2014 green is STATUS (eligible badge), not ACTION. Higher LP CTR (33%) but lower CVR (7.14% vs 10.13%). Users read green as 'already approved'.",
+        "Q3-echo result description re-engages rational brain at worst moment. Adding specific financial copy between eligibility high and CTA creates cognitive speed bump.",
+        "Blue CTA (#0071bc) matches institutional language throughout the page (header, progress bar, hover states). Feels like natural next step in screening flow.",
+        "Generic result description keeps focus on ELIGIBILITY STATUS, funneling directly to action. Minimal text between emotional high and CTA = higher conversion.",
+        "AD was never added to RT rotation (3rd lander dropped, same as cycle-002). Process fix: mandatory rt_get_campaign verification after every rt_update_campaign call."
+      ]
+    },
+    {
+      "cycle_id": "refi-cycle-004",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-15T12:00:00Z",
+      "status": "completed",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 10.13,
+        "baseline_epc": 2.43
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ae",
+          "rt_lander_id": "69b78605ef1844f6a2ea39c7",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AE.html",
+          "changes": [
+            "result_description",
+            "timer_placement"
+          ],
+          "tags_tested": [
+            "result_no_description",
+            "timer_above_cta"
+          ],
+          "description": "Compressed flow \u2014 removed description paragraph, moved timer above CTA"
+        },
+        {
+          "lander_id": "refi-rf3d-af",
+          "rt_lander_id": "69b78608dd1318297267b8fd",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AF.html",
+          "changes": [
+            "result_headline",
+            "timer_format"
+          ],
+          "tags_tested": [
+            "result_headline_q3_echo",
+            "timer_deadline_format"
+          ],
+          "description": "Q3 motivation-echo headline (dynamic based on intended use) + deadline clock timer (real time instead of countdown)"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "completed_at": "2026-03-16T12:00:00Z",
+      "results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 5.45,
+        "significance": "yes",
+        "notes": "AE worst ever (5.45% CVR, removed description). AF Q3-echo significantly worse than Q1-echo (6.96%, p<0.05). AA confirmed."
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-005",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-16T12:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-19T00:00:00Z",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 9.5,
+        "baseline_epc": 2.23
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ag",
+          "rt_lander_id": "69b9093cef1844f6a243a842",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AG.html",
+          "changes": [
+            "quiz_q2_wording",
+            "processing_animation"
+          ],
+          "tags_tested": [
+            "quiz_conversational_q2",
+            "processing_multistep"
+          ],
+          "description": "Conversational Q2 + multi-step processing animation"
+        },
+        {
+          "lander_id": "refi-rf3d-ah",
+          "rt_lander_id": "69b9093ebbe21eca1c80d80d",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AH.html",
+          "changes": [
+            "processing_subtitle",
+            "quiz_q3_options"
+          ],
+          "tags_tested": [
+            "processing_speed_subtitle",
+            "quiz_emotional_q3"
+          ],
+          "description": "Speed subtitle + emotional Q3 options"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 7.95,
+        "significance": "no",
+        "notes": "Both AG (p=0.53) and AH (p=0.76) statistical ties. Mid-quiz changes have ZERO measurable effect. AA re-confirmed as champion."
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-006",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-19T00:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-23T00:00:00Z",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 7.95,
+        "baseline_epc": 1.89
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ai",
+          "rt_lander_id": "69bb9cb5f5c8deef5ac2a126",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AI.html",
+          "changes": [
+            "card_title",
+            "result_social_proof"
+          ],
+          "tags_tested": [
+            "card_title_question_headline",
+            "result_social_proof"
+          ],
+          "description": "Question headline + social proof"
+        },
+        {
+          "lander_id": "refi-rf3d-aj",
+          "rt_lander_id": "69bb9cb7d7e8d2e6eb28c16f",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AJ.html",
+          "changes": [
+            "quiz_q1_format",
+            "timer_duration"
+          ],
+          "tags_tested": [
+            "quiz_state_based_q1",
+            "timer_3min"
+          ],
+          "description": "State-based Q1 + 3-min timer"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 7.95,
+        "significance": "no",
+        "notes": "AI statistical tie (7.06%, p=0.48). AJ probable loser (4.88%, 39% CVR drop, underfunded 164 clicks). Neither entry-point change improved performance."
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-007",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-23T00:00:00Z",
+      "status": "completed",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 7.95,
+        "baseline_epc": 1.89
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ak",
+          "rt_lander_id": "69c0f7b63a45b95aaed4bcc9",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AK.html",
+          "changes": [
+            "card_title",
+            "alert_bar"
+          ],
+          "tags_tested": [
+            "card_title_question_dollar_anchor",
+            "alert_bar_positive_update"
+          ],
+          "description": "Card title as question with dollar anchor + positive alert bar (increased limits framing)"
+        },
+        {
+          "lander_id": "refi-rf3d-al",
+          "rt_lander_id": "69c0f7b83a45b95aaed4bcca",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AL.html",
+          "changes": [
+            "card_title",
+            "card_subtitle"
+          ],
+          "tags_tested": [
+            "card_title_step_progress",
+            "subtitle_range_anchor_local"
+          ],
+          "description": "Step-progress card title + range anchor subtitle ($75K-$185K, 'in your area')"
+        }
+      ],
+      "traffic_split": "50/50 (AL cut day 1)",
+      "min_clicks_for_significance": 100,
+      "early_cuts": [
+        {
+          "lander_id": "refi-rf3d-al",
+          "cut_at": "2026-03-23T18:00:00Z",
+          "reason": "Worst on every metric after 313 clicks: 7.03% CVR, $1.69 EPC, $101 profit. Step-progress title + range anchor underperformed.",
+          "stats_at_cut": {
+            "clicks": 313,
+            "conv": 22,
+            "cvr": 7.03,
+            "epc": 1.69,
+            "revenue": 528,
+            "profit": 101
+          }
+        }
+      ],
+      "results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 8.08,
+        "winner_epc": 1.86,
+        "winner_clicks": 953,
+        "winner_conversions": 77,
+        "significance": "no — statistical tie (X²=0.113, p=0.74). AK trended better on all metrics but within 10%. Champion retained.",
+        "variants_tested": [
+          {"lander_id": "refi-rf3d-aa", "cvr": 8.08, "epc": 1.86, "clicks": 953, "conv": 77, "profit": 372},
+          {"lander_id": "refi-rf3d-ak", "cvr": 8.52, "epc": 2.04, "clicks": 869, "conv": 74, "profit": 481},
+          {"lander_id": "refi-rf3d-al", "cvr": 6.90, "epc": 1.66, "clicks": 319, "conv": 22, "profit": 71}
+        ]
+      }
+    },
+    {
+      "cycle_id": "cycle-012",
+      "vertical": "ecommerce",
+      "campaign": "Wesley - Peptide Eye Patches - Facebook - Ecomm",
+      "rt_campaign_id": "6979c0adcad13a4d8c3cbb94",
+      "started_at": "2026-03-24T04:05:00Z",
+      "status": "running",
+      "champion": {
+        "lander_id": "ecomm-peptide-v010-aa",
+        "rt_lander_id": "69b3b1c94d550bb2a59f1b7e",
+        "url": "https://firstlightrituals.com/peptide-patches/challenger-aa.html",
+        "baseline_cvr": 2.19,
+        "baseline_epc": 0.65
+      },
+      "challengers": [
+        {
+          "lander_id": "ecomm-peptide-v012-ae",
+          "rt_lander_id": "69c20d072dbecf7657196e6c",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-ae.html",
+          "changes": [
+            "quiz_concern_specific_q3",
+            "offer_subtitle_personalized"
+          ],
+          "tags_tested": [
+            "quiz_concern_specific_q3",
+            "offer_subtitle_personalized"
+          ],
+          "description": "Concern-specific Q3 follow-up (puffiness/dark circles/fine lines/crepey/all get different Q3) + personalized offer subtitle (Targets [concern] in as few as 3 uses)"
+        },
+        {
+          "lander_id": "ecomm-peptide-v012-af",
+          "rt_lander_id": "69c20d09eadb3df5558f2ea1",
+          "url": "https://firstlightrituals.com/peptide-patches/challenger-af.html",
+          "changes": [
+            "hero_outcome_question",
+            "timer_in_cta"
+          ],
+          "tags_tested": [
+            "hero_outcome_question",
+            "timer_in_cta"
+          ],
+          "description": "Outcome-focused hero headline (What If You Could Fix Your Under-Eyes in Just 7 Days?) + live countdown timer embedded in CTA button instead of banner"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "ecomm-peptide-v010-aa (retained)",
+        "winner_cvr": 2.19,
+        "winner_epc": 0.65,
+        "significance": "no (cycle-011 scrapped - compromised traffic split)",
+        "variants_tested": [
+          "AA: 2.19% CVR (1418 clicks)",
+          "AC: 0.95% CVR (105 clicks) - inconclusive",
+          "AD: 0.96% CVR (104 clicks) - inconclusive"
+        ]
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-008",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-24T18:00:00Z",
+      "status": "completed",
+      "completed_at": "2026-03-25T22:00:00Z",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 8.08,
+        "baseline_epc": 1.86
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-am",
+          "rt_lander_id": "69c372beeadb3df555d7fa61",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AM.html",
+          "changes": ["card_title", "processing"],
+          "tags_tested": ["card_title_question_dollar", "processing_personalized_steps"],
+          "description": "Question title with dollar anchor (from AK) + personalized 3-step processing echoing quiz answers"
+        },
+        {
+          "lander_id": "refi-rf3d-an",
+          "rt_lander_id": "69c372c02dbecf76576439af",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AN.html",
+          "changes": ["alert_bar", "timer_position"],
+          "tags_tested": ["alert_positive_funding", "timer_above_cta"],
+          "description": "Positive alert framing (from AK) + reservation timer repositioned above CTA button"
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 8.08,
+        "winner_epc": 1.86,
+        "significance": "no — statistical tie",
+        "variants_tested": [
+          "AA: 8.08% CVR, $1.86 EPC (953 clicks)",
+          "AK: 8.52% CVR, $2.04 EPC (869 clicks) — trending better but p=0.74",
+          "AL: 6.90% CVR, $1.66 EPC (319 clicks) — cut day 1"
+        ]
+      },
+      "results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 6.93,
+        "winner_epc": 1.66,
+        "winner_clicks": 923,
+        "winner_conversions": 64,
+        "significance": "no — early cut, 1 day of data. AM probable loser (28% below AA). AN within noise but below baseline.",
+        "variants_tested": [
+          {"lander_id": "refi-rf3d-aa", "cvr": 6.93, "epc": 1.66, "clicks": 923, "conv": 64, "profit": 269},
+          {"lander_id": "refi-rf3d-am", "cvr": 5.02, "epc": 1.21, "clicks": 219, "conv": 11, "profit": -52},
+          {"lander_id": "refi-rf3d-an", "cvr": 6.20, "epc": 1.49, "clicks": 258, "conv": 16, "profit": 32}
+        ]
+      }
+    },
+    {
+      "cycle_id": "refi-cycle-009",
+      "vertical": "refi",
+      "campaign": "Wesley - Refi 5 (LeadPoint) - Facebook",
+      "rt_campaign_id": "68dcc2aa91b76cbff5b449aa",
+      "started_at": "2026-03-25T22:00:00Z",
+      "status": "running",
+      "champion": {
+        "lander_id": "refi-rf3d-aa",
+        "rt_lander_id": "69b26b82e29ecfbddfcfb26f",
+        "url": "https://clearpathbenefitstoday.com/RF3D-AA.html",
+        "baseline_cvr": 6.93,
+        "baseline_epc": 1.66
+      },
+      "challengers": [
+        {
+          "lander_id": "refi-rf3d-ar",
+          "rt_lander_id": "69c4c4c9b16f0b1058f15855",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AR.html",
+          "changes": ["architecture", "result_layout"],
+          "tags_tested": ["arch_fullscreen_steps", "result_dashboard_panels"],
+          "description": "Full-screen step flow (Rocket Mortgage UX + gov aesthetic). One question per screen, thin progress bar, immersive centered layout, dashboard-panel result page."
+        },
+        {
+          "lander_id": "refi-rf3d-as",
+          "rt_lander_id": "69c4c4cab16f0b1058f15856",
+          "url": "https://clearpathbenefitstoday.com/RF3D-AS.html",
+          "changes": ["architecture", "result_layout"],
+          "tags_tested": ["arch_determination_notice", "result_official_letter"],
+          "description": "Official determination notice. Document/letter format with reference number, date, inline pill verification, formal determination section with bordered amount box."
+        }
+      ],
+      "traffic_split": "34/33/33",
+      "min_clicks_for_significance": 100,
+      "previous_cycle_results": {
+        "winner": "refi-rf3d-aa",
+        "winner_cvr": 6.93,
+        "winner_epc": 1.66,
+        "significance": "no — early cut, 1 day of data",
+        "variants_tested": [
+          "AA: 6.93% CVR, $1.66 EPC (923 clicks)",
+          "AM: 5.02% CVR, $1.21 EPC (219 clicks) — probable loser, 28% below AA",
+          "AN: 6.20% CVR, $1.49 EPC (258 clicks) — below baseline"
+        ]
+      }
     }
   ],
-  "total_completed": 1,
-  "last_cycle_at": "2026-02-03T23:00:00Z"
+  "total_completed": 14,
+  "last_cycle_at": "2026-03-25T22:00:00Z"
 }
